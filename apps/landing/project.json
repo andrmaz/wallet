@@ -24,7 +24,8 @@
       "executor": "@nx/vite:dev-server",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "apps/landing:build"
+        "buildTarget": "apps/landing:build",
+        "proxyConfig": "apps/landing/proxy.conf.json"
       },
       "configurations": {
         "development": {
