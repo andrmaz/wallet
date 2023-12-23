@@ -1,14 +1,19 @@
 import express from 'express'
-
-const host = process.env.HOST ?? 'localhost'
-const port = process.env.PORT ? Number(process.env.PORT) : 3000
+import { createHandler } from 'graphql-http/lib/use/express';
+import schema from './graphql';
+import { port, host } from './data/env';
 
 const app = express()
 
-app.get('/', (req, res) => {
-  res.send({message: 'Hello API'})
+app.use('/graphql', createHandler({ schema }));
+
+const server = app.listen(port, host, () => {
+  console.log(`[ ready ] http://${host}:${port}`)
 })
 
-app.listen(port, host, () => {
-  console.log(`[ ready ] http://${host}:${port}`)
+process.on('SIGTERM', () => {
+  //debug('SIGTERM signal received: closing HTTP server')
+  server.close(() => {
+    //debug('HTTP server closed')
+  })
 })
