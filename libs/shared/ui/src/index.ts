@@ -1,1 +1,1 @@
-export * from './lib/accordion';
+export * from './components/accordion';
