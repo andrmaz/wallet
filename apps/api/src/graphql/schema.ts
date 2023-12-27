@@ -1,18 +1,11 @@
-import { makeExecutableSchema } from "@graphql-tools/schema";
-import { resolvers } from "./resolver";
+import "reflect-metadata";
+import { resolvers } from '@generated/type-graphql'
+import { buildSchema } from "type-graphql";
 
-const typeDefs = `
-  type User {
-    email: String!
-    name: String
-  }
-
-  type Query {
-    allUsers: [User!]!
-  }
-`;
-
-export const schema = makeExecutableSchema({
+const makeSchema = async () => await buildSchema({
   resolvers,
-  typeDefs,
+  validate: false,
+  emitSchemaFile: "./schema.gql"
 });
+
+export { makeSchema }
