@@ -3,11 +3,11 @@
 # Build the docker image with `npx nx docker-build apps/api`.
 # Tip: Modify "docker-build" options in project.json to change docker build args.
 #
-# Run the container with `docker run -p 8000:8000 -t apps/api`.
+# Run the container with `docker run -p 4000:4000 -t apps/api`.
 FROM docker.io/node:lts-alpine
 
 ENV HOST=0.0.0.0
-ENV PORT=8000
+ENV PORT=4000
 
 WORKDIR /app
 

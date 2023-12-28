@@ -1,10 +1,9 @@
 import "reflect-metadata";
-import { resolvers } from '@generated/type-graphql'
+import { resolvers } from './resolver'
 import { buildSchema } from "type-graphql";
 
 const makeSchema = async () => await buildSchema({
   resolvers,
-  validate: false,
   emitSchemaFile: "./schema.gql"
 });
 

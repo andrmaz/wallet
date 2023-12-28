@@ -1,6 +1,5 @@
 import express from 'express'
 import { createHandler } from 'graphql-http/lib/use/express';
-import { port, host } from './data/env';
 import loggerRequestHandler from './middlewares/logger';
 import Logger from './libs/logger';
 import { errorRequestHandler } from './middlewares/error';
@@ -8,11 +7,14 @@ import helmet from 'helmet';
 import { errorHandler } from './libs/error';
 import { prisma } from './db';
 import { makeSchema } from './graphql';
+import cors from 'cors'
+import { port, host } from './data/env';
 
 async function bootstrap() {
   const app = express()
 
   app.use(helmet())
+  app.use(cors());
   app.use(loggerRequestHandler)
   app.use(errorRequestHandler)
 

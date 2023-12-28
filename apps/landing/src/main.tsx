@@ -3,16 +3,20 @@ import * as ReactDOM from 'react-dom/client'
 import {BrowserRouter} from 'react-router-dom'
 import '@radix-ui/themes/styles.css'
 import {Theme} from '@radix-ui/themes'
-
+import {QueryClient, QueryClientProvider} from '@tanstack/react-query'
 import App from './app/app'
+
+const client = new QueryClient()
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <StrictMode>
     <BrowserRouter>
-      <Theme accentColor='mint' appearance='inherit'>
-        <App />
-      </Theme>
+      <QueryClientProvider client={client}>
+        <Theme accentColor='mint' appearance='inherit'>
+          <App />
+        </Theme>
+      </QueryClientProvider>
     </BrowserRouter>
   </StrictMode>
 )
