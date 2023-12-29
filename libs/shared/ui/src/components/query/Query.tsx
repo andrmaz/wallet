@@ -9,7 +9,7 @@ type UseQueryResult<
   TQueryKey extends readonly unknown[]
 > = ReturnType<typeof useQuery<TQueryFnData, TError, TData, TQueryKey>>
 
-export default function Query<
+export function Query<
   TQueryFnData,
   TError extends Error,
   TData,

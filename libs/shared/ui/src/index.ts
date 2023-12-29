@@ -1,2 +1,3 @@
+export * from './test/test-utils'
 export * from './components/accordion';
-export * from './components/query'
+export { Query } from './components/query'
