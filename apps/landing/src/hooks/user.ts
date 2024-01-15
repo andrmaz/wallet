@@ -5,9 +5,7 @@ import { client } from "../libs/client"
 function useGetUsersQuery() {
   return useQuery({
     queryKey: ['user'],
-    queryFn: async () => await client(graphql(
-      'query GetUsers {\n  allUsers {\n    id\n    name\n    email\n  }\n}'
-    )),
+    queryFn: async () => await client(graphql('query GetUser($where: UserWhereUniqueInput!) {\n  user(where: $where) {\n    id\n    name\n    email\n  }\n}'), { where: { id: 1 } }),
   })
 }
 

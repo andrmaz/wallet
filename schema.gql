@@ -3,12 +3,3260 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
+type Account {
+  _count: AccountCount
+  budgets(cursor: BudgetWhereUniqueInput, distinct: [BudgetScalarFieldEnum!], orderBy: [BudgetOrderByWithRelationInput!], skip: Int, take: Int, where: BudgetWhereInput): [Budget!]!
+  createdAt: DateTime!
+  expenses(cursor: ExpenseWhereUniqueInput, distinct: [ExpenseScalarFieldEnum!], orderBy: [ExpenseOrderByWithRelationInput!], skip: Int, take: Int, where: ExpenseWhereInput): [Expense!]!
+  goals(cursor: GoalWhereUniqueInput, distinct: [GoalScalarFieldEnum!], orderBy: [GoalOrderByWithRelationInput!], skip: Int, take: Int, where: GoalWhereInput): [Goal!]!
+  id: Int!
+  incomes(cursor: IncomeWhereUniqueInput, distinct: [IncomeScalarFieldEnum!], orderBy: [IncomeOrderByWithRelationInput!], skip: Int, take: Int, where: IncomeWhereInput): [Income!]!
+  name: String!
+  updatedAt: DateTime!
+  user: User!
+  userId: Int!
+}
+
+type AccountAvgAggregate {
+  id: Float
+  userId: Float
+}
+
+input AccountAvgOrderByAggregateInput {
+  id: SortOrder
+  userId: SortOrder
+}
+
+type AccountCount {
+  budgets(where: BudgetWhereInput): Int!
+  expenses(where: ExpenseWhereInput): Int!
+  goals(where: GoalWhereInput): Int!
+  incomes(where: IncomeWhereInput): Int!
+}
+
+type AccountCountAggregate {
+  _all: Int!
+  createdAt: Int!
+  id: Int!
+  name: Int!
+  updatedAt: Int!
+  userId: Int!
+}
+
+input AccountCountOrderByAggregateInput {
+  createdAt: SortOrder
+  id: SortOrder
+  name: SortOrder
+  updatedAt: SortOrder
+  userId: SortOrder
+}
+
+input AccountCreateInput {
+  budgets: BudgetCreateNestedManyWithoutAccountInput
+  createdAt: DateTime
+  expenses: ExpenseCreateNestedManyWithoutAccountInput
+  goals: GoalCreateNestedManyWithoutAccountInput
+  incomes: IncomeCreateNestedManyWithoutAccountInput
+  name: String!
+  updatedAt: DateTime
+  user: UserCreateNestedOneWithoutAccountsInput!
+}
+
+input AccountCreateNestedManyWithoutUserInput {
+  connect: [AccountWhereUniqueInput!]
+  connectOrCreate: [AccountCreateOrConnectWithoutUserInput!]
+  create: [AccountCreateWithoutUserInput!]
+}
+
+input AccountCreateNestedOneWithoutBudgetsInput {
+  connect: AccountWhereUniqueInput
+  connectOrCreate: AccountCreateOrConnectWithoutBudgetsInput
+  create: AccountCreateWithoutBudgetsInput
+}
+
+input AccountCreateNestedOneWithoutExpensesInput {
+  connect: AccountWhereUniqueInput
+  connectOrCreate: AccountCreateOrConnectWithoutExpensesInput
+  create: AccountCreateWithoutExpensesInput
+}
+
+input AccountCreateNestedOneWithoutGoalsInput {
+  connect: AccountWhereUniqueInput
+  connectOrCreate: AccountCreateOrConnectWithoutGoalsInput
+  create: AccountCreateWithoutGoalsInput
+}
+
+input AccountCreateNestedOneWithoutIncomesInput {
+  connect: AccountWhereUniqueInput
+  connectOrCreate: AccountCreateOrConnectWithoutIncomesInput
+  create: AccountCreateWithoutIncomesInput
+}
+
+input AccountCreateOrConnectWithoutBudgetsInput {
+  create: AccountCreateWithoutBudgetsInput!
+  where: AccountWhereUniqueInput!
+}
+
+input AccountCreateOrConnectWithoutExpensesInput {
+  create: AccountCreateWithoutExpensesInput!
+  where: AccountWhereUniqueInput!
+}
+
+input AccountCreateOrConnectWithoutGoalsInput {
+  create: AccountCreateWithoutGoalsInput!
+  where: AccountWhereUniqueInput!
+}
+
+input AccountCreateOrConnectWithoutIncomesInput {
+  create: AccountCreateWithoutIncomesInput!
+  where: AccountWhereUniqueInput!
+}
+
+input AccountCreateOrConnectWithoutUserInput {
+  create: AccountCreateWithoutUserInput!
+  where: AccountWhereUniqueInput!
+}
+
+input AccountCreateWithoutBudgetsInput {
+  createdAt: DateTime
+  expenses: ExpenseCreateNestedManyWithoutAccountInput
+  goals: GoalCreateNestedManyWithoutAccountInput
+  incomes: IncomeCreateNestedManyWithoutAccountInput
+  name: String!
+  updatedAt: DateTime
+  user: UserCreateNestedOneWithoutAccountsInput!
+}
+
+input AccountCreateWithoutExpensesInput {
+  budgets: BudgetCreateNestedManyWithoutAccountInput
+  createdAt: DateTime
+  goals: GoalCreateNestedManyWithoutAccountInput
+  incomes: IncomeCreateNestedManyWithoutAccountInput
+  name: String!
+  updatedAt: DateTime
+  user: UserCreateNestedOneWithoutAccountsInput!
+}
+
+input AccountCreateWithoutGoalsInput {
+  budgets: BudgetCreateNestedManyWithoutAccountInput
+  createdAt: DateTime
+  expenses: ExpenseCreateNestedManyWithoutAccountInput
+  incomes: IncomeCreateNestedManyWithoutAccountInput
+  name: String!
+  updatedAt: DateTime
+  user: UserCreateNestedOneWithoutAccountsInput!
+}
+
+input AccountCreateWithoutIncomesInput {
+  budgets: BudgetCreateNestedManyWithoutAccountInput
+  createdAt: DateTime
+  expenses: ExpenseCreateNestedManyWithoutAccountInput
+  goals: GoalCreateNestedManyWithoutAccountInput
+  name: String!
+  updatedAt: DateTime
+  user: UserCreateNestedOneWithoutAccountsInput!
+}
+
+input AccountCreateWithoutUserInput {
+  budgets: BudgetCreateNestedManyWithoutAccountInput
+  createdAt: DateTime
+  expenses: ExpenseCreateNestedManyWithoutAccountInput
+  goals: GoalCreateNestedManyWithoutAccountInput
+  incomes: IncomeCreateNestedManyWithoutAccountInput
+  name: String!
+  updatedAt: DateTime
+}
+
+type AccountGroupBy {
+  _avg: AccountAvgAggregate
+  _count: AccountCountAggregate
+  _max: AccountMaxAggregate
+  _min: AccountMinAggregate
+  _sum: AccountSumAggregate
+  createdAt: DateTime!
+  id: Int!
+  name: String!
+  updatedAt: DateTime!
+  userId: Int!
+}
+
+input AccountListRelationFilter {
+  every: AccountWhereInput
+  none: AccountWhereInput
+  some: AccountWhereInput
+}
+
+type AccountMaxAggregate {
+  createdAt: DateTime
+  id: Int
+  name: String
+  updatedAt: DateTime
+  userId: Int
+}
+
+input AccountMaxOrderByAggregateInput {
+  createdAt: SortOrder
+  id: SortOrder
+  name: SortOrder
+  updatedAt: SortOrder
+  userId: SortOrder
+}
+
+type AccountMinAggregate {
+  createdAt: DateTime
+  id: Int
+  name: String
+  updatedAt: DateTime
+  userId: Int
+}
+
+input AccountMinOrderByAggregateInput {
+  createdAt: SortOrder
+  id: SortOrder
+  name: SortOrder
+  updatedAt: SortOrder
+  userId: SortOrder
+}
+
+input AccountOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input AccountOrderByWithAggregationInput {
+  _avg: AccountAvgOrderByAggregateInput
+  _count: AccountCountOrderByAggregateInput
+  _max: AccountMaxOrderByAggregateInput
+  _min: AccountMinOrderByAggregateInput
+  _sum: AccountSumOrderByAggregateInput
+  createdAt: SortOrder
+  id: SortOrder
+  name: SortOrder
+  updatedAt: SortOrder
+  userId: SortOrder
+}
+
+input AccountOrderByWithRelationInput {
+  budgets: BudgetOrderByRelationAggregateInput
+  createdAt: SortOrder
+  expenses: ExpenseOrderByRelationAggregateInput
+  goals: GoalOrderByRelationAggregateInput
+  id: SortOrder
+  incomes: IncomeOrderByRelationAggregateInput
+  name: SortOrder
+  updatedAt: SortOrder
+  user: UserOrderByWithRelationInput
+  userId: SortOrder
+}
+
+input AccountRelationFilter {
+  is: AccountWhereInput
+  isNot: AccountWhereInput
+}
+
+enum AccountScalarFieldEnum {
+  createdAt
+  id
+  name
+  updatedAt
+  userId
+}
+
+input AccountScalarWhereInput {
+  AND: [AccountScalarWhereInput!]
+  NOT: [AccountScalarWhereInput!]
+  OR: [AccountScalarWhereInput!]
+  createdAt: DateTimeFilter
+  id: IntFilter
+  name: StringFilter
+  updatedAt: DateTimeFilter
+  userId: IntFilter
+}
+
+input AccountScalarWhereWithAggregatesInput {
+  AND: [AccountScalarWhereWithAggregatesInput!]
+  NOT: [AccountScalarWhereWithAggregatesInput!]
+  OR: [AccountScalarWhereWithAggregatesInput!]
+  createdAt: DateTimeWithAggregatesFilter
+  id: IntWithAggregatesFilter
+  name: StringWithAggregatesFilter
+  updatedAt: DateTimeWithAggregatesFilter
+  userId: IntWithAggregatesFilter
+}
+
+type AccountSumAggregate {
+  id: Int
+  userId: Int
+}
+
+input AccountSumOrderByAggregateInput {
+  id: SortOrder
+  userId: SortOrder
+}
+
+input AccountUpdateInput {
+  budgets: BudgetUpdateManyWithoutAccountNestedInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  expenses: ExpenseUpdateManyWithoutAccountNestedInput
+  goals: GoalUpdateManyWithoutAccountNestedInput
+  incomes: IncomeUpdateManyWithoutAccountNestedInput
+  name: StringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+  user: UserUpdateOneRequiredWithoutAccountsNestedInput
+}
+
+input AccountUpdateManyMutationInput {
+  createdAt: DateTimeFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input AccountUpdateManyWithWhereWithoutUserInput {
+  data: AccountUpdateManyMutationInput!
+  where: AccountScalarWhereInput!
+}
+
+input AccountUpdateManyWithoutUserNestedInput {
+  connect: [AccountWhereUniqueInput!]
+  connectOrCreate: [AccountCreateOrConnectWithoutUserInput!]
+  create: [AccountCreateWithoutUserInput!]
+  delete: [AccountWhereUniqueInput!]
+  deleteMany: [AccountScalarWhereInput!]
+  disconnect: [AccountWhereUniqueInput!]
+  set: [AccountWhereUniqueInput!]
+  update: [AccountUpdateWithWhereUniqueWithoutUserInput!]
+  updateMany: [AccountUpdateManyWithWhereWithoutUserInput!]
+  upsert: [AccountUpsertWithWhereUniqueWithoutUserInput!]
+}
+
+input AccountUpdateOneRequiredWithoutBudgetsNestedInput {
+  connect: AccountWhereUniqueInput
+  connectOrCreate: AccountCreateOrConnectWithoutBudgetsInput
+  create: AccountCreateWithoutBudgetsInput
+  update: AccountUpdateToOneWithWhereWithoutBudgetsInput
+  upsert: AccountUpsertWithoutBudgetsInput
+}
+
+input AccountUpdateOneRequiredWithoutExpensesNestedInput {
+  connect: AccountWhereUniqueInput
+  connectOrCreate: AccountCreateOrConnectWithoutExpensesInput
+  create: AccountCreateWithoutExpensesInput
+  update: AccountUpdateToOneWithWhereWithoutExpensesInput
+  upsert: AccountUpsertWithoutExpensesInput
+}
+
+input AccountUpdateOneRequiredWithoutGoalsNestedInput {
+  connect: AccountWhereUniqueInput
+  connectOrCreate: AccountCreateOrConnectWithoutGoalsInput
+  create: AccountCreateWithoutGoalsInput
+  update: AccountUpdateToOneWithWhereWithoutGoalsInput
+  upsert: AccountUpsertWithoutGoalsInput
+}
+
+input AccountUpdateOneRequiredWithoutIncomesNestedInput {
+  connect: AccountWhereUniqueInput
+  connectOrCreate: AccountCreateOrConnectWithoutIncomesInput
+  create: AccountCreateWithoutIncomesInput
+  update: AccountUpdateToOneWithWhereWithoutIncomesInput
+  upsert: AccountUpsertWithoutIncomesInput
+}
+
+input AccountUpdateToOneWithWhereWithoutBudgetsInput {
+  data: AccountUpdateWithoutBudgetsInput!
+  where: AccountWhereInput
+}
+
+input AccountUpdateToOneWithWhereWithoutExpensesInput {
+  data: AccountUpdateWithoutExpensesInput!
+  where: AccountWhereInput
+}
+
+input AccountUpdateToOneWithWhereWithoutGoalsInput {
+  data: AccountUpdateWithoutGoalsInput!
+  where: AccountWhereInput
+}
+
+input AccountUpdateToOneWithWhereWithoutIncomesInput {
+  data: AccountUpdateWithoutIncomesInput!
+  where: AccountWhereInput
+}
+
+input AccountUpdateWithWhereUniqueWithoutUserInput {
+  data: AccountUpdateWithoutUserInput!
+  where: AccountWhereUniqueInput!
+}
+
+input AccountUpdateWithoutBudgetsInput {
+  createdAt: DateTimeFieldUpdateOperationsInput
+  expenses: ExpenseUpdateManyWithoutAccountNestedInput
+  goals: GoalUpdateManyWithoutAccountNestedInput
+  incomes: IncomeUpdateManyWithoutAccountNestedInput
+  name: StringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+  user: UserUpdateOneRequiredWithoutAccountsNestedInput
+}
+
+input AccountUpdateWithoutExpensesInput {
+  budgets: BudgetUpdateManyWithoutAccountNestedInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  goals: GoalUpdateManyWithoutAccountNestedInput
+  incomes: IncomeUpdateManyWithoutAccountNestedInput
+  name: StringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+  user: UserUpdateOneRequiredWithoutAccountsNestedInput
+}
+
+input AccountUpdateWithoutGoalsInput {
+  budgets: BudgetUpdateManyWithoutAccountNestedInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  expenses: ExpenseUpdateManyWithoutAccountNestedInput
+  incomes: IncomeUpdateManyWithoutAccountNestedInput
+  name: StringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+  user: UserUpdateOneRequiredWithoutAccountsNestedInput
+}
+
+input AccountUpdateWithoutIncomesInput {
+  budgets: BudgetUpdateManyWithoutAccountNestedInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  expenses: ExpenseUpdateManyWithoutAccountNestedInput
+  goals: GoalUpdateManyWithoutAccountNestedInput
+  name: StringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+  user: UserUpdateOneRequiredWithoutAccountsNestedInput
+}
+
+input AccountUpdateWithoutUserInput {
+  budgets: BudgetUpdateManyWithoutAccountNestedInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  expenses: ExpenseUpdateManyWithoutAccountNestedInput
+  goals: GoalUpdateManyWithoutAccountNestedInput
+  incomes: IncomeUpdateManyWithoutAccountNestedInput
+  name: StringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input AccountUpsertWithWhereUniqueWithoutUserInput {
+  create: AccountCreateWithoutUserInput!
+  update: AccountUpdateWithoutUserInput!
+  where: AccountWhereUniqueInput!
+}
+
+input AccountUpsertWithoutBudgetsInput {
+  create: AccountCreateWithoutBudgetsInput!
+  update: AccountUpdateWithoutBudgetsInput!
+  where: AccountWhereInput
+}
+
+input AccountUpsertWithoutExpensesInput {
+  create: AccountCreateWithoutExpensesInput!
+  update: AccountUpdateWithoutExpensesInput!
+  where: AccountWhereInput
+}
+
+input AccountUpsertWithoutGoalsInput {
+  create: AccountCreateWithoutGoalsInput!
+  update: AccountUpdateWithoutGoalsInput!
+  where: AccountWhereInput
+}
+
+input AccountUpsertWithoutIncomesInput {
+  create: AccountCreateWithoutIncomesInput!
+  update: AccountUpdateWithoutIncomesInput!
+  where: AccountWhereInput
+}
+
+input AccountWhereInput {
+  AND: [AccountWhereInput!]
+  NOT: [AccountWhereInput!]
+  OR: [AccountWhereInput!]
+  budgets: BudgetListRelationFilter
+  createdAt: DateTimeFilter
+  expenses: ExpenseListRelationFilter
+  goals: GoalListRelationFilter
+  id: IntFilter
+  incomes: IncomeListRelationFilter
+  name: StringFilter
+  updatedAt: DateTimeFilter
+  user: UserRelationFilter
+  userId: IntFilter
+}
+
+input AccountWhereUniqueInput {
+  AND: [AccountWhereInput!]
+  NOT: [AccountWhereInput!]
+  OR: [AccountWhereInput!]
+  budgets: BudgetListRelationFilter
+  createdAt: DateTimeFilter
+  expenses: ExpenseListRelationFilter
+  goals: GoalListRelationFilter
+  id: Int
+  incomes: IncomeListRelationFilter
+  name: StringFilter
+  updatedAt: DateTimeFilter
+  user: UserRelationFilter
+  userId: IntFilter
+}
+
+type AffectedRowsOutput {
+  count: Int!
+}
+
+type AggregateAccount {
+  _avg: AccountAvgAggregate
+  _count: AccountCountAggregate
+  _max: AccountMaxAggregate
+  _min: AccountMinAggregate
+  _sum: AccountSumAggregate
+}
+
+type AggregateBudget {
+  _avg: BudgetAvgAggregate
+  _count: BudgetCountAggregate
+  _max: BudgetMaxAggregate
+  _min: BudgetMinAggregate
+  _sum: BudgetSumAggregate
+}
+
+type AggregateCategory {
+  _avg: CategoryAvgAggregate
+  _count: CategoryCountAggregate
+  _max: CategoryMaxAggregate
+  _min: CategoryMinAggregate
+  _sum: CategorySumAggregate
+}
+
+type AggregateExpense {
+  _avg: ExpenseAvgAggregate
+  _count: ExpenseCountAggregate
+  _max: ExpenseMaxAggregate
+  _min: ExpenseMinAggregate
+  _sum: ExpenseSumAggregate
+}
+
+type AggregateGoal {
+  _avg: GoalAvgAggregate
+  _count: GoalCountAggregate
+  _max: GoalMaxAggregate
+  _min: GoalMinAggregate
+  _sum: GoalSumAggregate
+}
+
+type AggregateIncome {
+  _avg: IncomeAvgAggregate
+  _count: IncomeCountAggregate
+  _max: IncomeMaxAggregate
+  _min: IncomeMinAggregate
+  _sum: IncomeSumAggregate
+}
+
+type AggregateSchedule {
+  _count: ScheduleCountAggregate
+  _max: ScheduleMaxAggregate
+  _min: ScheduleMinAggregate
+}
+
+type AggregateSource {
+  _count: SourceCountAggregate
+  _max: SourceMaxAggregate
+  _min: SourceMinAggregate
+}
+
+type AggregateUser {
+  _avg: UserAvgAggregate
+  _count: UserCountAggregate
+  _max: UserMaxAggregate
+  _min: UserMinAggregate
+  _sum: UserSumAggregate
+}
+
+type Budget {
+  account: Account!
+  accountId: Int!
+  amount: Int!
+  category: Category!
+  categoryId: Int!
+  createdAt: DateTime!
+  id: Int!
+  updatedAt: DateTime!
+}
+
+type BudgetAvgAggregate {
+  accountId: Float
+  amount: Float
+  categoryId: Float
+  id: Float
+}
+
+input BudgetAvgOrderByAggregateInput {
+  accountId: SortOrder
+  amount: SortOrder
+  categoryId: SortOrder
+  id: SortOrder
+}
+
+type BudgetCountAggregate {
+  _all: Int!
+  accountId: Int!
+  amount: Int!
+  categoryId: Int!
+  createdAt: Int!
+  id: Int!
+  updatedAt: Int!
+}
+
+input BudgetCountOrderByAggregateInput {
+  accountId: SortOrder
+  amount: SortOrder
+  categoryId: SortOrder
+  createdAt: SortOrder
+  id: SortOrder
+  updatedAt: SortOrder
+}
+
+input BudgetCreateInput {
+  account: AccountCreateNestedOneWithoutBudgetsInput!
+  amount: Int!
+  category: CategoryCreateNestedOneWithoutBudgetsInput!
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+input BudgetCreateNestedManyWithoutAccountInput {
+  connect: [BudgetWhereUniqueInput!]
+  connectOrCreate: [BudgetCreateOrConnectWithoutAccountInput!]
+  create: [BudgetCreateWithoutAccountInput!]
+}
+
+input BudgetCreateNestedManyWithoutCategoryInput {
+  connect: [BudgetWhereUniqueInput!]
+  connectOrCreate: [BudgetCreateOrConnectWithoutCategoryInput!]
+  create: [BudgetCreateWithoutCategoryInput!]
+}
+
+input BudgetCreateOrConnectWithoutAccountInput {
+  create: BudgetCreateWithoutAccountInput!
+  where: BudgetWhereUniqueInput!
+}
+
+input BudgetCreateOrConnectWithoutCategoryInput {
+  create: BudgetCreateWithoutCategoryInput!
+  where: BudgetWhereUniqueInput!
+}
+
+input BudgetCreateWithoutAccountInput {
+  amount: Int!
+  category: CategoryCreateNestedOneWithoutBudgetsInput!
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+input BudgetCreateWithoutCategoryInput {
+  account: AccountCreateNestedOneWithoutBudgetsInput!
+  amount: Int!
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type BudgetGroupBy {
+  _avg: BudgetAvgAggregate
+  _count: BudgetCountAggregate
+  _max: BudgetMaxAggregate
+  _min: BudgetMinAggregate
+  _sum: BudgetSumAggregate
+  accountId: Int!
+  amount: Int!
+  categoryId: Int!
+  createdAt: DateTime!
+  id: Int!
+  updatedAt: DateTime!
+}
+
+input BudgetListRelationFilter {
+  every: BudgetWhereInput
+  none: BudgetWhereInput
+  some: BudgetWhereInput
+}
+
+type BudgetMaxAggregate {
+  accountId: Int
+  amount: Int
+  categoryId: Int
+  createdAt: DateTime
+  id: Int
+  updatedAt: DateTime
+}
+
+input BudgetMaxOrderByAggregateInput {
+  accountId: SortOrder
+  amount: SortOrder
+  categoryId: SortOrder
+  createdAt: SortOrder
+  id: SortOrder
+  updatedAt: SortOrder
+}
+
+type BudgetMinAggregate {
+  accountId: Int
+  amount: Int
+  categoryId: Int
+  createdAt: DateTime
+  id: Int
+  updatedAt: DateTime
+}
+
+input BudgetMinOrderByAggregateInput {
+  accountId: SortOrder
+  amount: SortOrder
+  categoryId: SortOrder
+  createdAt: SortOrder
+  id: SortOrder
+  updatedAt: SortOrder
+}
+
+input BudgetOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input BudgetOrderByWithAggregationInput {
+  _avg: BudgetAvgOrderByAggregateInput
+  _count: BudgetCountOrderByAggregateInput
+  _max: BudgetMaxOrderByAggregateInput
+  _min: BudgetMinOrderByAggregateInput
+  _sum: BudgetSumOrderByAggregateInput
+  accountId: SortOrder
+  amount: SortOrder
+  categoryId: SortOrder
+  createdAt: SortOrder
+  id: SortOrder
+  updatedAt: SortOrder
+}
+
+input BudgetOrderByWithRelationInput {
+  account: AccountOrderByWithRelationInput
+  accountId: SortOrder
+  amount: SortOrder
+  category: CategoryOrderByWithRelationInput
+  categoryId: SortOrder
+  createdAt: SortOrder
+  id: SortOrder
+  updatedAt: SortOrder
+}
+
+enum BudgetScalarFieldEnum {
+  accountId
+  amount
+  categoryId
+  createdAt
+  id
+  updatedAt
+}
+
+input BudgetScalarWhereInput {
+  AND: [BudgetScalarWhereInput!]
+  NOT: [BudgetScalarWhereInput!]
+  OR: [BudgetScalarWhereInput!]
+  accountId: IntFilter
+  amount: IntFilter
+  categoryId: IntFilter
+  createdAt: DateTimeFilter
+  id: IntFilter
+  updatedAt: DateTimeFilter
+}
+
+input BudgetScalarWhereWithAggregatesInput {
+  AND: [BudgetScalarWhereWithAggregatesInput!]
+  NOT: [BudgetScalarWhereWithAggregatesInput!]
+  OR: [BudgetScalarWhereWithAggregatesInput!]
+  accountId: IntWithAggregatesFilter
+  amount: IntWithAggregatesFilter
+  categoryId: IntWithAggregatesFilter
+  createdAt: DateTimeWithAggregatesFilter
+  id: IntWithAggregatesFilter
+  updatedAt: DateTimeWithAggregatesFilter
+}
+
+type BudgetSumAggregate {
+  accountId: Int
+  amount: Int
+  categoryId: Int
+  id: Int
+}
+
+input BudgetSumOrderByAggregateInput {
+  accountId: SortOrder
+  amount: SortOrder
+  categoryId: SortOrder
+  id: SortOrder
+}
+
+input BudgetUpdateInput {
+  account: AccountUpdateOneRequiredWithoutBudgetsNestedInput
+  amount: IntFieldUpdateOperationsInput
+  category: CategoryUpdateOneRequiredWithoutBudgetsNestedInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input BudgetUpdateManyMutationInput {
+  amount: IntFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input BudgetUpdateManyWithWhereWithoutAccountInput {
+  data: BudgetUpdateManyMutationInput!
+  where: BudgetScalarWhereInput!
+}
+
+input BudgetUpdateManyWithWhereWithoutCategoryInput {
+  data: BudgetUpdateManyMutationInput!
+  where: BudgetScalarWhereInput!
+}
+
+input BudgetUpdateManyWithoutAccountNestedInput {
+  connect: [BudgetWhereUniqueInput!]
+  connectOrCreate: [BudgetCreateOrConnectWithoutAccountInput!]
+  create: [BudgetCreateWithoutAccountInput!]
+  delete: [BudgetWhereUniqueInput!]
+  deleteMany: [BudgetScalarWhereInput!]
+  disconnect: [BudgetWhereUniqueInput!]
+  set: [BudgetWhereUniqueInput!]
+  update: [BudgetUpdateWithWhereUniqueWithoutAccountInput!]
+  updateMany: [BudgetUpdateManyWithWhereWithoutAccountInput!]
+  upsert: [BudgetUpsertWithWhereUniqueWithoutAccountInput!]
+}
+
+input BudgetUpdateManyWithoutCategoryNestedInput {
+  connect: [BudgetWhereUniqueInput!]
+  connectOrCreate: [BudgetCreateOrConnectWithoutCategoryInput!]
+  create: [BudgetCreateWithoutCategoryInput!]
+  delete: [BudgetWhereUniqueInput!]
+  deleteMany: [BudgetScalarWhereInput!]
+  disconnect: [BudgetWhereUniqueInput!]
+  set: [BudgetWhereUniqueInput!]
+  update: [BudgetUpdateWithWhereUniqueWithoutCategoryInput!]
+  updateMany: [BudgetUpdateManyWithWhereWithoutCategoryInput!]
+  upsert: [BudgetUpsertWithWhereUniqueWithoutCategoryInput!]
+}
+
+input BudgetUpdateWithWhereUniqueWithoutAccountInput {
+  data: BudgetUpdateWithoutAccountInput!
+  where: BudgetWhereUniqueInput!
+}
+
+input BudgetUpdateWithWhereUniqueWithoutCategoryInput {
+  data: BudgetUpdateWithoutCategoryInput!
+  where: BudgetWhereUniqueInput!
+}
+
+input BudgetUpdateWithoutAccountInput {
+  amount: IntFieldUpdateOperationsInput
+  category: CategoryUpdateOneRequiredWithoutBudgetsNestedInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input BudgetUpdateWithoutCategoryInput {
+  account: AccountUpdateOneRequiredWithoutBudgetsNestedInput
+  amount: IntFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input BudgetUpsertWithWhereUniqueWithoutAccountInput {
+  create: BudgetCreateWithoutAccountInput!
+  update: BudgetUpdateWithoutAccountInput!
+  where: BudgetWhereUniqueInput!
+}
+
+input BudgetUpsertWithWhereUniqueWithoutCategoryInput {
+  create: BudgetCreateWithoutCategoryInput!
+  update: BudgetUpdateWithoutCategoryInput!
+  where: BudgetWhereUniqueInput!
+}
+
+input BudgetWhereInput {
+  AND: [BudgetWhereInput!]
+  NOT: [BudgetWhereInput!]
+  OR: [BudgetWhereInput!]
+  account: AccountRelationFilter
+  accountId: IntFilter
+  amount: IntFilter
+  category: CategoryRelationFilter
+  categoryId: IntFilter
+  createdAt: DateTimeFilter
+  id: IntFilter
+  updatedAt: DateTimeFilter
+}
+
+input BudgetWhereUniqueInput {
+  AND: [BudgetWhereInput!]
+  NOT: [BudgetWhereInput!]
+  OR: [BudgetWhereInput!]
+  account: AccountRelationFilter
+  accountId: IntFilter
+  amount: IntFilter
+  category: CategoryRelationFilter
+  categoryId: IntFilter
+  createdAt: DateTimeFilter
+  id: Int
+  updatedAt: DateTimeFilter
+}
+
+type Category {
+  _count: CategoryCount
+  budgets(cursor: BudgetWhereUniqueInput, distinct: [BudgetScalarFieldEnum!], orderBy: [BudgetOrderByWithRelationInput!], skip: Int, take: Int, where: BudgetWhereInput): [Budget!]!
+  createdAt: DateTime!
+  expenses(cursor: ExpenseWhereUniqueInput, distinct: [ExpenseScalarFieldEnum!], orderBy: [ExpenseOrderByWithRelationInput!], skip: Int, take: Int, where: ExpenseWhereInput): [Expense!]!
+  id: Int!
+  name: String!
+  updatedAt: DateTime!
+}
+
+type CategoryAvgAggregate {
+  id: Float
+}
+
+input CategoryAvgOrderByAggregateInput {
+  id: SortOrder
+}
+
+type CategoryCount {
+  budgets(where: BudgetWhereInput): Int!
+  expenses(where: ExpenseWhereInput): Int!
+}
+
+type CategoryCountAggregate {
+  _all: Int!
+  createdAt: Int!
+  id: Int!
+  name: Int!
+  updatedAt: Int!
+}
+
+input CategoryCountOrderByAggregateInput {
+  createdAt: SortOrder
+  id: SortOrder
+  name: SortOrder
+  updatedAt: SortOrder
+}
+
+input CategoryCreateInput {
+  budgets: BudgetCreateNestedManyWithoutCategoryInput
+  createdAt: DateTime
+  expenses: ExpenseCreateNestedManyWithoutCategoryInput
+  name: String!
+  updatedAt: DateTime
+}
+
+input CategoryCreateNestedOneWithoutBudgetsInput {
+  connect: CategoryWhereUniqueInput
+  connectOrCreate: CategoryCreateOrConnectWithoutBudgetsInput
+  create: CategoryCreateWithoutBudgetsInput
+}
+
+input CategoryCreateNestedOneWithoutExpensesInput {
+  connect: CategoryWhereUniqueInput
+  connectOrCreate: CategoryCreateOrConnectWithoutExpensesInput
+  create: CategoryCreateWithoutExpensesInput
+}
+
+input CategoryCreateOrConnectWithoutBudgetsInput {
+  create: CategoryCreateWithoutBudgetsInput!
+  where: CategoryWhereUniqueInput!
+}
+
+input CategoryCreateOrConnectWithoutExpensesInput {
+  create: CategoryCreateWithoutExpensesInput!
+  where: CategoryWhereUniqueInput!
+}
+
+input CategoryCreateWithoutBudgetsInput {
+  createdAt: DateTime
+  expenses: ExpenseCreateNestedManyWithoutCategoryInput
+  name: String!
+  updatedAt: DateTime
+}
+
+input CategoryCreateWithoutExpensesInput {
+  budgets: BudgetCreateNestedManyWithoutCategoryInput
+  createdAt: DateTime
+  name: String!
+  updatedAt: DateTime
+}
+
+type CategoryGroupBy {
+  _avg: CategoryAvgAggregate
+  _count: CategoryCountAggregate
+  _max: CategoryMaxAggregate
+  _min: CategoryMinAggregate
+  _sum: CategorySumAggregate
+  createdAt: DateTime!
+  id: Int!
+  name: String!
+  updatedAt: DateTime!
+}
+
+type CategoryMaxAggregate {
+  createdAt: DateTime
+  id: Int
+  name: String
+  updatedAt: DateTime
+}
+
+input CategoryMaxOrderByAggregateInput {
+  createdAt: SortOrder
+  id: SortOrder
+  name: SortOrder
+  updatedAt: SortOrder
+}
+
+type CategoryMinAggregate {
+  createdAt: DateTime
+  id: Int
+  name: String
+  updatedAt: DateTime
+}
+
+input CategoryMinOrderByAggregateInput {
+  createdAt: SortOrder
+  id: SortOrder
+  name: SortOrder
+  updatedAt: SortOrder
+}
+
+input CategoryOrderByWithAggregationInput {
+  _avg: CategoryAvgOrderByAggregateInput
+  _count: CategoryCountOrderByAggregateInput
+  _max: CategoryMaxOrderByAggregateInput
+  _min: CategoryMinOrderByAggregateInput
+  _sum: CategorySumOrderByAggregateInput
+  createdAt: SortOrder
+  id: SortOrder
+  name: SortOrder
+  updatedAt: SortOrder
+}
+
+input CategoryOrderByWithRelationInput {
+  budgets: BudgetOrderByRelationAggregateInput
+  createdAt: SortOrder
+  expenses: ExpenseOrderByRelationAggregateInput
+  id: SortOrder
+  name: SortOrder
+  updatedAt: SortOrder
+}
+
+input CategoryRelationFilter {
+  is: CategoryWhereInput
+  isNot: CategoryWhereInput
+}
+
+enum CategoryScalarFieldEnum {
+  createdAt
+  id
+  name
+  updatedAt
+}
+
+input CategoryScalarWhereWithAggregatesInput {
+  AND: [CategoryScalarWhereWithAggregatesInput!]
+  NOT: [CategoryScalarWhereWithAggregatesInput!]
+  OR: [CategoryScalarWhereWithAggregatesInput!]
+  createdAt: DateTimeWithAggregatesFilter
+  id: IntWithAggregatesFilter
+  name: StringWithAggregatesFilter
+  updatedAt: DateTimeWithAggregatesFilter
+}
+
+type CategorySumAggregate {
+  id: Int
+}
+
+input CategorySumOrderByAggregateInput {
+  id: SortOrder
+}
+
+input CategoryUpdateInput {
+  budgets: BudgetUpdateManyWithoutCategoryNestedInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  expenses: ExpenseUpdateManyWithoutCategoryNestedInput
+  name: StringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input CategoryUpdateManyMutationInput {
+  createdAt: DateTimeFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input CategoryUpdateOneRequiredWithoutBudgetsNestedInput {
+  connect: CategoryWhereUniqueInput
+  connectOrCreate: CategoryCreateOrConnectWithoutBudgetsInput
+  create: CategoryCreateWithoutBudgetsInput
+  update: CategoryUpdateToOneWithWhereWithoutBudgetsInput
+  upsert: CategoryUpsertWithoutBudgetsInput
+}
+
+input CategoryUpdateOneRequiredWithoutExpensesNestedInput {
+  connect: CategoryWhereUniqueInput
+  connectOrCreate: CategoryCreateOrConnectWithoutExpensesInput
+  create: CategoryCreateWithoutExpensesInput
+  update: CategoryUpdateToOneWithWhereWithoutExpensesInput
+  upsert: CategoryUpsertWithoutExpensesInput
+}
+
+input CategoryUpdateToOneWithWhereWithoutBudgetsInput {
+  data: CategoryUpdateWithoutBudgetsInput!
+  where: CategoryWhereInput
+}
+
+input CategoryUpdateToOneWithWhereWithoutExpensesInput {
+  data: CategoryUpdateWithoutExpensesInput!
+  where: CategoryWhereInput
+}
+
+input CategoryUpdateWithoutBudgetsInput {
+  createdAt: DateTimeFieldUpdateOperationsInput
+  expenses: ExpenseUpdateManyWithoutCategoryNestedInput
+  name: StringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input CategoryUpdateWithoutExpensesInput {
+  budgets: BudgetUpdateManyWithoutCategoryNestedInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input CategoryUpsertWithoutBudgetsInput {
+  create: CategoryCreateWithoutBudgetsInput!
+  update: CategoryUpdateWithoutBudgetsInput!
+  where: CategoryWhereInput
+}
+
+input CategoryUpsertWithoutExpensesInput {
+  create: CategoryCreateWithoutExpensesInput!
+  update: CategoryUpdateWithoutExpensesInput!
+  where: CategoryWhereInput
+}
+
+input CategoryWhereInput {
+  AND: [CategoryWhereInput!]
+  NOT: [CategoryWhereInput!]
+  OR: [CategoryWhereInput!]
+  budgets: BudgetListRelationFilter
+  createdAt: DateTimeFilter
+  expenses: ExpenseListRelationFilter
+  id: IntFilter
+  name: StringFilter
+  updatedAt: DateTimeFilter
+}
+
+input CategoryWhereUniqueInput {
+  AND: [CategoryWhereInput!]
+  NOT: [CategoryWhereInput!]
+  OR: [CategoryWhereInput!]
+  budgets: BudgetListRelationFilter
+  createdAt: DateTimeFilter
+  expenses: ExpenseListRelationFilter
+  id: Int
+  name: String
+  updatedAt: DateTimeFilter
+}
+
+"""
+The javascript `Date` as string. Type represents date and time as the ISO Date string.
+"""
+scalar DateTime
+
+input DateTimeFieldUpdateOperationsInput {
+  set: DateTime
+}
+
+input DateTimeFilter {
+  equals: DateTime
+  gt: DateTime
+  gte: DateTime
+  in: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  not: NestedDateTimeFilter
+  notIn: [DateTime!]
+}
+
+input DateTimeWithAggregatesFilter {
+  _count: NestedIntFilter
+  _max: NestedDateTimeFilter
+  _min: NestedDateTimeFilter
+  equals: DateTime
+  gt: DateTime
+  gte: DateTime
+  in: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  not: NestedDateTimeWithAggregatesFilter
+  notIn: [DateTime!]
+}
+
+type Expense {
+  account: Account!
+  accountId: Int!
+  amount: Int!
+  category: Category!
+  categoryId: Int!
+  createdAt: DateTime!
+  debitDate: DateTime!
+  description: String!
+  id: Int!
+  schedule: Schedule!
+  scheduleName: String!
+  updatedAt: DateTime!
+}
+
+type ExpenseAvgAggregate {
+  accountId: Float
+  amount: Float
+  categoryId: Float
+  id: Float
+}
+
+input ExpenseAvgOrderByAggregateInput {
+  accountId: SortOrder
+  amount: SortOrder
+  categoryId: SortOrder
+  id: SortOrder
+}
+
+type ExpenseCountAggregate {
+  _all: Int!
+  accountId: Int!
+  amount: Int!
+  categoryId: Int!
+  createdAt: Int!
+  debitDate: Int!
+  description: Int!
+  id: Int!
+  scheduleName: Int!
+  updatedAt: Int!
+}
+
+input ExpenseCountOrderByAggregateInput {
+  accountId: SortOrder
+  amount: SortOrder
+  categoryId: SortOrder
+  createdAt: SortOrder
+  debitDate: SortOrder
+  description: SortOrder
+  id: SortOrder
+  scheduleName: SortOrder
+  updatedAt: SortOrder
+}
+
+input ExpenseCreateInput {
+  account: AccountCreateNestedOneWithoutExpensesInput!
+  amount: Int!
+  category: CategoryCreateNestedOneWithoutExpensesInput!
+  createdAt: DateTime
+  debitDate: DateTime!
+  description: String!
+  schedule: ScheduleCreateNestedOneWithoutExpensesInput!
+  updatedAt: DateTime
+}
+
+input ExpenseCreateNestedManyWithoutAccountInput {
+  connect: [ExpenseWhereUniqueInput!]
+  connectOrCreate: [ExpenseCreateOrConnectWithoutAccountInput!]
+  create: [ExpenseCreateWithoutAccountInput!]
+}
+
+input ExpenseCreateNestedManyWithoutCategoryInput {
+  connect: [ExpenseWhereUniqueInput!]
+  connectOrCreate: [ExpenseCreateOrConnectWithoutCategoryInput!]
+  create: [ExpenseCreateWithoutCategoryInput!]
+}
+
+input ExpenseCreateNestedManyWithoutScheduleInput {
+  connect: [ExpenseWhereUniqueInput!]
+  connectOrCreate: [ExpenseCreateOrConnectWithoutScheduleInput!]
+  create: [ExpenseCreateWithoutScheduleInput!]
+}
+
+input ExpenseCreateOrConnectWithoutAccountInput {
+  create: ExpenseCreateWithoutAccountInput!
+  where: ExpenseWhereUniqueInput!
+}
+
+input ExpenseCreateOrConnectWithoutCategoryInput {
+  create: ExpenseCreateWithoutCategoryInput!
+  where: ExpenseWhereUniqueInput!
+}
+
+input ExpenseCreateOrConnectWithoutScheduleInput {
+  create: ExpenseCreateWithoutScheduleInput!
+  where: ExpenseWhereUniqueInput!
+}
+
+input ExpenseCreateWithoutAccountInput {
+  amount: Int!
+  category: CategoryCreateNestedOneWithoutExpensesInput!
+  createdAt: DateTime
+  debitDate: DateTime!
+  description: String!
+  schedule: ScheduleCreateNestedOneWithoutExpensesInput!
+  updatedAt: DateTime
+}
+
+input ExpenseCreateWithoutCategoryInput {
+  account: AccountCreateNestedOneWithoutExpensesInput!
+  amount: Int!
+  createdAt: DateTime
+  debitDate: DateTime!
+  description: String!
+  schedule: ScheduleCreateNestedOneWithoutExpensesInput!
+  updatedAt: DateTime
+}
+
+input ExpenseCreateWithoutScheduleInput {
+  account: AccountCreateNestedOneWithoutExpensesInput!
+  amount: Int!
+  category: CategoryCreateNestedOneWithoutExpensesInput!
+  createdAt: DateTime
+  debitDate: DateTime!
+  description: String!
+  updatedAt: DateTime
+}
+
+type ExpenseGroupBy {
+  _avg: ExpenseAvgAggregate
+  _count: ExpenseCountAggregate
+  _max: ExpenseMaxAggregate
+  _min: ExpenseMinAggregate
+  _sum: ExpenseSumAggregate
+  accountId: Int!
+  amount: Int!
+  categoryId: Int!
+  createdAt: DateTime!
+  debitDate: DateTime!
+  description: String!
+  id: Int!
+  scheduleName: String!
+  updatedAt: DateTime!
+}
+
+input ExpenseListRelationFilter {
+  every: ExpenseWhereInput
+  none: ExpenseWhereInput
+  some: ExpenseWhereInput
+}
+
+type ExpenseMaxAggregate {
+  accountId: Int
+  amount: Int
+  categoryId: Int
+  createdAt: DateTime
+  debitDate: DateTime
+  description: String
+  id: Int
+  scheduleName: String
+  updatedAt: DateTime
+}
+
+input ExpenseMaxOrderByAggregateInput {
+  accountId: SortOrder
+  amount: SortOrder
+  categoryId: SortOrder
+  createdAt: SortOrder
+  debitDate: SortOrder
+  description: SortOrder
+  id: SortOrder
+  scheduleName: SortOrder
+  updatedAt: SortOrder
+}
+
+type ExpenseMinAggregate {
+  accountId: Int
+  amount: Int
+  categoryId: Int
+  createdAt: DateTime
+  debitDate: DateTime
+  description: String
+  id: Int
+  scheduleName: String
+  updatedAt: DateTime
+}
+
+input ExpenseMinOrderByAggregateInput {
+  accountId: SortOrder
+  amount: SortOrder
+  categoryId: SortOrder
+  createdAt: SortOrder
+  debitDate: SortOrder
+  description: SortOrder
+  id: SortOrder
+  scheduleName: SortOrder
+  updatedAt: SortOrder
+}
+
+input ExpenseOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input ExpenseOrderByWithAggregationInput {
+  _avg: ExpenseAvgOrderByAggregateInput
+  _count: ExpenseCountOrderByAggregateInput
+  _max: ExpenseMaxOrderByAggregateInput
+  _min: ExpenseMinOrderByAggregateInput
+  _sum: ExpenseSumOrderByAggregateInput
+  accountId: SortOrder
+  amount: SortOrder
+  categoryId: SortOrder
+  createdAt: SortOrder
+  debitDate: SortOrder
+  description: SortOrder
+  id: SortOrder
+  scheduleName: SortOrder
+  updatedAt: SortOrder
+}
+
+input ExpenseOrderByWithRelationInput {
+  account: AccountOrderByWithRelationInput
+  accountId: SortOrder
+  amount: SortOrder
+  category: CategoryOrderByWithRelationInput
+  categoryId: SortOrder
+  createdAt: SortOrder
+  debitDate: SortOrder
+  description: SortOrder
+  id: SortOrder
+  schedule: ScheduleOrderByWithRelationInput
+  scheduleName: SortOrder
+  updatedAt: SortOrder
+}
+
+enum ExpenseScalarFieldEnum {
+  accountId
+  amount
+  categoryId
+  createdAt
+  debitDate
+  description
+  id
+  scheduleName
+  updatedAt
+}
+
+input ExpenseScalarWhereInput {
+  AND: [ExpenseScalarWhereInput!]
+  NOT: [ExpenseScalarWhereInput!]
+  OR: [ExpenseScalarWhereInput!]
+  accountId: IntFilter
+  amount: IntFilter
+  categoryId: IntFilter
+  createdAt: DateTimeFilter
+  debitDate: DateTimeFilter
+  description: StringFilter
+  id: IntFilter
+  scheduleName: StringFilter
+  updatedAt: DateTimeFilter
+}
+
+input ExpenseScalarWhereWithAggregatesInput {
+  AND: [ExpenseScalarWhereWithAggregatesInput!]
+  NOT: [ExpenseScalarWhereWithAggregatesInput!]
+  OR: [ExpenseScalarWhereWithAggregatesInput!]
+  accountId: IntWithAggregatesFilter
+  amount: IntWithAggregatesFilter
+  categoryId: IntWithAggregatesFilter
+  createdAt: DateTimeWithAggregatesFilter
+  debitDate: DateTimeWithAggregatesFilter
+  description: StringWithAggregatesFilter
+  id: IntWithAggregatesFilter
+  scheduleName: StringWithAggregatesFilter
+  updatedAt: DateTimeWithAggregatesFilter
+}
+
+type ExpenseSumAggregate {
+  accountId: Int
+  amount: Int
+  categoryId: Int
+  id: Int
+}
+
+input ExpenseSumOrderByAggregateInput {
+  accountId: SortOrder
+  amount: SortOrder
+  categoryId: SortOrder
+  id: SortOrder
+}
+
+input ExpenseUpdateInput {
+  account: AccountUpdateOneRequiredWithoutExpensesNestedInput
+  amount: IntFieldUpdateOperationsInput
+  category: CategoryUpdateOneRequiredWithoutExpensesNestedInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  debitDate: DateTimeFieldUpdateOperationsInput
+  description: StringFieldUpdateOperationsInput
+  schedule: ScheduleUpdateOneRequiredWithoutExpensesNestedInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input ExpenseUpdateManyMutationInput {
+  amount: IntFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  debitDate: DateTimeFieldUpdateOperationsInput
+  description: StringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input ExpenseUpdateManyWithWhereWithoutAccountInput {
+  data: ExpenseUpdateManyMutationInput!
+  where: ExpenseScalarWhereInput!
+}
+
+input ExpenseUpdateManyWithWhereWithoutCategoryInput {
+  data: ExpenseUpdateManyMutationInput!
+  where: ExpenseScalarWhereInput!
+}
+
+input ExpenseUpdateManyWithWhereWithoutScheduleInput {
+  data: ExpenseUpdateManyMutationInput!
+  where: ExpenseScalarWhereInput!
+}
+
+input ExpenseUpdateManyWithoutAccountNestedInput {
+  connect: [ExpenseWhereUniqueInput!]
+  connectOrCreate: [ExpenseCreateOrConnectWithoutAccountInput!]
+  create: [ExpenseCreateWithoutAccountInput!]
+  delete: [ExpenseWhereUniqueInput!]
+  deleteMany: [ExpenseScalarWhereInput!]
+  disconnect: [ExpenseWhereUniqueInput!]
+  set: [ExpenseWhereUniqueInput!]
+  update: [ExpenseUpdateWithWhereUniqueWithoutAccountInput!]
+  updateMany: [ExpenseUpdateManyWithWhereWithoutAccountInput!]
+  upsert: [ExpenseUpsertWithWhereUniqueWithoutAccountInput!]
+}
+
+input ExpenseUpdateManyWithoutCategoryNestedInput {
+  connect: [ExpenseWhereUniqueInput!]
+  connectOrCreate: [ExpenseCreateOrConnectWithoutCategoryInput!]
+  create: [ExpenseCreateWithoutCategoryInput!]
+  delete: [ExpenseWhereUniqueInput!]
+  deleteMany: [ExpenseScalarWhereInput!]
+  disconnect: [ExpenseWhereUniqueInput!]
+  set: [ExpenseWhereUniqueInput!]
+  update: [ExpenseUpdateWithWhereUniqueWithoutCategoryInput!]
+  updateMany: [ExpenseUpdateManyWithWhereWithoutCategoryInput!]
+  upsert: [ExpenseUpsertWithWhereUniqueWithoutCategoryInput!]
+}
+
+input ExpenseUpdateManyWithoutScheduleNestedInput {
+  connect: [ExpenseWhereUniqueInput!]
+  connectOrCreate: [ExpenseCreateOrConnectWithoutScheduleInput!]
+  create: [ExpenseCreateWithoutScheduleInput!]
+  delete: [ExpenseWhereUniqueInput!]
+  deleteMany: [ExpenseScalarWhereInput!]
+  disconnect: [ExpenseWhereUniqueInput!]
+  set: [ExpenseWhereUniqueInput!]
+  update: [ExpenseUpdateWithWhereUniqueWithoutScheduleInput!]
+  updateMany: [ExpenseUpdateManyWithWhereWithoutScheduleInput!]
+  upsert: [ExpenseUpsertWithWhereUniqueWithoutScheduleInput!]
+}
+
+input ExpenseUpdateWithWhereUniqueWithoutAccountInput {
+  data: ExpenseUpdateWithoutAccountInput!
+  where: ExpenseWhereUniqueInput!
+}
+
+input ExpenseUpdateWithWhereUniqueWithoutCategoryInput {
+  data: ExpenseUpdateWithoutCategoryInput!
+  where: ExpenseWhereUniqueInput!
+}
+
+input ExpenseUpdateWithWhereUniqueWithoutScheduleInput {
+  data: ExpenseUpdateWithoutScheduleInput!
+  where: ExpenseWhereUniqueInput!
+}
+
+input ExpenseUpdateWithoutAccountInput {
+  amount: IntFieldUpdateOperationsInput
+  category: CategoryUpdateOneRequiredWithoutExpensesNestedInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  debitDate: DateTimeFieldUpdateOperationsInput
+  description: StringFieldUpdateOperationsInput
+  schedule: ScheduleUpdateOneRequiredWithoutExpensesNestedInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input ExpenseUpdateWithoutCategoryInput {
+  account: AccountUpdateOneRequiredWithoutExpensesNestedInput
+  amount: IntFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  debitDate: DateTimeFieldUpdateOperationsInput
+  description: StringFieldUpdateOperationsInput
+  schedule: ScheduleUpdateOneRequiredWithoutExpensesNestedInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input ExpenseUpdateWithoutScheduleInput {
+  account: AccountUpdateOneRequiredWithoutExpensesNestedInput
+  amount: IntFieldUpdateOperationsInput
+  category: CategoryUpdateOneRequiredWithoutExpensesNestedInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  debitDate: DateTimeFieldUpdateOperationsInput
+  description: StringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input ExpenseUpsertWithWhereUniqueWithoutAccountInput {
+  create: ExpenseCreateWithoutAccountInput!
+  update: ExpenseUpdateWithoutAccountInput!
+  where: ExpenseWhereUniqueInput!
+}
+
+input ExpenseUpsertWithWhereUniqueWithoutCategoryInput {
+  create: ExpenseCreateWithoutCategoryInput!
+  update: ExpenseUpdateWithoutCategoryInput!
+  where: ExpenseWhereUniqueInput!
+}
+
+input ExpenseUpsertWithWhereUniqueWithoutScheduleInput {
+  create: ExpenseCreateWithoutScheduleInput!
+  update: ExpenseUpdateWithoutScheduleInput!
+  where: ExpenseWhereUniqueInput!
+}
+
+input ExpenseWhereInput {
+  AND: [ExpenseWhereInput!]
+  NOT: [ExpenseWhereInput!]
+  OR: [ExpenseWhereInput!]
+  account: AccountRelationFilter
+  accountId: IntFilter
+  amount: IntFilter
+  category: CategoryRelationFilter
+  categoryId: IntFilter
+  createdAt: DateTimeFilter
+  debitDate: DateTimeFilter
+  description: StringFilter
+  id: IntFilter
+  schedule: ScheduleRelationFilter
+  scheduleName: StringFilter
+  updatedAt: DateTimeFilter
+}
+
+input ExpenseWhereUniqueInput {
+  AND: [ExpenseWhereInput!]
+  NOT: [ExpenseWhereInput!]
+  OR: [ExpenseWhereInput!]
+  account: AccountRelationFilter
+  accountId: IntFilter
+  amount: IntFilter
+  category: CategoryRelationFilter
+  categoryId: IntFilter
+  createdAt: DateTimeFilter
+  debitDate: DateTimeFilter
+  description: StringFilter
+  id: Int
+  schedule: ScheduleRelationFilter
+  scheduleName: StringFilter
+  updatedAt: DateTimeFilter
+}
+
+type Goal {
+  account: Account!
+  accountId: Int!
+  amount: Int!
+  createdAt: DateTime!
+  description: String!
+  id: Int!
+  targetDate: DateTime!
+  updatedAt: DateTime!
+}
+
+type GoalAvgAggregate {
+  accountId: Float
+  amount: Float
+  id: Float
+}
+
+input GoalAvgOrderByAggregateInput {
+  accountId: SortOrder
+  amount: SortOrder
+  id: SortOrder
+}
+
+type GoalCountAggregate {
+  _all: Int!
+  accountId: Int!
+  amount: Int!
+  createdAt: Int!
+  description: Int!
+  id: Int!
+  targetDate: Int!
+  updatedAt: Int!
+}
+
+input GoalCountOrderByAggregateInput {
+  accountId: SortOrder
+  amount: SortOrder
+  createdAt: SortOrder
+  description: SortOrder
+  id: SortOrder
+  targetDate: SortOrder
+  updatedAt: SortOrder
+}
+
+input GoalCreateInput {
+  account: AccountCreateNestedOneWithoutGoalsInput!
+  amount: Int!
+  createdAt: DateTime
+  description: String!
+  targetDate: DateTime!
+  updatedAt: DateTime
+}
+
+input GoalCreateNestedManyWithoutAccountInput {
+  connect: [GoalWhereUniqueInput!]
+  connectOrCreate: [GoalCreateOrConnectWithoutAccountInput!]
+  create: [GoalCreateWithoutAccountInput!]
+}
+
+input GoalCreateOrConnectWithoutAccountInput {
+  create: GoalCreateWithoutAccountInput!
+  where: GoalWhereUniqueInput!
+}
+
+input GoalCreateWithoutAccountInput {
+  amount: Int!
+  createdAt: DateTime
+  description: String!
+  targetDate: DateTime!
+  updatedAt: DateTime
+}
+
+type GoalGroupBy {
+  _avg: GoalAvgAggregate
+  _count: GoalCountAggregate
+  _max: GoalMaxAggregate
+  _min: GoalMinAggregate
+  _sum: GoalSumAggregate
+  accountId: Int!
+  amount: Int!
+  createdAt: DateTime!
+  description: String!
+  id: Int!
+  targetDate: DateTime!
+  updatedAt: DateTime!
+}
+
+input GoalListRelationFilter {
+  every: GoalWhereInput
+  none: GoalWhereInput
+  some: GoalWhereInput
+}
+
+type GoalMaxAggregate {
+  accountId: Int
+  amount: Int
+  createdAt: DateTime
+  description: String
+  id: Int
+  targetDate: DateTime
+  updatedAt: DateTime
+}
+
+input GoalMaxOrderByAggregateInput {
+  accountId: SortOrder
+  amount: SortOrder
+  createdAt: SortOrder
+  description: SortOrder
+  id: SortOrder
+  targetDate: SortOrder
+  updatedAt: SortOrder
+}
+
+type GoalMinAggregate {
+  accountId: Int
+  amount: Int
+  createdAt: DateTime
+  description: String
+  id: Int
+  targetDate: DateTime
+  updatedAt: DateTime
+}
+
+input GoalMinOrderByAggregateInput {
+  accountId: SortOrder
+  amount: SortOrder
+  createdAt: SortOrder
+  description: SortOrder
+  id: SortOrder
+  targetDate: SortOrder
+  updatedAt: SortOrder
+}
+
+input GoalOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input GoalOrderByWithAggregationInput {
+  _avg: GoalAvgOrderByAggregateInput
+  _count: GoalCountOrderByAggregateInput
+  _max: GoalMaxOrderByAggregateInput
+  _min: GoalMinOrderByAggregateInput
+  _sum: GoalSumOrderByAggregateInput
+  accountId: SortOrder
+  amount: SortOrder
+  createdAt: SortOrder
+  description: SortOrder
+  id: SortOrder
+  targetDate: SortOrder
+  updatedAt: SortOrder
+}
+
+input GoalOrderByWithRelationInput {
+  account: AccountOrderByWithRelationInput
+  accountId: SortOrder
+  amount: SortOrder
+  createdAt: SortOrder
+  description: SortOrder
+  id: SortOrder
+  targetDate: SortOrder
+  updatedAt: SortOrder
+}
+
+enum GoalScalarFieldEnum {
+  accountId
+  amount
+  createdAt
+  description
+  id
+  targetDate
+  updatedAt
+}
+
+input GoalScalarWhereInput {
+  AND: [GoalScalarWhereInput!]
+  NOT: [GoalScalarWhereInput!]
+  OR: [GoalScalarWhereInput!]
+  accountId: IntFilter
+  amount: IntFilter
+  createdAt: DateTimeFilter
+  description: StringFilter
+  id: IntFilter
+  targetDate: DateTimeFilter
+  updatedAt: DateTimeFilter
+}
+
+input GoalScalarWhereWithAggregatesInput {
+  AND: [GoalScalarWhereWithAggregatesInput!]
+  NOT: [GoalScalarWhereWithAggregatesInput!]
+  OR: [GoalScalarWhereWithAggregatesInput!]
+  accountId: IntWithAggregatesFilter
+  amount: IntWithAggregatesFilter
+  createdAt: DateTimeWithAggregatesFilter
+  description: StringWithAggregatesFilter
+  id: IntWithAggregatesFilter
+  targetDate: DateTimeWithAggregatesFilter
+  updatedAt: DateTimeWithAggregatesFilter
+}
+
+type GoalSumAggregate {
+  accountId: Int
+  amount: Int
+  id: Int
+}
+
+input GoalSumOrderByAggregateInput {
+  accountId: SortOrder
+  amount: SortOrder
+  id: SortOrder
+}
+
+input GoalUpdateInput {
+  account: AccountUpdateOneRequiredWithoutGoalsNestedInput
+  amount: IntFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  description: StringFieldUpdateOperationsInput
+  targetDate: DateTimeFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input GoalUpdateManyMutationInput {
+  amount: IntFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  description: StringFieldUpdateOperationsInput
+  targetDate: DateTimeFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input GoalUpdateManyWithWhereWithoutAccountInput {
+  data: GoalUpdateManyMutationInput!
+  where: GoalScalarWhereInput!
+}
+
+input GoalUpdateManyWithoutAccountNestedInput {
+  connect: [GoalWhereUniqueInput!]
+  connectOrCreate: [GoalCreateOrConnectWithoutAccountInput!]
+  create: [GoalCreateWithoutAccountInput!]
+  delete: [GoalWhereUniqueInput!]
+  deleteMany: [GoalScalarWhereInput!]
+  disconnect: [GoalWhereUniqueInput!]
+  set: [GoalWhereUniqueInput!]
+  update: [GoalUpdateWithWhereUniqueWithoutAccountInput!]
+  updateMany: [GoalUpdateManyWithWhereWithoutAccountInput!]
+  upsert: [GoalUpsertWithWhereUniqueWithoutAccountInput!]
+}
+
+input GoalUpdateWithWhereUniqueWithoutAccountInput {
+  data: GoalUpdateWithoutAccountInput!
+  where: GoalWhereUniqueInput!
+}
+
+input GoalUpdateWithoutAccountInput {
+  amount: IntFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  description: StringFieldUpdateOperationsInput
+  targetDate: DateTimeFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input GoalUpsertWithWhereUniqueWithoutAccountInput {
+  create: GoalCreateWithoutAccountInput!
+  update: GoalUpdateWithoutAccountInput!
+  where: GoalWhereUniqueInput!
+}
+
+input GoalWhereInput {
+  AND: [GoalWhereInput!]
+  NOT: [GoalWhereInput!]
+  OR: [GoalWhereInput!]
+  account: AccountRelationFilter
+  accountId: IntFilter
+  amount: IntFilter
+  createdAt: DateTimeFilter
+  description: StringFilter
+  id: IntFilter
+  targetDate: DateTimeFilter
+  updatedAt: DateTimeFilter
+}
+
+input GoalWhereUniqueInput {
+  AND: [GoalWhereInput!]
+  NOT: [GoalWhereInput!]
+  OR: [GoalWhereInput!]
+  account: AccountRelationFilter
+  accountId: IntFilter
+  amount: IntFilter
+  createdAt: DateTimeFilter
+  description: StringFilter
+  id: Int
+  targetDate: DateTimeFilter
+  updatedAt: DateTimeFilter
+}
+
+type Income {
+  account: Account!
+  accountId: Int!
+  amount: Int!
+  createdAt: DateTime!
+  creditDate: DateTime!
+  description: String!
+  id: Int!
+  schedule: Schedule!
+  scheduleName: String!
+  source: Source!
+  sourceName: String!
+  updatedAt: DateTime!
+}
+
+type IncomeAvgAggregate {
+  accountId: Float
+  amount: Float
+  id: Float
+}
+
+input IncomeAvgOrderByAggregateInput {
+  accountId: SortOrder
+  amount: SortOrder
+  id: SortOrder
+}
+
+type IncomeCountAggregate {
+  _all: Int!
+  accountId: Int!
+  amount: Int!
+  createdAt: Int!
+  creditDate: Int!
+  description: Int!
+  id: Int!
+  scheduleName: Int!
+  sourceName: Int!
+  updatedAt: Int!
+}
+
+input IncomeCountOrderByAggregateInput {
+  accountId: SortOrder
+  amount: SortOrder
+  createdAt: SortOrder
+  creditDate: SortOrder
+  description: SortOrder
+  id: SortOrder
+  scheduleName: SortOrder
+  sourceName: SortOrder
+  updatedAt: SortOrder
+}
+
+input IncomeCreateInput {
+  account: AccountCreateNestedOneWithoutIncomesInput!
+  amount: Int!
+  createdAt: DateTime
+  creditDate: DateTime!
+  description: String!
+  schedule: ScheduleCreateNestedOneWithoutIncomesInput!
+  source: SourceCreateNestedOneWithoutIncomeInput!
+  updatedAt: DateTime
+}
+
+input IncomeCreateNestedManyWithoutAccountInput {
+  connect: [IncomeWhereUniqueInput!]
+  connectOrCreate: [IncomeCreateOrConnectWithoutAccountInput!]
+  create: [IncomeCreateWithoutAccountInput!]
+}
+
+input IncomeCreateNestedManyWithoutScheduleInput {
+  connect: [IncomeWhereUniqueInput!]
+  connectOrCreate: [IncomeCreateOrConnectWithoutScheduleInput!]
+  create: [IncomeCreateWithoutScheduleInput!]
+}
+
+input IncomeCreateNestedManyWithoutSourceInput {
+  connect: [IncomeWhereUniqueInput!]
+  connectOrCreate: [IncomeCreateOrConnectWithoutSourceInput!]
+  create: [IncomeCreateWithoutSourceInput!]
+}
+
+input IncomeCreateOrConnectWithoutAccountInput {
+  create: IncomeCreateWithoutAccountInput!
+  where: IncomeWhereUniqueInput!
+}
+
+input IncomeCreateOrConnectWithoutScheduleInput {
+  create: IncomeCreateWithoutScheduleInput!
+  where: IncomeWhereUniqueInput!
+}
+
+input IncomeCreateOrConnectWithoutSourceInput {
+  create: IncomeCreateWithoutSourceInput!
+  where: IncomeWhereUniqueInput!
+}
+
+input IncomeCreateWithoutAccountInput {
+  amount: Int!
+  createdAt: DateTime
+  creditDate: DateTime!
+  description: String!
+  schedule: ScheduleCreateNestedOneWithoutIncomesInput!
+  source: SourceCreateNestedOneWithoutIncomeInput!
+  updatedAt: DateTime
+}
+
+input IncomeCreateWithoutScheduleInput {
+  account: AccountCreateNestedOneWithoutIncomesInput!
+  amount: Int!
+  createdAt: DateTime
+  creditDate: DateTime!
+  description: String!
+  source: SourceCreateNestedOneWithoutIncomeInput!
+  updatedAt: DateTime
+}
+
+input IncomeCreateWithoutSourceInput {
+  account: AccountCreateNestedOneWithoutIncomesInput!
+  amount: Int!
+  createdAt: DateTime
+  creditDate: DateTime!
+  description: String!
+  schedule: ScheduleCreateNestedOneWithoutIncomesInput!
+  updatedAt: DateTime
+}
+
+type IncomeGroupBy {
+  _avg: IncomeAvgAggregate
+  _count: IncomeCountAggregate
+  _max: IncomeMaxAggregate
+  _min: IncomeMinAggregate
+  _sum: IncomeSumAggregate
+  accountId: Int!
+  amount: Int!
+  createdAt: DateTime!
+  creditDate: DateTime!
+  description: String!
+  id: Int!
+  scheduleName: String!
+  sourceName: String!
+  updatedAt: DateTime!
+}
+
+input IncomeListRelationFilter {
+  every: IncomeWhereInput
+  none: IncomeWhereInput
+  some: IncomeWhereInput
+}
+
+type IncomeMaxAggregate {
+  accountId: Int
+  amount: Int
+  createdAt: DateTime
+  creditDate: DateTime
+  description: String
+  id: Int
+  scheduleName: String
+  sourceName: String
+  updatedAt: DateTime
+}
+
+input IncomeMaxOrderByAggregateInput {
+  accountId: SortOrder
+  amount: SortOrder
+  createdAt: SortOrder
+  creditDate: SortOrder
+  description: SortOrder
+  id: SortOrder
+  scheduleName: SortOrder
+  sourceName: SortOrder
+  updatedAt: SortOrder
+}
+
+type IncomeMinAggregate {
+  accountId: Int
+  amount: Int
+  createdAt: DateTime
+  creditDate: DateTime
+  description: String
+  id: Int
+  scheduleName: String
+  sourceName: String
+  updatedAt: DateTime
+}
+
+input IncomeMinOrderByAggregateInput {
+  accountId: SortOrder
+  amount: SortOrder
+  createdAt: SortOrder
+  creditDate: SortOrder
+  description: SortOrder
+  id: SortOrder
+  scheduleName: SortOrder
+  sourceName: SortOrder
+  updatedAt: SortOrder
+}
+
+input IncomeOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input IncomeOrderByWithAggregationInput {
+  _avg: IncomeAvgOrderByAggregateInput
+  _count: IncomeCountOrderByAggregateInput
+  _max: IncomeMaxOrderByAggregateInput
+  _min: IncomeMinOrderByAggregateInput
+  _sum: IncomeSumOrderByAggregateInput
+  accountId: SortOrder
+  amount: SortOrder
+  createdAt: SortOrder
+  creditDate: SortOrder
+  description: SortOrder
+  id: SortOrder
+  scheduleName: SortOrder
+  sourceName: SortOrder
+  updatedAt: SortOrder
+}
+
+input IncomeOrderByWithRelationInput {
+  account: AccountOrderByWithRelationInput
+  accountId: SortOrder
+  amount: SortOrder
+  createdAt: SortOrder
+  creditDate: SortOrder
+  description: SortOrder
+  id: SortOrder
+  schedule: ScheduleOrderByWithRelationInput
+  scheduleName: SortOrder
+  source: SourceOrderByWithRelationInput
+  sourceName: SortOrder
+  updatedAt: SortOrder
+}
+
+enum IncomeScalarFieldEnum {
+  accountId
+  amount
+  createdAt
+  creditDate
+  description
+  id
+  scheduleName
+  sourceName
+  updatedAt
+}
+
+input IncomeScalarWhereInput {
+  AND: [IncomeScalarWhereInput!]
+  NOT: [IncomeScalarWhereInput!]
+  OR: [IncomeScalarWhereInput!]
+  accountId: IntFilter
+  amount: IntFilter
+  createdAt: DateTimeFilter
+  creditDate: DateTimeFilter
+  description: StringFilter
+  id: IntFilter
+  scheduleName: StringFilter
+  sourceName: StringFilter
+  updatedAt: DateTimeFilter
+}
+
+input IncomeScalarWhereWithAggregatesInput {
+  AND: [IncomeScalarWhereWithAggregatesInput!]
+  NOT: [IncomeScalarWhereWithAggregatesInput!]
+  OR: [IncomeScalarWhereWithAggregatesInput!]
+  accountId: IntWithAggregatesFilter
+  amount: IntWithAggregatesFilter
+  createdAt: DateTimeWithAggregatesFilter
+  creditDate: DateTimeWithAggregatesFilter
+  description: StringWithAggregatesFilter
+  id: IntWithAggregatesFilter
+  scheduleName: StringWithAggregatesFilter
+  sourceName: StringWithAggregatesFilter
+  updatedAt: DateTimeWithAggregatesFilter
+}
+
+type IncomeSumAggregate {
+  accountId: Int
+  amount: Int
+  id: Int
+}
+
+input IncomeSumOrderByAggregateInput {
+  accountId: SortOrder
+  amount: SortOrder
+  id: SortOrder
+}
+
+input IncomeUpdateInput {
+  account: AccountUpdateOneRequiredWithoutIncomesNestedInput
+  amount: IntFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  creditDate: DateTimeFieldUpdateOperationsInput
+  description: StringFieldUpdateOperationsInput
+  schedule: ScheduleUpdateOneRequiredWithoutIncomesNestedInput
+  source: SourceUpdateOneRequiredWithoutIncomeNestedInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input IncomeUpdateManyMutationInput {
+  amount: IntFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  creditDate: DateTimeFieldUpdateOperationsInput
+  description: StringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input IncomeUpdateManyWithWhereWithoutAccountInput {
+  data: IncomeUpdateManyMutationInput!
+  where: IncomeScalarWhereInput!
+}
+
+input IncomeUpdateManyWithWhereWithoutScheduleInput {
+  data: IncomeUpdateManyMutationInput!
+  where: IncomeScalarWhereInput!
+}
+
+input IncomeUpdateManyWithWhereWithoutSourceInput {
+  data: IncomeUpdateManyMutationInput!
+  where: IncomeScalarWhereInput!
+}
+
+input IncomeUpdateManyWithoutAccountNestedInput {
+  connect: [IncomeWhereUniqueInput!]
+  connectOrCreate: [IncomeCreateOrConnectWithoutAccountInput!]
+  create: [IncomeCreateWithoutAccountInput!]
+  delete: [IncomeWhereUniqueInput!]
+  deleteMany: [IncomeScalarWhereInput!]
+  disconnect: [IncomeWhereUniqueInput!]
+  set: [IncomeWhereUniqueInput!]
+  update: [IncomeUpdateWithWhereUniqueWithoutAccountInput!]
+  updateMany: [IncomeUpdateManyWithWhereWithoutAccountInput!]
+  upsert: [IncomeUpsertWithWhereUniqueWithoutAccountInput!]
+}
+
+input IncomeUpdateManyWithoutScheduleNestedInput {
+  connect: [IncomeWhereUniqueInput!]
+  connectOrCreate: [IncomeCreateOrConnectWithoutScheduleInput!]
+  create: [IncomeCreateWithoutScheduleInput!]
+  delete: [IncomeWhereUniqueInput!]
+  deleteMany: [IncomeScalarWhereInput!]
+  disconnect: [IncomeWhereUniqueInput!]
+  set: [IncomeWhereUniqueInput!]
+  update: [IncomeUpdateWithWhereUniqueWithoutScheduleInput!]
+  updateMany: [IncomeUpdateManyWithWhereWithoutScheduleInput!]
+  upsert: [IncomeUpsertWithWhereUniqueWithoutScheduleInput!]
+}
+
+input IncomeUpdateManyWithoutSourceNestedInput {
+  connect: [IncomeWhereUniqueInput!]
+  connectOrCreate: [IncomeCreateOrConnectWithoutSourceInput!]
+  create: [IncomeCreateWithoutSourceInput!]
+  delete: [IncomeWhereUniqueInput!]
+  deleteMany: [IncomeScalarWhereInput!]
+  disconnect: [IncomeWhereUniqueInput!]
+  set: [IncomeWhereUniqueInput!]
+  update: [IncomeUpdateWithWhereUniqueWithoutSourceInput!]
+  updateMany: [IncomeUpdateManyWithWhereWithoutSourceInput!]
+  upsert: [IncomeUpsertWithWhereUniqueWithoutSourceInput!]
+}
+
+input IncomeUpdateWithWhereUniqueWithoutAccountInput {
+  data: IncomeUpdateWithoutAccountInput!
+  where: IncomeWhereUniqueInput!
+}
+
+input IncomeUpdateWithWhereUniqueWithoutScheduleInput {
+  data: IncomeUpdateWithoutScheduleInput!
+  where: IncomeWhereUniqueInput!
+}
+
+input IncomeUpdateWithWhereUniqueWithoutSourceInput {
+  data: IncomeUpdateWithoutSourceInput!
+  where: IncomeWhereUniqueInput!
+}
+
+input IncomeUpdateWithoutAccountInput {
+  amount: IntFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  creditDate: DateTimeFieldUpdateOperationsInput
+  description: StringFieldUpdateOperationsInput
+  schedule: ScheduleUpdateOneRequiredWithoutIncomesNestedInput
+  source: SourceUpdateOneRequiredWithoutIncomeNestedInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input IncomeUpdateWithoutScheduleInput {
+  account: AccountUpdateOneRequiredWithoutIncomesNestedInput
+  amount: IntFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  creditDate: DateTimeFieldUpdateOperationsInput
+  description: StringFieldUpdateOperationsInput
+  source: SourceUpdateOneRequiredWithoutIncomeNestedInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input IncomeUpdateWithoutSourceInput {
+  account: AccountUpdateOneRequiredWithoutIncomesNestedInput
+  amount: IntFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  creditDate: DateTimeFieldUpdateOperationsInput
+  description: StringFieldUpdateOperationsInput
+  schedule: ScheduleUpdateOneRequiredWithoutIncomesNestedInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input IncomeUpsertWithWhereUniqueWithoutAccountInput {
+  create: IncomeCreateWithoutAccountInput!
+  update: IncomeUpdateWithoutAccountInput!
+  where: IncomeWhereUniqueInput!
+}
+
+input IncomeUpsertWithWhereUniqueWithoutScheduleInput {
+  create: IncomeCreateWithoutScheduleInput!
+  update: IncomeUpdateWithoutScheduleInput!
+  where: IncomeWhereUniqueInput!
+}
+
+input IncomeUpsertWithWhereUniqueWithoutSourceInput {
+  create: IncomeCreateWithoutSourceInput!
+  update: IncomeUpdateWithoutSourceInput!
+  where: IncomeWhereUniqueInput!
+}
+
+input IncomeWhereInput {
+  AND: [IncomeWhereInput!]
+  NOT: [IncomeWhereInput!]
+  OR: [IncomeWhereInput!]
+  account: AccountRelationFilter
+  accountId: IntFilter
+  amount: IntFilter
+  createdAt: DateTimeFilter
+  creditDate: DateTimeFilter
+  description: StringFilter
+  id: IntFilter
+  schedule: ScheduleRelationFilter
+  scheduleName: StringFilter
+  source: SourceRelationFilter
+  sourceName: StringFilter
+  updatedAt: DateTimeFilter
+}
+
+input IncomeWhereUniqueInput {
+  AND: [IncomeWhereInput!]
+  NOT: [IncomeWhereInput!]
+  OR: [IncomeWhereInput!]
+  account: AccountRelationFilter
+  accountId: IntFilter
+  amount: IntFilter
+  createdAt: DateTimeFilter
+  creditDate: DateTimeFilter
+  description: StringFilter
+  id: Int
+  schedule: ScheduleRelationFilter
+  scheduleName: StringFilter
+  source: SourceRelationFilter
+  sourceName: StringFilter
+  updatedAt: DateTimeFilter
+}
+
+input IntFieldUpdateOperationsInput {
+  decrement: Int
+  divide: Int
+  increment: Int
+  multiply: Int
+  set: Int
+}
+
+input IntFilter {
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  lt: Int
+  lte: Int
+  not: NestedIntFilter
+  notIn: [Int!]
+}
+
+input IntWithAggregatesFilter {
+  _avg: NestedFloatFilter
+  _count: NestedIntFilter
+  _max: NestedIntFilter
+  _min: NestedIntFilter
+  _sum: NestedIntFilter
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  lt: Int
+  lte: Int
+  not: NestedIntWithAggregatesFilter
+  notIn: [Int!]
+}
+
+type Mutation {
+  createOneAccount(data: AccountCreateInput!): Account!
+  createOneBudget(data: BudgetCreateInput!): Budget!
+  createOneCategory(data: CategoryCreateInput!): Category!
+  createOneExpense(data: ExpenseCreateInput!): Expense!
+  createOneGoal(data: GoalCreateInput!): Goal!
+  createOneIncome(data: IncomeCreateInput!): Income!
+  createOneSchedule(data: ScheduleCreateInput!): Schedule!
+  createOneSource(data: SourceCreateInput!): Source!
+  createOneUser(data: UserCreateInput!): User!
+  deleteManyAccount(where: AccountWhereInput): AffectedRowsOutput!
+  deleteManyBudget(where: BudgetWhereInput): AffectedRowsOutput!
+  deleteManyCategory(where: CategoryWhereInput): AffectedRowsOutput!
+  deleteManyExpense(where: ExpenseWhereInput): AffectedRowsOutput!
+  deleteManyGoal(where: GoalWhereInput): AffectedRowsOutput!
+  deleteManyIncome(where: IncomeWhereInput): AffectedRowsOutput!
+  deleteManySchedule(where: ScheduleWhereInput): AffectedRowsOutput!
+  deleteManySource(where: SourceWhereInput): AffectedRowsOutput!
+  deleteManyUser(where: UserWhereInput): AffectedRowsOutput!
+  deleteOneAccount(where: AccountWhereUniqueInput!): Account
+  deleteOneBudget(where: BudgetWhereUniqueInput!): Budget
+  deleteOneCategory(where: CategoryWhereUniqueInput!): Category
+  deleteOneExpense(where: ExpenseWhereUniqueInput!): Expense
+  deleteOneGoal(where: GoalWhereUniqueInput!): Goal
+  deleteOneIncome(where: IncomeWhereUniqueInput!): Income
+  deleteOneSchedule(where: ScheduleWhereUniqueInput!): Schedule
+  deleteOneSource(where: SourceWhereUniqueInput!): Source
+  deleteOneUser(where: UserWhereUniqueInput!): User
+  updateManyAccount(data: AccountUpdateManyMutationInput!, where: AccountWhereInput): AffectedRowsOutput!
+  updateManyBudget(data: BudgetUpdateManyMutationInput!, where: BudgetWhereInput): AffectedRowsOutput!
+  updateManyCategory(data: CategoryUpdateManyMutationInput!, where: CategoryWhereInput): AffectedRowsOutput!
+  updateManyExpense(data: ExpenseUpdateManyMutationInput!, where: ExpenseWhereInput): AffectedRowsOutput!
+  updateManyGoal(data: GoalUpdateManyMutationInput!, where: GoalWhereInput): AffectedRowsOutput!
+  updateManyIncome(data: IncomeUpdateManyMutationInput!, where: IncomeWhereInput): AffectedRowsOutput!
+  updateManySchedule(data: ScheduleUpdateManyMutationInput!, where: ScheduleWhereInput): AffectedRowsOutput!
+  updateManySource(data: SourceUpdateManyMutationInput!, where: SourceWhereInput): AffectedRowsOutput!
+  updateManyUser(data: UserUpdateManyMutationInput!, where: UserWhereInput): AffectedRowsOutput!
+  updateOneAccount(data: AccountUpdateInput!, where: AccountWhereUniqueInput!): Account
+  updateOneBudget(data: BudgetUpdateInput!, where: BudgetWhereUniqueInput!): Budget
+  updateOneCategory(data: CategoryUpdateInput!, where: CategoryWhereUniqueInput!): Category
+  updateOneExpense(data: ExpenseUpdateInput!, where: ExpenseWhereUniqueInput!): Expense
+  updateOneGoal(data: GoalUpdateInput!, where: GoalWhereUniqueInput!): Goal
+  updateOneIncome(data: IncomeUpdateInput!, where: IncomeWhereUniqueInput!): Income
+  updateOneSchedule(data: ScheduleUpdateInput!, where: ScheduleWhereUniqueInput!): Schedule
+  updateOneSource(data: SourceUpdateInput!, where: SourceWhereUniqueInput!): Source
+  updateOneUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
+  upsertOneAccount(create: AccountCreateInput!, update: AccountUpdateInput!, where: AccountWhereUniqueInput!): Account!
+  upsertOneBudget(create: BudgetCreateInput!, update: BudgetUpdateInput!, where: BudgetWhereUniqueInput!): Budget!
+  upsertOneCategory(create: CategoryCreateInput!, update: CategoryUpdateInput!, where: CategoryWhereUniqueInput!): Category!
+  upsertOneExpense(create: ExpenseCreateInput!, update: ExpenseUpdateInput!, where: ExpenseWhereUniqueInput!): Expense!
+  upsertOneGoal(create: GoalCreateInput!, update: GoalUpdateInput!, where: GoalWhereUniqueInput!): Goal!
+  upsertOneIncome(create: IncomeCreateInput!, update: IncomeUpdateInput!, where: IncomeWhereUniqueInput!): Income!
+  upsertOneSchedule(create: ScheduleCreateInput!, update: ScheduleUpdateInput!, where: ScheduleWhereUniqueInput!): Schedule!
+  upsertOneSource(create: SourceCreateInput!, update: SourceUpdateInput!, where: SourceWhereUniqueInput!): Source!
+  upsertOneUser(create: UserCreateInput!, update: UserUpdateInput!, where: UserWhereUniqueInput!): User!
+}
+
+input NestedDateTimeFilter {
+  equals: DateTime
+  gt: DateTime
+  gte: DateTime
+  in: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  not: NestedDateTimeFilter
+  notIn: [DateTime!]
+}
+
+input NestedDateTimeWithAggregatesFilter {
+  _count: NestedIntFilter
+  _max: NestedDateTimeFilter
+  _min: NestedDateTimeFilter
+  equals: DateTime
+  gt: DateTime
+  gte: DateTime
+  in: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  not: NestedDateTimeWithAggregatesFilter
+  notIn: [DateTime!]
+}
+
+input NestedFloatFilter {
+  equals: Float
+  gt: Float
+  gte: Float
+  in: [Float!]
+  lt: Float
+  lte: Float
+  not: NestedFloatFilter
+  notIn: [Float!]
+}
+
+input NestedIntFilter {
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  lt: Int
+  lte: Int
+  not: NestedIntFilter
+  notIn: [Int!]
+}
+
+input NestedIntWithAggregatesFilter {
+  _avg: NestedFloatFilter
+  _count: NestedIntFilter
+  _max: NestedIntFilter
+  _min: NestedIntFilter
+  _sum: NestedIntFilter
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  lt: Int
+  lte: Int
+  not: NestedIntWithAggregatesFilter
+  notIn: [Int!]
+}
+
+input NestedStringFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  not: NestedStringFilter
+  notIn: [String!]
+  startsWith: String
+}
+
+input NestedStringWithAggregatesFilter {
+  _count: NestedIntFilter
+  _max: NestedStringFilter
+  _min: NestedStringFilter
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  not: NestedStringWithAggregatesFilter
+  notIn: [String!]
+  startsWith: String
+}
+
 type Query {
-  allUsers: [User!]!
+  account(where: AccountWhereUniqueInput!): Account
+  accounts(cursor: AccountWhereUniqueInput, distinct: [AccountScalarFieldEnum!], orderBy: [AccountOrderByWithRelationInput!], skip: Int, take: Int, where: AccountWhereInput): [Account!]!
+  aggregateAccount(cursor: AccountWhereUniqueInput, orderBy: [AccountOrderByWithRelationInput!], skip: Int, take: Int, where: AccountWhereInput): AggregateAccount!
+  aggregateBudget(cursor: BudgetWhereUniqueInput, orderBy: [BudgetOrderByWithRelationInput!], skip: Int, take: Int, where: BudgetWhereInput): AggregateBudget!
+  aggregateCategory(cursor: CategoryWhereUniqueInput, orderBy: [CategoryOrderByWithRelationInput!], skip: Int, take: Int, where: CategoryWhereInput): AggregateCategory!
+  aggregateExpense(cursor: ExpenseWhereUniqueInput, orderBy: [ExpenseOrderByWithRelationInput!], skip: Int, take: Int, where: ExpenseWhereInput): AggregateExpense!
+  aggregateGoal(cursor: GoalWhereUniqueInput, orderBy: [GoalOrderByWithRelationInput!], skip: Int, take: Int, where: GoalWhereInput): AggregateGoal!
+  aggregateIncome(cursor: IncomeWhereUniqueInput, orderBy: [IncomeOrderByWithRelationInput!], skip: Int, take: Int, where: IncomeWhereInput): AggregateIncome!
+  aggregateSchedule(cursor: ScheduleWhereUniqueInput, orderBy: [ScheduleOrderByWithRelationInput!], skip: Int, take: Int, where: ScheduleWhereInput): AggregateSchedule!
+  aggregateSource(cursor: SourceWhereUniqueInput, orderBy: [SourceOrderByWithRelationInput!], skip: Int, take: Int, where: SourceWhereInput): AggregateSource!
+  aggregateUser(cursor: UserWhereUniqueInput, orderBy: [UserOrderByWithRelationInput!], skip: Int, take: Int, where: UserWhereInput): AggregateUser!
+  budget(where: BudgetWhereUniqueInput!): Budget
+  budgets(cursor: BudgetWhereUniqueInput, distinct: [BudgetScalarFieldEnum!], orderBy: [BudgetOrderByWithRelationInput!], skip: Int, take: Int, where: BudgetWhereInput): [Budget!]!
+  categories(cursor: CategoryWhereUniqueInput, distinct: [CategoryScalarFieldEnum!], orderBy: [CategoryOrderByWithRelationInput!], skip: Int, take: Int, where: CategoryWhereInput): [Category!]!
+  category(where: CategoryWhereUniqueInput!): Category
+  expense(where: ExpenseWhereUniqueInput!): Expense
+  expenses(cursor: ExpenseWhereUniqueInput, distinct: [ExpenseScalarFieldEnum!], orderBy: [ExpenseOrderByWithRelationInput!], skip: Int, take: Int, where: ExpenseWhereInput): [Expense!]!
+  findFirstAccount(cursor: AccountWhereUniqueInput, distinct: [AccountScalarFieldEnum!], orderBy: [AccountOrderByWithRelationInput!], skip: Int, take: Int, where: AccountWhereInput): Account
+  findFirstAccountOrThrow(cursor: AccountWhereUniqueInput, distinct: [AccountScalarFieldEnum!], orderBy: [AccountOrderByWithRelationInput!], skip: Int, take: Int, where: AccountWhereInput): Account
+  findFirstBudget(cursor: BudgetWhereUniqueInput, distinct: [BudgetScalarFieldEnum!], orderBy: [BudgetOrderByWithRelationInput!], skip: Int, take: Int, where: BudgetWhereInput): Budget
+  findFirstBudgetOrThrow(cursor: BudgetWhereUniqueInput, distinct: [BudgetScalarFieldEnum!], orderBy: [BudgetOrderByWithRelationInput!], skip: Int, take: Int, where: BudgetWhereInput): Budget
+  findFirstCategory(cursor: CategoryWhereUniqueInput, distinct: [CategoryScalarFieldEnum!], orderBy: [CategoryOrderByWithRelationInput!], skip: Int, take: Int, where: CategoryWhereInput): Category
+  findFirstCategoryOrThrow(cursor: CategoryWhereUniqueInput, distinct: [CategoryScalarFieldEnum!], orderBy: [CategoryOrderByWithRelationInput!], skip: Int, take: Int, where: CategoryWhereInput): Category
+  findFirstExpense(cursor: ExpenseWhereUniqueInput, distinct: [ExpenseScalarFieldEnum!], orderBy: [ExpenseOrderByWithRelationInput!], skip: Int, take: Int, where: ExpenseWhereInput): Expense
+  findFirstExpenseOrThrow(cursor: ExpenseWhereUniqueInput, distinct: [ExpenseScalarFieldEnum!], orderBy: [ExpenseOrderByWithRelationInput!], skip: Int, take: Int, where: ExpenseWhereInput): Expense
+  findFirstGoal(cursor: GoalWhereUniqueInput, distinct: [GoalScalarFieldEnum!], orderBy: [GoalOrderByWithRelationInput!], skip: Int, take: Int, where: GoalWhereInput): Goal
+  findFirstGoalOrThrow(cursor: GoalWhereUniqueInput, distinct: [GoalScalarFieldEnum!], orderBy: [GoalOrderByWithRelationInput!], skip: Int, take: Int, where: GoalWhereInput): Goal
+  findFirstIncome(cursor: IncomeWhereUniqueInput, distinct: [IncomeScalarFieldEnum!], orderBy: [IncomeOrderByWithRelationInput!], skip: Int, take: Int, where: IncomeWhereInput): Income
+  findFirstIncomeOrThrow(cursor: IncomeWhereUniqueInput, distinct: [IncomeScalarFieldEnum!], orderBy: [IncomeOrderByWithRelationInput!], skip: Int, take: Int, where: IncomeWhereInput): Income
+  findFirstSchedule(cursor: ScheduleWhereUniqueInput, distinct: [ScheduleScalarFieldEnum!], orderBy: [ScheduleOrderByWithRelationInput!], skip: Int, take: Int, where: ScheduleWhereInput): Schedule
+  findFirstScheduleOrThrow(cursor: ScheduleWhereUniqueInput, distinct: [ScheduleScalarFieldEnum!], orderBy: [ScheduleOrderByWithRelationInput!], skip: Int, take: Int, where: ScheduleWhereInput): Schedule
+  findFirstSource(cursor: SourceWhereUniqueInput, distinct: [SourceScalarFieldEnum!], orderBy: [SourceOrderByWithRelationInput!], skip: Int, take: Int, where: SourceWhereInput): Source
+  findFirstSourceOrThrow(cursor: SourceWhereUniqueInput, distinct: [SourceScalarFieldEnum!], orderBy: [SourceOrderByWithRelationInput!], skip: Int, take: Int, where: SourceWhereInput): Source
+  findFirstUser(cursor: UserWhereUniqueInput, distinct: [UserScalarFieldEnum!], orderBy: [UserOrderByWithRelationInput!], skip: Int, take: Int, where: UserWhereInput): User
+  findFirstUserOrThrow(cursor: UserWhereUniqueInput, distinct: [UserScalarFieldEnum!], orderBy: [UserOrderByWithRelationInput!], skip: Int, take: Int, where: UserWhereInput): User
+  getAccount(where: AccountWhereUniqueInput!): Account
+  getBudget(where: BudgetWhereUniqueInput!): Budget
+  getCategory(where: CategoryWhereUniqueInput!): Category
+  getExpense(where: ExpenseWhereUniqueInput!): Expense
+  getGoal(where: GoalWhereUniqueInput!): Goal
+  getIncome(where: IncomeWhereUniqueInput!): Income
+  getSchedule(where: ScheduleWhereUniqueInput!): Schedule
+  getSource(where: SourceWhereUniqueInput!): Source
+  getUser(where: UserWhereUniqueInput!): User
+  goal(where: GoalWhereUniqueInput!): Goal
+  goals(cursor: GoalWhereUniqueInput, distinct: [GoalScalarFieldEnum!], orderBy: [GoalOrderByWithRelationInput!], skip: Int, take: Int, where: GoalWhereInput): [Goal!]!
+  groupByAccount(by: [AccountScalarFieldEnum!]!, having: AccountScalarWhereWithAggregatesInput, orderBy: [AccountOrderByWithAggregationInput!], skip: Int, take: Int, where: AccountWhereInput): [AccountGroupBy!]!
+  groupByBudget(by: [BudgetScalarFieldEnum!]!, having: BudgetScalarWhereWithAggregatesInput, orderBy: [BudgetOrderByWithAggregationInput!], skip: Int, take: Int, where: BudgetWhereInput): [BudgetGroupBy!]!
+  groupByCategory(by: [CategoryScalarFieldEnum!]!, having: CategoryScalarWhereWithAggregatesInput, orderBy: [CategoryOrderByWithAggregationInput!], skip: Int, take: Int, where: CategoryWhereInput): [CategoryGroupBy!]!
+  groupByExpense(by: [ExpenseScalarFieldEnum!]!, having: ExpenseScalarWhereWithAggregatesInput, orderBy: [ExpenseOrderByWithAggregationInput!], skip: Int, take: Int, where: ExpenseWhereInput): [ExpenseGroupBy!]!
+  groupByGoal(by: [GoalScalarFieldEnum!]!, having: GoalScalarWhereWithAggregatesInput, orderBy: [GoalOrderByWithAggregationInput!], skip: Int, take: Int, where: GoalWhereInput): [GoalGroupBy!]!
+  groupByIncome(by: [IncomeScalarFieldEnum!]!, having: IncomeScalarWhereWithAggregatesInput, orderBy: [IncomeOrderByWithAggregationInput!], skip: Int, take: Int, where: IncomeWhereInput): [IncomeGroupBy!]!
+  groupBySchedule(by: [ScheduleScalarFieldEnum!]!, having: ScheduleScalarWhereWithAggregatesInput, orderBy: [ScheduleOrderByWithAggregationInput!], skip: Int, take: Int, where: ScheduleWhereInput): [ScheduleGroupBy!]!
+  groupBySource(by: [SourceScalarFieldEnum!]!, having: SourceScalarWhereWithAggregatesInput, orderBy: [SourceOrderByWithAggregationInput!], skip: Int, take: Int, where: SourceWhereInput): [SourceGroupBy!]!
+  groupByUser(by: [UserScalarFieldEnum!]!, having: UserScalarWhereWithAggregatesInput, orderBy: [UserOrderByWithAggregationInput!], skip: Int, take: Int, where: UserWhereInput): [UserGroupBy!]!
+  income(where: IncomeWhereUniqueInput!): Income
+  incomes(cursor: IncomeWhereUniqueInput, distinct: [IncomeScalarFieldEnum!], orderBy: [IncomeOrderByWithRelationInput!], skip: Int, take: Int, where: IncomeWhereInput): [Income!]!
+  schedule(where: ScheduleWhereUniqueInput!): Schedule
+  schedules(cursor: ScheduleWhereUniqueInput, distinct: [ScheduleScalarFieldEnum!], orderBy: [ScheduleOrderByWithRelationInput!], skip: Int, take: Int, where: ScheduleWhereInput): [Schedule!]!
+  source(where: SourceWhereUniqueInput!): Source
+  sources(cursor: SourceWhereUniqueInput, distinct: [SourceScalarFieldEnum!], orderBy: [SourceOrderByWithRelationInput!], skip: Int, take: Int, where: SourceWhereInput): [Source!]!
+  user(where: UserWhereUniqueInput!): User
+  users(cursor: UserWhereUniqueInput, distinct: [UserScalarFieldEnum!], orderBy: [UserOrderByWithRelationInput!], skip: Int, take: Int, where: UserWhereInput): [User!]!
+}
+
+type Schedule {
+  _count: ScheduleCount
+  expenses(cursor: ExpenseWhereUniqueInput, distinct: [ExpenseScalarFieldEnum!], orderBy: [ExpenseOrderByWithRelationInput!], skip: Int, take: Int, where: ExpenseWhereInput): [Expense!]!
+  incomes(cursor: IncomeWhereUniqueInput, distinct: [IncomeScalarFieldEnum!], orderBy: [IncomeOrderByWithRelationInput!], skip: Int, take: Int, where: IncomeWhereInput): [Income!]!
+  name: String!
+}
+
+type ScheduleCount {
+  expenses(where: ExpenseWhereInput): Int!
+  incomes(where: IncomeWhereInput): Int!
+}
+
+type ScheduleCountAggregate {
+  _all: Int!
+  name: Int!
+}
+
+input ScheduleCountOrderByAggregateInput {
+  name: SortOrder
+}
+
+input ScheduleCreateInput {
+  expenses: ExpenseCreateNestedManyWithoutScheduleInput
+  incomes: IncomeCreateNestedManyWithoutScheduleInput
+  name: String!
+}
+
+input ScheduleCreateNestedOneWithoutExpensesInput {
+  connect: ScheduleWhereUniqueInput
+  connectOrCreate: ScheduleCreateOrConnectWithoutExpensesInput
+  create: ScheduleCreateWithoutExpensesInput
+}
+
+input ScheduleCreateNestedOneWithoutIncomesInput {
+  connect: ScheduleWhereUniqueInput
+  connectOrCreate: ScheduleCreateOrConnectWithoutIncomesInput
+  create: ScheduleCreateWithoutIncomesInput
+}
+
+input ScheduleCreateOrConnectWithoutExpensesInput {
+  create: ScheduleCreateWithoutExpensesInput!
+  where: ScheduleWhereUniqueInput!
+}
+
+input ScheduleCreateOrConnectWithoutIncomesInput {
+  create: ScheduleCreateWithoutIncomesInput!
+  where: ScheduleWhereUniqueInput!
+}
+
+input ScheduleCreateWithoutExpensesInput {
+  incomes: IncomeCreateNestedManyWithoutScheduleInput
+  name: String!
+}
+
+input ScheduleCreateWithoutIncomesInput {
+  expenses: ExpenseCreateNestedManyWithoutScheduleInput
+  name: String!
+}
+
+type ScheduleGroupBy {
+  _count: ScheduleCountAggregate
+  _max: ScheduleMaxAggregate
+  _min: ScheduleMinAggregate
+  name: String!
+}
+
+type ScheduleMaxAggregate {
+  name: String
+}
+
+input ScheduleMaxOrderByAggregateInput {
+  name: SortOrder
+}
+
+type ScheduleMinAggregate {
+  name: String
+}
+
+input ScheduleMinOrderByAggregateInput {
+  name: SortOrder
+}
+
+input ScheduleOrderByWithAggregationInput {
+  _count: ScheduleCountOrderByAggregateInput
+  _max: ScheduleMaxOrderByAggregateInput
+  _min: ScheduleMinOrderByAggregateInput
+  name: SortOrder
+}
+
+input ScheduleOrderByWithRelationInput {
+  expenses: ExpenseOrderByRelationAggregateInput
+  incomes: IncomeOrderByRelationAggregateInput
+  name: SortOrder
+}
+
+input ScheduleRelationFilter {
+  is: ScheduleWhereInput
+  isNot: ScheduleWhereInput
+}
+
+enum ScheduleScalarFieldEnum {
+  name
+}
+
+input ScheduleScalarWhereWithAggregatesInput {
+  AND: [ScheduleScalarWhereWithAggregatesInput!]
+  NOT: [ScheduleScalarWhereWithAggregatesInput!]
+  OR: [ScheduleScalarWhereWithAggregatesInput!]
+  name: StringWithAggregatesFilter
+}
+
+input ScheduleUpdateInput {
+  expenses: ExpenseUpdateManyWithoutScheduleNestedInput
+  incomes: IncomeUpdateManyWithoutScheduleNestedInput
+  name: StringFieldUpdateOperationsInput
+}
+
+input ScheduleUpdateManyMutationInput {
+  name: StringFieldUpdateOperationsInput
+}
+
+input ScheduleUpdateOneRequiredWithoutExpensesNestedInput {
+  connect: ScheduleWhereUniqueInput
+  connectOrCreate: ScheduleCreateOrConnectWithoutExpensesInput
+  create: ScheduleCreateWithoutExpensesInput
+  update: ScheduleUpdateToOneWithWhereWithoutExpensesInput
+  upsert: ScheduleUpsertWithoutExpensesInput
+}
+
+input ScheduleUpdateOneRequiredWithoutIncomesNestedInput {
+  connect: ScheduleWhereUniqueInput
+  connectOrCreate: ScheduleCreateOrConnectWithoutIncomesInput
+  create: ScheduleCreateWithoutIncomesInput
+  update: ScheduleUpdateToOneWithWhereWithoutIncomesInput
+  upsert: ScheduleUpsertWithoutIncomesInput
+}
+
+input ScheduleUpdateToOneWithWhereWithoutExpensesInput {
+  data: ScheduleUpdateWithoutExpensesInput!
+  where: ScheduleWhereInput
+}
+
+input ScheduleUpdateToOneWithWhereWithoutIncomesInput {
+  data: ScheduleUpdateWithoutIncomesInput!
+  where: ScheduleWhereInput
+}
+
+input ScheduleUpdateWithoutExpensesInput {
+  incomes: IncomeUpdateManyWithoutScheduleNestedInput
+  name: StringFieldUpdateOperationsInput
+}
+
+input ScheduleUpdateWithoutIncomesInput {
+  expenses: ExpenseUpdateManyWithoutScheduleNestedInput
+  name: StringFieldUpdateOperationsInput
+}
+
+input ScheduleUpsertWithoutExpensesInput {
+  create: ScheduleCreateWithoutExpensesInput!
+  update: ScheduleUpdateWithoutExpensesInput!
+  where: ScheduleWhereInput
+}
+
+input ScheduleUpsertWithoutIncomesInput {
+  create: ScheduleCreateWithoutIncomesInput!
+  update: ScheduleUpdateWithoutIncomesInput!
+  where: ScheduleWhereInput
+}
+
+input ScheduleWhereInput {
+  AND: [ScheduleWhereInput!]
+  NOT: [ScheduleWhereInput!]
+  OR: [ScheduleWhereInput!]
+  expenses: ExpenseListRelationFilter
+  incomes: IncomeListRelationFilter
+  name: StringFilter
+}
+
+input ScheduleWhereUniqueInput {
+  AND: [ScheduleWhereInput!]
+  NOT: [ScheduleWhereInput!]
+  OR: [ScheduleWhereInput!]
+  expenses: ExpenseListRelationFilter
+  incomes: IncomeListRelationFilter
+  name: String
+}
+
+enum SortOrder {
+  asc
+  desc
+}
+
+type Source {
+  Income(cursor: IncomeWhereUniqueInput, distinct: [IncomeScalarFieldEnum!], orderBy: [IncomeOrderByWithRelationInput!], skip: Int, take: Int, where: IncomeWhereInput): [Income!]!
+  _count: SourceCount
+  name: String!
+}
+
+type SourceCount {
+  Income(where: IncomeWhereInput): Int!
+}
+
+type SourceCountAggregate {
+  _all: Int!
+  name: Int!
+}
+
+input SourceCountOrderByAggregateInput {
+  name: SortOrder
+}
+
+input SourceCreateInput {
+  Income: IncomeCreateNestedManyWithoutSourceInput
+  name: String!
+}
+
+input SourceCreateNestedOneWithoutIncomeInput {
+  connect: SourceWhereUniqueInput
+  connectOrCreate: SourceCreateOrConnectWithoutIncomeInput
+  create: SourceCreateWithoutIncomeInput
+}
+
+input SourceCreateOrConnectWithoutIncomeInput {
+  create: SourceCreateWithoutIncomeInput!
+  where: SourceWhereUniqueInput!
+}
+
+input SourceCreateWithoutIncomeInput {
+  name: String!
+}
+
+type SourceGroupBy {
+  _count: SourceCountAggregate
+  _max: SourceMaxAggregate
+  _min: SourceMinAggregate
+  name: String!
+}
+
+type SourceMaxAggregate {
+  name: String
+}
+
+input SourceMaxOrderByAggregateInput {
+  name: SortOrder
+}
+
+type SourceMinAggregate {
+  name: String
+}
+
+input SourceMinOrderByAggregateInput {
+  name: SortOrder
+}
+
+input SourceOrderByWithAggregationInput {
+  _count: SourceCountOrderByAggregateInput
+  _max: SourceMaxOrderByAggregateInput
+  _min: SourceMinOrderByAggregateInput
+  name: SortOrder
+}
+
+input SourceOrderByWithRelationInput {
+  Income: IncomeOrderByRelationAggregateInput
+  name: SortOrder
+}
+
+input SourceRelationFilter {
+  is: SourceWhereInput
+  isNot: SourceWhereInput
+}
+
+enum SourceScalarFieldEnum {
+  name
+}
+
+input SourceScalarWhereWithAggregatesInput {
+  AND: [SourceScalarWhereWithAggregatesInput!]
+  NOT: [SourceScalarWhereWithAggregatesInput!]
+  OR: [SourceScalarWhereWithAggregatesInput!]
+  name: StringWithAggregatesFilter
+}
+
+input SourceUpdateInput {
+  Income: IncomeUpdateManyWithoutSourceNestedInput
+  name: StringFieldUpdateOperationsInput
+}
+
+input SourceUpdateManyMutationInput {
+  name: StringFieldUpdateOperationsInput
+}
+
+input SourceUpdateOneRequiredWithoutIncomeNestedInput {
+  connect: SourceWhereUniqueInput
+  connectOrCreate: SourceCreateOrConnectWithoutIncomeInput
+  create: SourceCreateWithoutIncomeInput
+  update: SourceUpdateToOneWithWhereWithoutIncomeInput
+  upsert: SourceUpsertWithoutIncomeInput
+}
+
+input SourceUpdateToOneWithWhereWithoutIncomeInput {
+  data: SourceUpdateWithoutIncomeInput!
+  where: SourceWhereInput
+}
+
+input SourceUpdateWithoutIncomeInput {
+  name: StringFieldUpdateOperationsInput
+}
+
+input SourceUpsertWithoutIncomeInput {
+  create: SourceCreateWithoutIncomeInput!
+  update: SourceUpdateWithoutIncomeInput!
+  where: SourceWhereInput
+}
+
+input SourceWhereInput {
+  AND: [SourceWhereInput!]
+  Income: IncomeListRelationFilter
+  NOT: [SourceWhereInput!]
+  OR: [SourceWhereInput!]
+  name: StringFilter
+}
+
+input SourceWhereUniqueInput {
+  AND: [SourceWhereInput!]
+  Income: IncomeListRelationFilter
+  NOT: [SourceWhereInput!]
+  OR: [SourceWhereInput!]
+  name: String
+}
+
+input StringFieldUpdateOperationsInput {
+  set: String
+}
+
+input StringFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  not: NestedStringFilter
+  notIn: [String!]
+  startsWith: String
+}
+
+input StringWithAggregatesFilter {
+  _count: NestedIntFilter
+  _max: NestedStringFilter
+  _min: NestedStringFilter
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  not: NestedStringWithAggregatesFilter
+  notIn: [String!]
+  startsWith: String
 }
 
 type User {
+  _count: UserCount
+  accounts(cursor: AccountWhereUniqueInput, distinct: [AccountScalarFieldEnum!], orderBy: [AccountOrderByWithRelationInput!], skip: Int, take: Int, where: AccountWhereInput): [Account!]!
+  createdAt: DateTime!
   email: String!
   id: Int!
+  name: String!
+  updatedAt: DateTime!
+}
+
+type UserAvgAggregate {
+  id: Float
+}
+
+input UserAvgOrderByAggregateInput {
+  id: SortOrder
+}
+
+type UserCount {
+  accounts(where: AccountWhereInput): Int!
+}
+
+type UserCountAggregate {
+  _all: Int!
+  createdAt: Int!
+  email: Int!
+  id: Int!
+  name: Int!
+  updatedAt: Int!
+}
+
+input UserCountOrderByAggregateInput {
+  createdAt: SortOrder
+  email: SortOrder
+  id: SortOrder
+  name: SortOrder
+  updatedAt: SortOrder
+}
+
+input UserCreateInput {
+  accounts: AccountCreateNestedManyWithoutUserInput
+  createdAt: DateTime
+  email: String!
+  name: String!
+  updatedAt: DateTime
+}
+
+input UserCreateNestedOneWithoutAccountsInput {
+  connect: UserWhereUniqueInput
+  connectOrCreate: UserCreateOrConnectWithoutAccountsInput
+  create: UserCreateWithoutAccountsInput
+}
+
+input UserCreateOrConnectWithoutAccountsInput {
+  create: UserCreateWithoutAccountsInput!
+  where: UserWhereUniqueInput!
+}
+
+input UserCreateWithoutAccountsInput {
+  createdAt: DateTime
+  email: String!
+  name: String!
+  updatedAt: DateTime
+}
+
+type UserGroupBy {
+  _avg: UserAvgAggregate
+  _count: UserCountAggregate
+  _max: UserMaxAggregate
+  _min: UserMinAggregate
+  _sum: UserSumAggregate
+  createdAt: DateTime!
+  email: String!
+  id: Int!
+  name: String!
+  updatedAt: DateTime!
+}
+
+type UserMaxAggregate {
+  createdAt: DateTime
+  email: String
+  id: Int
   name: String
+  updatedAt: DateTime
+}
+
+input UserMaxOrderByAggregateInput {
+  createdAt: SortOrder
+  email: SortOrder
+  id: SortOrder
+  name: SortOrder
+  updatedAt: SortOrder
+}
+
+type UserMinAggregate {
+  createdAt: DateTime
+  email: String
+  id: Int
+  name: String
+  updatedAt: DateTime
+}
+
+input UserMinOrderByAggregateInput {
+  createdAt: SortOrder
+  email: SortOrder
+  id: SortOrder
+  name: SortOrder
+  updatedAt: SortOrder
+}
+
+input UserOrderByWithAggregationInput {
+  _avg: UserAvgOrderByAggregateInput
+  _count: UserCountOrderByAggregateInput
+  _max: UserMaxOrderByAggregateInput
+  _min: UserMinOrderByAggregateInput
+  _sum: UserSumOrderByAggregateInput
+  createdAt: SortOrder
+  email: SortOrder
+  id: SortOrder
+  name: SortOrder
+  updatedAt: SortOrder
+}
+
+input UserOrderByWithRelationInput {
+  accounts: AccountOrderByRelationAggregateInput
+  createdAt: SortOrder
+  email: SortOrder
+  id: SortOrder
+  name: SortOrder
+  updatedAt: SortOrder
+}
+
+input UserRelationFilter {
+  is: UserWhereInput
+  isNot: UserWhereInput
+}
+
+enum UserScalarFieldEnum {
+  createdAt
+  email
+  id
+  name
+  updatedAt
+}
+
+input UserScalarWhereWithAggregatesInput {
+  AND: [UserScalarWhereWithAggregatesInput!]
+  NOT: [UserScalarWhereWithAggregatesInput!]
+  OR: [UserScalarWhereWithAggregatesInput!]
+  createdAt: DateTimeWithAggregatesFilter
+  email: StringWithAggregatesFilter
+  id: IntWithAggregatesFilter
+  name: StringWithAggregatesFilter
+  updatedAt: DateTimeWithAggregatesFilter
+}
+
+type UserSumAggregate {
+  id: Int
+}
+
+input UserSumOrderByAggregateInput {
+  id: SortOrder
+}
+
+input UserUpdateInput {
+  accounts: AccountUpdateManyWithoutUserNestedInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  email: StringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input UserUpdateManyMutationInput {
+  createdAt: DateTimeFieldUpdateOperationsInput
+  email: StringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input UserUpdateOneRequiredWithoutAccountsNestedInput {
+  connect: UserWhereUniqueInput
+  connectOrCreate: UserCreateOrConnectWithoutAccountsInput
+  create: UserCreateWithoutAccountsInput
+  update: UserUpdateToOneWithWhereWithoutAccountsInput
+  upsert: UserUpsertWithoutAccountsInput
+}
+
+input UserUpdateToOneWithWhereWithoutAccountsInput {
+  data: UserUpdateWithoutAccountsInput!
+  where: UserWhereInput
+}
+
+input UserUpdateWithoutAccountsInput {
+  createdAt: DateTimeFieldUpdateOperationsInput
+  email: StringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input UserUpsertWithoutAccountsInput {
+  create: UserCreateWithoutAccountsInput!
+  update: UserUpdateWithoutAccountsInput!
+  where: UserWhereInput
+}
+
+input UserWhereInput {
+  AND: [UserWhereInput!]
+  NOT: [UserWhereInput!]
+  OR: [UserWhereInput!]
+  accounts: AccountListRelationFilter
+  createdAt: DateTimeFilter
+  email: StringFilter
+  id: IntFilter
+  name: StringFilter
+  updatedAt: DateTimeFilter
+}
+
+input UserWhereUniqueInput {
+  AND: [UserWhereInput!]
+  NOT: [UserWhereInput!]
+  OR: [UserWhereInput!]
+  accounts: AccountListRelationFilter
+  createdAt: DateTimeFilter
+  email: String
+  id: Int
+  name: StringFilter
+  updatedAt: DateTimeFilter
 }

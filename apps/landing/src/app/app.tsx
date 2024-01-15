@@ -10,7 +10,7 @@ function App() {
         return (
           <>
             <Accordion />
-            {JSON.stringify(data.allUsers[0].name, null, 2)}
+            {JSON.stringify(result.data?.user?.name, null, 2)}
           </>
         )
       }}

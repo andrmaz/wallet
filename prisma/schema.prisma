@@ -15,7 +15,100 @@ generator typegraphql {
 }
 
 model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
+  id        Int       @id @default(autoincrement())
+  email     String    @unique
+  name      String
+  accounts  Account[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now()) @updatedAt
 }
+
+model Account {
+  id        Int       @id @default(autoincrement())
+  name      String
+  expenses  Expense[]
+  incomes   Income[]
+  budgets   Budget[]
+  goals     Goal[]
+  user      User      @relation(fields: [userId], references: [id])
+  userId    Int
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now()) @updatedAt
+}
+
+model Income {
+  id           Int      @id @default(autoincrement())
+  description  String
+  amount       Int
+  creditDate   DateTime
+  source       Source   @relation(fields: [sourceName], references: [name])
+  sourceName   String
+  schedule     Schedule @relation(fields: [scheduleName], references: [name])
+  scheduleName String
+  account      Account  @relation(fields: [accountId], references: [id])
+  accountId    Int
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @default(now()) @updatedAt
+}
+
+model Expense {
+  id           Int      @id @default(autoincrement())
+  description  String
+  amount       Int
+  debitDate    DateTime
+  schedule     Schedule @relation(fields: [scheduleName], references: [name])
+  scheduleName String
+  category     Category @relation(fields: [categoryId], references: [id])
+  categoryId   Int
+  account      Account  @relation(fields: [accountId], references: [id])
+  accountId    Int
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @default(now()) @updatedAt
+}
+
+model Budget {
+  id         Int      @id @default(autoincrement())
+  amount     Int
+  category   Category @relation(fields: [categoryId], references: [id])
+  categoryId Int
+  account    Account  @relation(fields: [accountId], references: [id])
+  accountId  Int
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @default(now()) @updatedAt
+}
+
+model Goal {
+  id          Int      @id @default(autoincrement())
+  description String
+  amount      Int
+  targetDate  DateTime
+  account     Account  @relation(fields: [accountId], references: [id])
+  accountId   Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now()) @updatedAt
+}
+
+// housing, cash, food, hotel, restaurant, mortgage, loan, insurance, utilities, health, transportation
+model Category {
+  id        Int       @id @default(autoincrement())
+  name      String    @unique
+  expenses  Expense[]
+  budgets   Budget[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now()) @updatedAt
+}
+
+// one-time, daily, weekly, monthly or yearly
+model Schedule {
+  name     String    @id
+  expenses Expense[]
+  incomes  Income[]
+}
+
+model Source {
+  name   String   @id
+  Income Income[]
+}
+
+//Setting
+//Notification
