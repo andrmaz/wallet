@@ -3,5 +3,9 @@ query GetUser($where: UserWhereUniqueInput!) {
     id
     name
     email
+    accounts {
+      id
+      name
+    }
   }
 }
