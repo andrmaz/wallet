@@ -1,3 +1,11 @@
 export * from './test/test-utils'
-export * from './components/accordion';
+export * from './components/accordion'
+export * from './components/box'
+export * from './components/button'
+export * from './components/container'
+export * from './components/flex'
+export * from './components/heading'
+export * from './components/navbar'
+export * from './components/section'
+export * from './components/text'
 export { Query } from './components/query'

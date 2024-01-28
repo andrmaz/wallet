@@ -13,7 +13,7 @@ root.render(
   <StrictMode>
     <BrowserRouter>
       <QueryClientProvider client={client}>
-        <Theme accentColor='mint' appearance='inherit'>
+        <Theme accentColor='orange' grayColor='olive'>
           <App />
         </Theme>
       </QueryClientProvider>
