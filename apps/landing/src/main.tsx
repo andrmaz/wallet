@@ -1,4 +1,4 @@
-import {StrictMode} from 'react'
+import * as React from 'react'
 import * as ReactDOM from 'react-dom/client'
 import {BrowserRouter} from 'react-router-dom'
 import '@radix-ui/themes/styles.css'
@@ -10,13 +10,15 @@ const client = new QueryClient()
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
-  <StrictMode>
+  <React.StrictMode>
     <BrowserRouter>
       <QueryClientProvider client={client}>
         <Theme accentColor='orange' grayColor='olive'>
-          <App />
+          <React.Suspense fallback='Loading...'>
+            <App />
+          </React.Suspense>
         </Theme>
       </QueryClientProvider>
     </BrowserRouter>
-  </StrictMode>
+  </React.StrictMode>
 )
