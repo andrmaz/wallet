@@ -1,9 +1,8 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom/client'
 import {BrowserRouter} from 'react-router-dom'
-import '@radix-ui/themes/styles.css'
-import {Theme} from '@radix-ui/themes'
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query'
+import {Theme} from '@wallet/shared-ui'
 import App from './app/app'
 
 const client = new QueryClient()
@@ -13,7 +12,7 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <QueryClientProvider client={client}>
-        <Theme accentColor='orange' grayColor='olive'>
+        <Theme>
           <React.Suspense fallback='Loading...'>
             <App />
           </React.Suspense>
