@@ -7,8 +7,9 @@
     "predev": "npm run codegen",
     "build": "nx run-many -t build",
     "test": "nx run-many -t test",
-    "lint": "nx run-many -t lint",
     "test:pr": "nx affected -t test",
+    "lint": "nx run-many -t lint",
+    "lint:pr": "nx affected -t lint",
     "codegen": "graphql-codegen --config codegen.ts",
     "migrate": "prisma migrate dev",
     "prepare": "husky install"
