@@ -1,20 +1,14 @@
-import * as React from 'react'
-import {Accordion, Query} from '@wallet/shared-ui'
-import {useGetUsersQuery} from '../hooks/user'
+import {Header} from '../ui/header'
+import {Hero} from '../ui/hero'
+import styles from './app.module.css'
+import '../i18n'
 
 function App() {
-  const result = useGetUsersQuery()
   return (
-    <Query result={result}>
-      {data => {
-        return (
-          <>
-            <Accordion />
-            {JSON.stringify(result.data?.user?.name, null, 2)}
-          </>
-        )
-      }}
-    </Query>
+    <main className={styles.wrapper}>
+      <Header />
+      <Hero />
+    </main>
   )
 }
 
