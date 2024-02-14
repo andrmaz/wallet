@@ -1,4 +1,13 @@
 {
   "editor.fontFamily": "",
-  "cSpell.words": ["cssmodule", "devkit", "tanstack", "typegraphql"]
+  "cSpell.words": [
+    "Crossentropy",
+    "cssmodule",
+    "devkit",
+    "relu",
+    "softmax",
+    "tanstack",
+    "tfjs",
+    "typegraphql"
+  ]
 }
