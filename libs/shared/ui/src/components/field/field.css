@@ -1,0 +1,66 @@
+@import '@radix-ui/colors/black-alpha.css';
+
+.form-field {
+    display: grid;
+    margin-bottom: var(--space-2);
+}
+
+.form-heading {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+
+.form-label {
+    font-size: var(--space-3);
+    font-weight: var(--weight-bold);
+    line-height: 35px;
+    color: var(--color-accent);
+}
+
+.form-message {
+    font-size: var(--font-size-1);
+    color: var(--color-accent);
+    opacity: 0.8;
+}
+
+.input,
+.textarea {
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-2);
+
+    font-size: var(--font-size-2);
+    color: var(--color-accent);
+    background-color: var(--black-a5);
+    box-shadow: 0 0 0 1px var(--black-a9);
+}
+
+.input:hover,
+.textarea:hover {
+    box-shadow: 0 0 0 1px black;
+}
+
+.input:focus,
+.textarea:focus {
+    box-shadow: 0 0 0 2px black;
+}
+
+.input::selection,
+.textarea::selection {
+    background-color: var(--black-a9);
+    color: white;
+}
+
+.input {
+    padding: 0 var(--space-2);
+    height: 35px;
+    line-height: 1;
+}
+
+.textarea {
+    resize: none;
+    padding: var(--space-2);
+}

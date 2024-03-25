@@ -1,7 +1,7 @@
 {
-  "name": "apps/landing",
+  "name": "apps/client",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/landing/src",
+  "sourceRoot": "apps/client/src",
   "projectType": "application",
   "targets": {
     "build": {
@@ -9,7 +9,7 @@
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "outputPath": "dist/apps/landing"
+        "outputPath": "dist/apps/client"
       },
       "configurations": {
         "development": {
@@ -24,16 +24,16 @@
       "executor": "@nx/vite:dev-server",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "apps/landing:build",
-        "proxyConfig": "apps/landing/proxy.conf.json"
+        "buildTarget": "apps/client:build",
+        "proxyConfig": "apps/client/proxy.conf.json"
       },
       "configurations": {
         "development": {
-          "buildTarget": "apps/landing:build:development",
+          "buildTarget": "apps/client:build:development",
           "hmr": true
         },
         "production": {
-          "buildTarget": "apps/landing:build:production",
+          "buildTarget": "apps/client:build:production",
           "hmr": false
         }
       }
@@ -42,14 +42,14 @@
       "executor": "@nx/vite:preview-server",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "apps/landing:build"
+        "buildTarget": "apps/client:build"
       },
       "configurations": {
         "development": {
-          "buildTarget": "apps/landing:build:development"
+          "buildTarget": "apps/client:build:development"
         },
         "production": {
-          "buildTarget": "apps/landing:build:production"
+          "buildTarget": "apps/client:build:production"
         }
       }
     },
@@ -58,14 +58,14 @@
       "outputs": ["{options.reportsDirectory}"],
       "options": {
         "passWithNoTests": true,
-        "reportsDirectory": "../../coverage/apps/landing"
+        "reportsDirectory": "../../coverage/apps/client"
       }
     },
     "lint": {
       "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/landing/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": ["apps/client/**/*.{ts,tsx,js,jsx}"]
       }
     }
   },

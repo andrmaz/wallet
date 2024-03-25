@@ -15,8 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@wallet/shared-ui": ["libs/shared/ui/src/index.ts"],
-      "@wallet/shared-gql": ["libs/shared/gql/src/index.ts"]
+      "@wallet/shared-gql": ["libs/shared/gql/src/index.ts"],
+      "@wallet/shared-ui": ["libs/shared/ui/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

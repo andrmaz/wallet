@@ -13,9 +13,7 @@ root.render(
     <BrowserRouter>
       <QueryClientProvider client={client}>
         <Theme>
-          <React.Suspense fallback='Loading...'>
-            <App />
-          </React.Suspense>
+          <App />
         </Theme>
       </QueryClientProvider>
     </BrowserRouter>
