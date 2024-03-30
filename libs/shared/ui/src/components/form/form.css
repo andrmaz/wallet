@@ -1,4 +1,4 @@
 .form-root {
   margin: auto;
-  width: 260px;
+  width: clamp(260px, 25%, 400px);
 }

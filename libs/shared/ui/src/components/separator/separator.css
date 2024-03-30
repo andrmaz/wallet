@@ -1,0 +1,11 @@
+.separator {
+  background-color: var(--white-a1);
+}
+.separator[data-orientation='horizontal'] {
+  height: 1px;
+  width: 100%;
+}
+.separator[data-orientation='vertical'] {
+  height: 100%;
+  width: 1px;
+}

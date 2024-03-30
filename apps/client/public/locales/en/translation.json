@@ -1,7 +1,9 @@
 {
-  "title": "Wallet",
+  "app": {
+    "title": "Wallet"
+  },
   "header": {
-    "action": {"login": "Log in "},
+    "action": {"login": "Log in", "register": "Sign up"},
     "navigation": {
       "product": "Products",
       "feature": "Features",
@@ -18,12 +20,12 @@
     }
   },
   "registration": {
-    "title": "Sign up",
+    "title": "Registration",
     "intro": "Create an account to start managing your finances.",
     "form": {
       "email": {"label": "Email", "message": "Email required"},
       "password": {"label": "Password", "message": "Password required"},
-      "action": {"submit": "Sign up"}
+      "action": {"next": "Next", "submit": "Sign up"}
     }
   }
 }

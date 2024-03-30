@@ -103,5 +103,5 @@ html, body, .radix-themes {
     This ensures that all portal content (modals and tooltips) will
     float above the app.
     */
-  isolation: 'isolate';
+  isolation: isolate;
 }

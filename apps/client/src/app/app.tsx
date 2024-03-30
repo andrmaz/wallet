@@ -3,8 +3,8 @@ import {Route, Routes} from 'react-router-dom'
 import {Header} from '../components/header'
 import Landing from '../routes/landing'
 import styles from './app.module.css'
-import '../i18n'
 import {Path} from '../data/routes'
+import '../i18n'
 
 const Registration = React.lazy(() => import('../routes/registration'))
 

@@ -1,13 +1,12 @@
-import {Field, Form, Submit} from '@wallet/shared-ui'
+import {Button, Field, Flex, Form} from '@wallet/shared-ui'
 import {useTranslation} from 'react-i18next'
 
-const Signup = () => {
+export const Signup = () => {
   const {t} = useTranslation()
   return (
     <Form>
       <fieldset>
         <legend>{t('registration.title')}</legend>
-        <p>{t('registration.intro')}</p>
         <Field
           name='email'
           label={t('registration.form.email.label')}
@@ -22,10 +21,10 @@ const Signup = () => {
           match='valueMissing'
           control={<input className='input' type='password' required />}
         />
-        <Submit>{t('registration.form.action.submit')}</Submit>
+        <Flex justify='end'>
+          <Button variant='soft'>{t('registration.form.action.submit')}</Button>
+        </Flex>
       </fieldset>
     </Form>
   )
 }
-
-export {Signup}
