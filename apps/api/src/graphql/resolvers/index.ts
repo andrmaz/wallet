@@ -1,0 +1,1 @@
+export { CustomCreateOneUserResolver } from './user'

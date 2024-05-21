@@ -549,6 +549,14 @@ type AggregateIncome {
   _sum: IncomeSumAggregate
 }
 
+type AggregatePassword {
+  _avg: PasswordAvgAggregate
+  _count: PasswordCountAggregate
+  _max: PasswordMaxAggregate
+  _min: PasswordMinAggregate
+  _sum: PasswordSumAggregate
+}
+
 type AggregateSchedule {
   _count: ScheduleCountAggregate
   _max: ScheduleMaxAggregate
@@ -1956,6 +1964,10 @@ input GoalWhereUniqueInput {
   updatedAt: DateTimeFilter
 }
 
+input Hash2 {
+  hash: String!
+}
+
 type Income {
   account: Account!
   accountId: Int!
@@ -2457,15 +2469,18 @@ type Mutation {
   createOneExpense(data: ExpenseCreateInput!): Expense!
   createOneGoal(data: GoalCreateInput!): Goal!
   createOneIncome(data: IncomeCreateInput!): Income!
+  createOnePassword(data: PasswordCreateInput!): Password!
   createOneSchedule(data: ScheduleCreateInput!): Schedule!
   createOneSource(data: SourceCreateInput!): Source!
   createOneUser(data: UserCreateInput!): User!
+  createUser(data: UserCreateInput2!): User!
   deleteManyAccount(where: AccountWhereInput): AffectedRowsOutput!
   deleteManyBudget(where: BudgetWhereInput): AffectedRowsOutput!
   deleteManyCategory(where: CategoryWhereInput): AffectedRowsOutput!
   deleteManyExpense(where: ExpenseWhereInput): AffectedRowsOutput!
   deleteManyGoal(where: GoalWhereInput): AffectedRowsOutput!
   deleteManyIncome(where: IncomeWhereInput): AffectedRowsOutput!
+  deleteManyPassword(where: PasswordWhereInput): AffectedRowsOutput!
   deleteManySchedule(where: ScheduleWhereInput): AffectedRowsOutput!
   deleteManySource(where: SourceWhereInput): AffectedRowsOutput!
   deleteManyUser(where: UserWhereInput): AffectedRowsOutput!
@@ -2475,6 +2490,7 @@ type Mutation {
   deleteOneExpense(where: ExpenseWhereUniqueInput!): Expense
   deleteOneGoal(where: GoalWhereUniqueInput!): Goal
   deleteOneIncome(where: IncomeWhereUniqueInput!): Income
+  deleteOnePassword(where: PasswordWhereUniqueInput!): Password
   deleteOneSchedule(where: ScheduleWhereUniqueInput!): Schedule
   deleteOneSource(where: SourceWhereUniqueInput!): Source
   deleteOneUser(where: UserWhereUniqueInput!): User
@@ -2484,6 +2500,7 @@ type Mutation {
   updateManyExpense(data: ExpenseUpdateManyMutationInput!, where: ExpenseWhereInput): AffectedRowsOutput!
   updateManyGoal(data: GoalUpdateManyMutationInput!, where: GoalWhereInput): AffectedRowsOutput!
   updateManyIncome(data: IncomeUpdateManyMutationInput!, where: IncomeWhereInput): AffectedRowsOutput!
+  updateManyPassword(data: PasswordUpdateManyMutationInput!, where: PasswordWhereInput): AffectedRowsOutput!
   updateManySchedule(data: ScheduleUpdateManyMutationInput!, where: ScheduleWhereInput): AffectedRowsOutput!
   updateManySource(data: SourceUpdateManyMutationInput!, where: SourceWhereInput): AffectedRowsOutput!
   updateManyUser(data: UserUpdateManyMutationInput!, where: UserWhereInput): AffectedRowsOutput!
@@ -2493,6 +2510,7 @@ type Mutation {
   updateOneExpense(data: ExpenseUpdateInput!, where: ExpenseWhereUniqueInput!): Expense
   updateOneGoal(data: GoalUpdateInput!, where: GoalWhereUniqueInput!): Goal
   updateOneIncome(data: IncomeUpdateInput!, where: IncomeWhereUniqueInput!): Income
+  updateOnePassword(data: PasswordUpdateInput!, where: PasswordWhereUniqueInput!): Password
   updateOneSchedule(data: ScheduleUpdateInput!, where: ScheduleWhereUniqueInput!): Schedule
   updateOneSource(data: SourceUpdateInput!, where: SourceWhereUniqueInput!): Source
   updateOneUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
@@ -2502,6 +2520,7 @@ type Mutation {
   upsertOneExpense(create: ExpenseCreateInput!, update: ExpenseUpdateInput!, where: ExpenseWhereUniqueInput!): Expense!
   upsertOneGoal(create: GoalCreateInput!, update: GoalUpdateInput!, where: GoalWhereUniqueInput!): Goal!
   upsertOneIncome(create: IncomeCreateInput!, update: IncomeUpdateInput!, where: IncomeWhereUniqueInput!): Income!
+  upsertOnePassword(create: PasswordCreateInput!, update: PasswordUpdateInput!, where: PasswordWhereUniqueInput!): Password!
   upsertOneSchedule(create: ScheduleCreateInput!, update: ScheduleUpdateInput!, where: ScheduleWhereUniqueInput!): Schedule!
   upsertOneSource(create: SourceCreateInput!, update: SourceUpdateInput!, where: SourceWhereUniqueInput!): Source!
   upsertOneUser(create: UserCreateInput!, update: UserUpdateInput!, where: UserWhereUniqueInput!): User!
@@ -2601,6 +2620,179 @@ input NestedStringWithAggregatesFilter {
   startsWith: String
 }
 
+type Password {
+  hash: String!
+  user: User!
+  userId: Int!
+}
+
+input Password2 {
+  create: Hash2!
+}
+
+type PasswordAvgAggregate {
+  userId: Float
+}
+
+input PasswordAvgOrderByAggregateInput {
+  userId: SortOrder
+}
+
+type PasswordCountAggregate {
+  _all: Int!
+  hash: Int!
+  userId: Int!
+}
+
+input PasswordCountOrderByAggregateInput {
+  hash: SortOrder
+  userId: SortOrder
+}
+
+input PasswordCreateInput {
+  hash: String!
+  user: UserCreateNestedOneWithoutPasswordInput!
+}
+
+input PasswordCreateNestedOneWithoutUserInput {
+  connect: PasswordWhereUniqueInput
+  connectOrCreate: PasswordCreateOrConnectWithoutUserInput
+  create: PasswordCreateWithoutUserInput
+}
+
+input PasswordCreateOrConnectWithoutUserInput {
+  create: PasswordCreateWithoutUserInput!
+  where: PasswordWhereUniqueInput!
+}
+
+input PasswordCreateWithoutUserInput {
+  hash: String!
+}
+
+type PasswordGroupBy {
+  _avg: PasswordAvgAggregate
+  _count: PasswordCountAggregate
+  _max: PasswordMaxAggregate
+  _min: PasswordMinAggregate
+  _sum: PasswordSumAggregate
+  hash: String!
+  userId: Int!
+}
+
+type PasswordMaxAggregate {
+  hash: String
+  userId: Int
+}
+
+input PasswordMaxOrderByAggregateInput {
+  hash: SortOrder
+  userId: SortOrder
+}
+
+type PasswordMinAggregate {
+  hash: String
+  userId: Int
+}
+
+input PasswordMinOrderByAggregateInput {
+  hash: SortOrder
+  userId: SortOrder
+}
+
+input PasswordNullableRelationFilter {
+  is: PasswordWhereInput
+  isNot: PasswordWhereInput
+}
+
+input PasswordOrderByWithAggregationInput {
+  _avg: PasswordAvgOrderByAggregateInput
+  _count: PasswordCountOrderByAggregateInput
+  _max: PasswordMaxOrderByAggregateInput
+  _min: PasswordMinOrderByAggregateInput
+  _sum: PasswordSumOrderByAggregateInput
+  hash: SortOrder
+  userId: SortOrder
+}
+
+input PasswordOrderByWithRelationInput {
+  hash: SortOrder
+  user: UserOrderByWithRelationInput
+  userId: SortOrder
+}
+
+enum PasswordScalarFieldEnum {
+  hash
+  userId
+}
+
+input PasswordScalarWhereWithAggregatesInput {
+  AND: [PasswordScalarWhereWithAggregatesInput!]
+  NOT: [PasswordScalarWhereWithAggregatesInput!]
+  OR: [PasswordScalarWhereWithAggregatesInput!]
+  hash: StringWithAggregatesFilter
+  userId: IntWithAggregatesFilter
+}
+
+type PasswordSumAggregate {
+  userId: Int
+}
+
+input PasswordSumOrderByAggregateInput {
+  userId: SortOrder
+}
+
+input PasswordUpdateInput {
+  hash: StringFieldUpdateOperationsInput
+  user: UserUpdateOneRequiredWithoutPasswordNestedInput
+}
+
+input PasswordUpdateManyMutationInput {
+  hash: StringFieldUpdateOperationsInput
+}
+
+input PasswordUpdateOneWithoutUserNestedInput {
+  connect: PasswordWhereUniqueInput
+  connectOrCreate: PasswordCreateOrConnectWithoutUserInput
+  create: PasswordCreateWithoutUserInput
+  delete: PasswordWhereInput
+  disconnect: PasswordWhereInput
+  update: PasswordUpdateToOneWithWhereWithoutUserInput
+  upsert: PasswordUpsertWithoutUserInput
+}
+
+input PasswordUpdateToOneWithWhereWithoutUserInput {
+  data: PasswordUpdateWithoutUserInput!
+  where: PasswordWhereInput
+}
+
+input PasswordUpdateWithoutUserInput {
+  hash: StringFieldUpdateOperationsInput
+}
+
+input PasswordUpsertWithoutUserInput {
+  create: PasswordCreateWithoutUserInput!
+  update: PasswordUpdateWithoutUserInput!
+  where: PasswordWhereInput
+}
+
+input PasswordWhereInput {
+  AND: [PasswordWhereInput!]
+  NOT: [PasswordWhereInput!]
+  OR: [PasswordWhereInput!]
+  hash: StringFilter
+  user: UserRelationFilter
+  userId: IntFilter
+}
+
+input PasswordWhereUniqueInput {
+  AND: [PasswordWhereInput!]
+  NOT: [PasswordWhereInput!]
+  OR: [PasswordWhereInput!]
+  hash: StringFilter
+  user: UserRelationFilter
+  userId: Int
+}
+
 type Query {
   account(where: AccountWhereUniqueInput!): Account
   accounts(cursor: AccountWhereUniqueInput, distinct: [AccountScalarFieldEnum!], orderBy: [AccountOrderByWithRelationInput!], skip: Int, take: Int, where: AccountWhereInput): [Account!]!
@@ -2610,6 +2802,7 @@ type Query {
   aggregateExpense(cursor: ExpenseWhereUniqueInput, orderBy: [ExpenseOrderByWithRelationInput!], skip: Int, take: Int, where: ExpenseWhereInput): AggregateExpense!
   aggregateGoal(cursor: GoalWhereUniqueInput, orderBy: [GoalOrderByWithRelationInput!], skip: Int, take: Int, where: GoalWhereInput): AggregateGoal!
   aggregateIncome(cursor: IncomeWhereUniqueInput, orderBy: [IncomeOrderByWithRelationInput!], skip: Int, take: Int, where: IncomeWhereInput): AggregateIncome!
+  aggregatePassword(cursor: PasswordWhereUniqueInput, orderBy: [PasswordOrderByWithRelationInput!], skip: Int, take: Int, where: PasswordWhereInput): AggregatePassword!
   aggregateSchedule(cursor: ScheduleWhereUniqueInput, orderBy: [ScheduleOrderByWithRelationInput!], skip: Int, take: Int, where: ScheduleWhereInput): AggregateSchedule!
   aggregateSource(cursor: SourceWhereUniqueInput, orderBy: [SourceOrderByWithRelationInput!], skip: Int, take: Int, where: SourceWhereInput): AggregateSource!
   aggregateUser(cursor: UserWhereUniqueInput, orderBy: [UserOrderByWithRelationInput!], skip: Int, take: Int, where: UserWhereInput): AggregateUser!
@@ -2631,6 +2824,8 @@ type Query {
   findFirstGoalOrThrow(cursor: GoalWhereUniqueInput, distinct: [GoalScalarFieldEnum!], orderBy: [GoalOrderByWithRelationInput!], skip: Int, take: Int, where: GoalWhereInput): Goal
   findFirstIncome(cursor: IncomeWhereUniqueInput, distinct: [IncomeScalarFieldEnum!], orderBy: [IncomeOrderByWithRelationInput!], skip: Int, take: Int, where: IncomeWhereInput): Income
   findFirstIncomeOrThrow(cursor: IncomeWhereUniqueInput, distinct: [IncomeScalarFieldEnum!], orderBy: [IncomeOrderByWithRelationInput!], skip: Int, take: Int, where: IncomeWhereInput): Income
+  findFirstPassword(cursor: PasswordWhereUniqueInput, distinct: [PasswordScalarFieldEnum!], orderBy: [PasswordOrderByWithRelationInput!], skip: Int, take: Int, where: PasswordWhereInput): Password
+  findFirstPasswordOrThrow(cursor: PasswordWhereUniqueInput, distinct: [PasswordScalarFieldEnum!], orderBy: [PasswordOrderByWithRelationInput!], skip: Int, take: Int, where: PasswordWhereInput): Password
   findFirstSchedule(cursor: ScheduleWhereUniqueInput, distinct: [ScheduleScalarFieldEnum!], orderBy: [ScheduleOrderByWithRelationInput!], skip: Int, take: Int, where: ScheduleWhereInput): Schedule
   findFirstScheduleOrThrow(cursor: ScheduleWhereUniqueInput, distinct: [ScheduleScalarFieldEnum!], orderBy: [ScheduleOrderByWithRelationInput!], skip: Int, take: Int, where: ScheduleWhereInput): Schedule
   findFirstSource(cursor: SourceWhereUniqueInput, distinct: [SourceScalarFieldEnum!], orderBy: [SourceOrderByWithRelationInput!], skip: Int, take: Int, where: SourceWhereInput): Source
@@ -2643,6 +2838,7 @@ type Query {
   getExpense(where: ExpenseWhereUniqueInput!): Expense
   getGoal(where: GoalWhereUniqueInput!): Goal
   getIncome(where: IncomeWhereUniqueInput!): Income
+  getPassword(where: PasswordWhereUniqueInput!): Password
   getSchedule(where: ScheduleWhereUniqueInput!): Schedule
   getSource(where: SourceWhereUniqueInput!): Source
   getUser(where: UserWhereUniqueInput!): User
@@ -2654,11 +2850,14 @@ type Query {
   groupByExpense(by: [ExpenseScalarFieldEnum!]!, having: ExpenseScalarWhereWithAggregatesInput, orderBy: [ExpenseOrderByWithAggregationInput!], skip: Int, take: Int, where: ExpenseWhereInput): [ExpenseGroupBy!]!
   groupByGoal(by: [GoalScalarFieldEnum!]!, having: GoalScalarWhereWithAggregatesInput, orderBy: [GoalOrderByWithAggregationInput!], skip: Int, take: Int, where: GoalWhereInput): [GoalGroupBy!]!
   groupByIncome(by: [IncomeScalarFieldEnum!]!, having: IncomeScalarWhereWithAggregatesInput, orderBy: [IncomeOrderByWithAggregationInput!], skip: Int, take: Int, where: IncomeWhereInput): [IncomeGroupBy!]!
+  groupByPassword(by: [PasswordScalarFieldEnum!]!, having: PasswordScalarWhereWithAggregatesInput, orderBy: [PasswordOrderByWithAggregationInput!], skip: Int, take: Int, where: PasswordWhereInput): [PasswordGroupBy!]!
   groupBySchedule(by: [ScheduleScalarFieldEnum!]!, having: ScheduleScalarWhereWithAggregatesInput, orderBy: [ScheduleOrderByWithAggregationInput!], skip: Int, take: Int, where: ScheduleWhereInput): [ScheduleGroupBy!]!
   groupBySource(by: [SourceScalarFieldEnum!]!, having: SourceScalarWhereWithAggregatesInput, orderBy: [SourceOrderByWithAggregationInput!], skip: Int, take: Int, where: SourceWhereInput): [SourceGroupBy!]!
   groupByUser(by: [UserScalarFieldEnum!]!, having: UserScalarWhereWithAggregatesInput, orderBy: [UserOrderByWithAggregationInput!], skip: Int, take: Int, where: UserWhereInput): [UserGroupBy!]!
   income(where: IncomeWhereUniqueInput!): Income
   incomes(cursor: IncomeWhereUniqueInput, distinct: [IncomeScalarFieldEnum!], orderBy: [IncomeOrderByWithRelationInput!], skip: Int, take: Int, where: IncomeWhereInput): [Income!]!
+  password(where: PasswordWhereUniqueInput!): Password
+  passwords(cursor: PasswordWhereUniqueInput, distinct: [PasswordScalarFieldEnum!], orderBy: [PasswordOrderByWithRelationInput!], skip: Int, take: Int, where: PasswordWhereInput): [Password!]!
   schedule(where: ScheduleWhereUniqueInput!): Schedule
   schedules(cursor: ScheduleWhereUniqueInput, distinct: [ScheduleScalarFieldEnum!], orderBy: [ScheduleOrderByWithRelationInput!], skip: Int, take: Int, where: ScheduleWhereInput): [Schedule!]!
   source(where: SourceWhereUniqueInput!): Source
@@ -3039,6 +3238,7 @@ type User {
   email: String!
   id: Int!
   name: String!
+  password(where: PasswordWhereInput): Password
   updatedAt: DateTime!
 }
 
@@ -3076,7 +3276,14 @@ input UserCreateInput {
   createdAt: DateTime
   email: String!
   name: String!
+  password: PasswordCreateNestedOneWithoutUserInput
   updatedAt: DateTime
+}
+
+input UserCreateInput2 {
+  email: String!
+  name: String!
+  password: Password2!
 }
 
 input UserCreateNestedOneWithoutAccountsInput {
@@ -3085,12 +3292,32 @@ input UserCreateNestedOneWithoutAccountsInput {
   create: UserCreateWithoutAccountsInput
 }
 
+input UserCreateNestedOneWithoutPasswordInput {
+  connect: UserWhereUniqueInput
+  connectOrCreate: UserCreateOrConnectWithoutPasswordInput
+  create: UserCreateWithoutPasswordInput
+}
+
 input UserCreateOrConnectWithoutAccountsInput {
   create: UserCreateWithoutAccountsInput!
   where: UserWhereUniqueInput!
 }
 
+input UserCreateOrConnectWithoutPasswordInput {
+  create: UserCreateWithoutPasswordInput!
+  where: UserWhereUniqueInput!
+}
+
 input UserCreateWithoutAccountsInput {
+  createdAt: DateTime
+  email: String!
+  name: String!
+  password: PasswordCreateNestedOneWithoutUserInput
+  updatedAt: DateTime
+}
+
+input UserCreateWithoutPasswordInput {
+  accounts: AccountCreateNestedManyWithoutUserInput
   createdAt: DateTime
   email: String!
   name: String!
@@ -3161,6 +3388,7 @@ input UserOrderByWithRelationInput {
   email: SortOrder
   id: SortOrder
   name: SortOrder
+  password: PasswordOrderByWithRelationInput
   updatedAt: SortOrder
 }
 
@@ -3201,6 +3429,7 @@ input UserUpdateInput {
   createdAt: DateTimeFieldUpdateOperationsInput
   email: StringFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
+  password: PasswordUpdateOneWithoutUserNestedInput
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
@@ -3219,12 +3448,34 @@ input UserUpdateOneRequiredWithoutAccountsNestedInput {
   upsert: UserUpsertWithoutAccountsInput
 }
 
+input UserUpdateOneRequiredWithoutPasswordNestedInput {
+  connect: UserWhereUniqueInput
+  connectOrCreate: UserCreateOrConnectWithoutPasswordInput
+  create: UserCreateWithoutPasswordInput
+  update: UserUpdateToOneWithWhereWithoutPasswordInput
+  upsert: UserUpsertWithoutPasswordInput
+}
+
 input UserUpdateToOneWithWhereWithoutAccountsInput {
   data: UserUpdateWithoutAccountsInput!
   where: UserWhereInput
 }
 
+input UserUpdateToOneWithWhereWithoutPasswordInput {
+  data: UserUpdateWithoutPasswordInput!
+  where: UserWhereInput
+}
+
 input UserUpdateWithoutAccountsInput {
+  createdAt: DateTimeFieldUpdateOperationsInput
+  email: StringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  password: PasswordUpdateOneWithoutUserNestedInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input UserUpdateWithoutPasswordInput {
+  accounts: AccountUpdateManyWithoutUserNestedInput
   createdAt: DateTimeFieldUpdateOperationsInput
   email: StringFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
@@ -3237,6 +3488,12 @@ input UserUpsertWithoutAccountsInput {
   where: UserWhereInput
 }
 
+input UserUpsertWithoutPasswordInput {
+  create: UserCreateWithoutPasswordInput!
+  update: UserUpdateWithoutPasswordInput!
+  where: UserWhereInput
+}
+
 input UserWhereInput {
   AND: [UserWhereInput!]
   NOT: [UserWhereInput!]
@@ -3246,6 +3503,7 @@ input UserWhereInput {
   email: StringFilter
   id: IntFilter
   name: StringFilter
+  password: PasswordNullableRelationFilter
   updatedAt: DateTimeFilter
 }
 
@@ -3258,5 +3516,6 @@ input UserWhereUniqueInput {
   email: String
   id: Int
   name: StringFilter
+  password: PasswordNullableRelationFilter
   updatedAt: DateTimeFilter
 }

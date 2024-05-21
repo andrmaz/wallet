@@ -17,23 +17,13 @@
         "tsConfig": "apps/api/tsconfig.app.json",
         "assets": ["apps/api/src/assets"],
         "generatePackageJson": true,
-        "esbuildOptions": {
-          "sourcemap": true,
-          "outExtension": {
-            ".js": ".js"
-          }
-        }
+        "esbuildConfig": "{projectRoot}/esbuild.js"
       },
       "configurations": {
         "development": {},
         "production": {
           "generateLockfile": true,
-          "esbuildOptions": {
-            "sourcemap": false,
-            "outExtension": {
-              ".js": ".js"
-            }
-          }
+          "esbuildConfig": "{projectRoot}/esbuild.js"
         }
       }
     },

@@ -639,6 +639,15 @@ export type AggregateIncome = {
   _sum?: Maybe<IncomeSumAggregate>;
 };
 
+export type AggregatePassword = {
+  __typename?: 'AggregatePassword';
+  _avg?: Maybe<PasswordAvgAggregate>;
+  _count?: Maybe<PasswordCountAggregate>;
+  _max?: Maybe<PasswordMaxAggregate>;
+  _min?: Maybe<PasswordMinAggregate>;
+  _sum?: Maybe<PasswordSumAggregate>;
+};
+
 export type AggregateSchedule = {
   __typename?: 'AggregateSchedule';
   _count?: Maybe<ScheduleCountAggregate>;
@@ -2103,6 +2112,10 @@ export type GoalWhereUniqueInput = {
   updatedAt?: InputMaybe<DateTimeFilter>;
 };
 
+export type Hash2 = {
+  hash: Scalars['String']['input'];
+};
+
 export type Income = {
   __typename?: 'Income';
   account: Account;
@@ -2612,15 +2625,18 @@ export type Mutation = {
   createOneExpense: Expense;
   createOneGoal: Goal;
   createOneIncome: Income;
+  createOnePassword: Password;
   createOneSchedule: Schedule;
   createOneSource: Source;
   createOneUser: User;
+  createUser: User;
   deleteManyAccount: AffectedRowsOutput;
   deleteManyBudget: AffectedRowsOutput;
   deleteManyCategory: AffectedRowsOutput;
   deleteManyExpense: AffectedRowsOutput;
   deleteManyGoal: AffectedRowsOutput;
   deleteManyIncome: AffectedRowsOutput;
+  deleteManyPassword: AffectedRowsOutput;
   deleteManySchedule: AffectedRowsOutput;
   deleteManySource: AffectedRowsOutput;
   deleteManyUser: AffectedRowsOutput;
@@ -2630,6 +2646,7 @@ export type Mutation = {
   deleteOneExpense?: Maybe<Expense>;
   deleteOneGoal?: Maybe<Goal>;
   deleteOneIncome?: Maybe<Income>;
+  deleteOnePassword?: Maybe<Password>;
   deleteOneSchedule?: Maybe<Schedule>;
   deleteOneSource?: Maybe<Source>;
   deleteOneUser?: Maybe<User>;
@@ -2639,6 +2656,7 @@ export type Mutation = {
   updateManyExpense: AffectedRowsOutput;
   updateManyGoal: AffectedRowsOutput;
   updateManyIncome: AffectedRowsOutput;
+  updateManyPassword: AffectedRowsOutput;
   updateManySchedule: AffectedRowsOutput;
   updateManySource: AffectedRowsOutput;
   updateManyUser: AffectedRowsOutput;
@@ -2648,6 +2666,7 @@ export type Mutation = {
   updateOneExpense?: Maybe<Expense>;
   updateOneGoal?: Maybe<Goal>;
   updateOneIncome?: Maybe<Income>;
+  updateOnePassword?: Maybe<Password>;
   updateOneSchedule?: Maybe<Schedule>;
   updateOneSource?: Maybe<Source>;
   updateOneUser?: Maybe<User>;
@@ -2657,6 +2676,7 @@ export type Mutation = {
   upsertOneExpense: Expense;
   upsertOneGoal: Goal;
   upsertOneIncome: Income;
+  upsertOnePassword: Password;
   upsertOneSchedule: Schedule;
   upsertOneSource: Source;
   upsertOneUser: User;
@@ -2693,6 +2713,11 @@ export type MutationCreateOneIncomeArgs = {
 };
 
 
+export type MutationCreateOnePasswordArgs = {
+  data: PasswordCreateInput;
+};
+
+
 export type MutationCreateOneScheduleArgs = {
   data: ScheduleCreateInput;
 };
@@ -2705,6 +2730,11 @@ export type MutationCreateOneSourceArgs = {
 
 export type MutationCreateOneUserArgs = {
   data: UserCreateInput;
+};
+
+
+export type MutationCreateUserArgs = {
+  data: UserCreateInput2;
 };
 
 
@@ -2735,6 +2765,11 @@ export type MutationDeleteManyGoalArgs = {
 
 export type MutationDeleteManyIncomeArgs = {
   where?: InputMaybe<IncomeWhereInput>;
+};
+
+
+export type MutationDeleteManyPasswordArgs = {
+  where?: InputMaybe<PasswordWhereInput>;
 };
 
 
@@ -2780,6 +2815,11 @@ export type MutationDeleteOneGoalArgs = {
 
 export type MutationDeleteOneIncomeArgs = {
   where: IncomeWhereUniqueInput;
+};
+
+
+export type MutationDeleteOnePasswordArgs = {
+  where: PasswordWhereUniqueInput;
 };
 
 
@@ -2834,6 +2874,12 @@ export type MutationUpdateManyIncomeArgs = {
 };
 
 
+export type MutationUpdateManyPasswordArgs = {
+  data: PasswordUpdateManyMutationInput;
+  where?: InputMaybe<PasswordWhereInput>;
+};
+
+
 export type MutationUpdateManyScheduleArgs = {
   data: ScheduleUpdateManyMutationInput;
   where?: InputMaybe<ScheduleWhereInput>;
@@ -2885,6 +2931,12 @@ export type MutationUpdateOneGoalArgs = {
 export type MutationUpdateOneIncomeArgs = {
   data: IncomeUpdateInput;
   where: IncomeWhereUniqueInput;
+};
+
+
+export type MutationUpdateOnePasswordArgs = {
+  data: PasswordUpdateInput;
+  where: PasswordWhereUniqueInput;
 };
 
 
@@ -2945,6 +2997,13 @@ export type MutationUpsertOneIncomeArgs = {
   create: IncomeCreateInput;
   update: IncomeUpdateInput;
   where: IncomeWhereUniqueInput;
+};
+
+
+export type MutationUpsertOnePasswordArgs = {
+  create: PasswordCreateInput;
+  update: PasswordUpdateInput;
+  where: PasswordWhereUniqueInput;
 };
 
 
@@ -3062,6 +3121,186 @@ export type NestedStringWithAggregatesFilter = {
   startsWith?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type Password = {
+  __typename?: 'Password';
+  hash: Scalars['String']['output'];
+  user: User;
+  userId: Scalars['Int']['output'];
+};
+
+export type Password2 = {
+  create: Hash2;
+};
+
+export type PasswordAvgAggregate = {
+  __typename?: 'PasswordAvgAggregate';
+  userId?: Maybe<Scalars['Float']['output']>;
+};
+
+export type PasswordAvgOrderByAggregateInput = {
+  userId?: InputMaybe<SortOrder>;
+};
+
+export type PasswordCountAggregate = {
+  __typename?: 'PasswordCountAggregate';
+  _all: Scalars['Int']['output'];
+  hash: Scalars['Int']['output'];
+  userId: Scalars['Int']['output'];
+};
+
+export type PasswordCountOrderByAggregateInput = {
+  hash?: InputMaybe<SortOrder>;
+  userId?: InputMaybe<SortOrder>;
+};
+
+export type PasswordCreateInput = {
+  hash: Scalars['String']['input'];
+  user: UserCreateNestedOneWithoutPasswordInput;
+};
+
+export type PasswordCreateNestedOneWithoutUserInput = {
+  connect?: InputMaybe<PasswordWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<PasswordCreateOrConnectWithoutUserInput>;
+  create?: InputMaybe<PasswordCreateWithoutUserInput>;
+};
+
+export type PasswordCreateOrConnectWithoutUserInput = {
+  create: PasswordCreateWithoutUserInput;
+  where: PasswordWhereUniqueInput;
+};
+
+export type PasswordCreateWithoutUserInput = {
+  hash: Scalars['String']['input'];
+};
+
+export type PasswordGroupBy = {
+  __typename?: 'PasswordGroupBy';
+  _avg?: Maybe<PasswordAvgAggregate>;
+  _count?: Maybe<PasswordCountAggregate>;
+  _max?: Maybe<PasswordMaxAggregate>;
+  _min?: Maybe<PasswordMinAggregate>;
+  _sum?: Maybe<PasswordSumAggregate>;
+  hash: Scalars['String']['output'];
+  userId: Scalars['Int']['output'];
+};
+
+export type PasswordMaxAggregate = {
+  __typename?: 'PasswordMaxAggregate';
+  hash?: Maybe<Scalars['String']['output']>;
+  userId?: Maybe<Scalars['Int']['output']>;
+};
+
+export type PasswordMaxOrderByAggregateInput = {
+  hash?: InputMaybe<SortOrder>;
+  userId?: InputMaybe<SortOrder>;
+};
+
+export type PasswordMinAggregate = {
+  __typename?: 'PasswordMinAggregate';
+  hash?: Maybe<Scalars['String']['output']>;
+  userId?: Maybe<Scalars['Int']['output']>;
+};
+
+export type PasswordMinOrderByAggregateInput = {
+  hash?: InputMaybe<SortOrder>;
+  userId?: InputMaybe<SortOrder>;
+};
+
+export type PasswordNullableRelationFilter = {
+  is?: InputMaybe<PasswordWhereInput>;
+  isNot?: InputMaybe<PasswordWhereInput>;
+};
+
+export type PasswordOrderByWithAggregationInput = {
+  _avg?: InputMaybe<PasswordAvgOrderByAggregateInput>;
+  _count?: InputMaybe<PasswordCountOrderByAggregateInput>;
+  _max?: InputMaybe<PasswordMaxOrderByAggregateInput>;
+  _min?: InputMaybe<PasswordMinOrderByAggregateInput>;
+  _sum?: InputMaybe<PasswordSumOrderByAggregateInput>;
+  hash?: InputMaybe<SortOrder>;
+  userId?: InputMaybe<SortOrder>;
+};
+
+export type PasswordOrderByWithRelationInput = {
+  hash?: InputMaybe<SortOrder>;
+  user?: InputMaybe<UserOrderByWithRelationInput>;
+  userId?: InputMaybe<SortOrder>;
+};
+
+export enum PasswordScalarFieldEnum {
+  Hash = 'hash',
+  UserId = 'userId'
+}
+
+export type PasswordScalarWhereWithAggregatesInput = {
+  AND?: InputMaybe<Array<PasswordScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<PasswordScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<PasswordScalarWhereWithAggregatesInput>>;
+  hash?: InputMaybe<StringWithAggregatesFilter>;
+  userId?: InputMaybe<IntWithAggregatesFilter>;
+};
+
+export type PasswordSumAggregate = {
+  __typename?: 'PasswordSumAggregate';
+  userId?: Maybe<Scalars['Int']['output']>;
+};
+
+export type PasswordSumOrderByAggregateInput = {
+  userId?: InputMaybe<SortOrder>;
+};
+
+export type PasswordUpdateInput = {
+  hash?: InputMaybe<StringFieldUpdateOperationsInput>;
+  user?: InputMaybe<UserUpdateOneRequiredWithoutPasswordNestedInput>;
+};
+
+export type PasswordUpdateManyMutationInput = {
+  hash?: InputMaybe<StringFieldUpdateOperationsInput>;
+};
+
+export type PasswordUpdateOneWithoutUserNestedInput = {
+  connect?: InputMaybe<PasswordWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<PasswordCreateOrConnectWithoutUserInput>;
+  create?: InputMaybe<PasswordCreateWithoutUserInput>;
+  delete?: InputMaybe<PasswordWhereInput>;
+  disconnect?: InputMaybe<PasswordWhereInput>;
+  update?: InputMaybe<PasswordUpdateToOneWithWhereWithoutUserInput>;
+  upsert?: InputMaybe<PasswordUpsertWithoutUserInput>;
+};
+
+export type PasswordUpdateToOneWithWhereWithoutUserInput = {
+  data: PasswordUpdateWithoutUserInput;
+  where?: InputMaybe<PasswordWhereInput>;
+};
+
+export type PasswordUpdateWithoutUserInput = {
+  hash?: InputMaybe<StringFieldUpdateOperationsInput>;
+};
+
+export type PasswordUpsertWithoutUserInput = {
+  create: PasswordCreateWithoutUserInput;
+  update: PasswordUpdateWithoutUserInput;
+  where?: InputMaybe<PasswordWhereInput>;
+};
+
+export type PasswordWhereInput = {
+  AND?: InputMaybe<Array<PasswordWhereInput>>;
+  NOT?: InputMaybe<Array<PasswordWhereInput>>;
+  OR?: InputMaybe<Array<PasswordWhereInput>>;
+  hash?: InputMaybe<StringFilter>;
+  user?: InputMaybe<UserRelationFilter>;
+  userId?: InputMaybe<IntFilter>;
+};
+
+export type PasswordWhereUniqueInput = {
+  AND?: InputMaybe<Array<PasswordWhereInput>>;
+  NOT?: InputMaybe<Array<PasswordWhereInput>>;
+  OR?: InputMaybe<Array<PasswordWhereInput>>;
+  hash?: InputMaybe<StringFilter>;
+  user?: InputMaybe<UserRelationFilter>;
+  userId?: InputMaybe<Scalars['Int']['input']>;
+};
+
 export type Query = {
   __typename?: 'Query';
   account?: Maybe<Account>;
@@ -3072,6 +3311,7 @@ export type Query = {
   aggregateExpense: AggregateExpense;
   aggregateGoal: AggregateGoal;
   aggregateIncome: AggregateIncome;
+  aggregatePassword: AggregatePassword;
   aggregateSchedule: AggregateSchedule;
   aggregateSource: AggregateSource;
   aggregateUser: AggregateUser;
@@ -3093,6 +3333,8 @@ export type Query = {
   findFirstGoalOrThrow?: Maybe<Goal>;
   findFirstIncome?: Maybe<Income>;
   findFirstIncomeOrThrow?: Maybe<Income>;
+  findFirstPassword?: Maybe<Password>;
+  findFirstPasswordOrThrow?: Maybe<Password>;
   findFirstSchedule?: Maybe<Schedule>;
   findFirstScheduleOrThrow?: Maybe<Schedule>;
   findFirstSource?: Maybe<Source>;
@@ -3105,6 +3347,7 @@ export type Query = {
   getExpense?: Maybe<Expense>;
   getGoal?: Maybe<Goal>;
   getIncome?: Maybe<Income>;
+  getPassword?: Maybe<Password>;
   getSchedule?: Maybe<Schedule>;
   getSource?: Maybe<Source>;
   getUser?: Maybe<User>;
@@ -3116,11 +3359,14 @@ export type Query = {
   groupByExpense: Array<ExpenseGroupBy>;
   groupByGoal: Array<GoalGroupBy>;
   groupByIncome: Array<IncomeGroupBy>;
+  groupByPassword: Array<PasswordGroupBy>;
   groupBySchedule: Array<ScheduleGroupBy>;
   groupBySource: Array<SourceGroupBy>;
   groupByUser: Array<UserGroupBy>;
   income?: Maybe<Income>;
   incomes: Array<Income>;
+  password?: Maybe<Password>;
+  passwords: Array<Password>;
   schedule?: Maybe<Schedule>;
   schedules: Array<Schedule>;
   source?: Maybe<Source>;
@@ -3196,6 +3442,15 @@ export type QueryAggregateIncomeArgs = {
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<IncomeWhereInput>;
+};
+
+
+export type QueryAggregatePasswordArgs = {
+  cursor?: InputMaybe<PasswordWhereUniqueInput>;
+  orderBy?: InputMaybe<Array<PasswordOrderByWithRelationInput>>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<PasswordWhereInput>;
 };
 
 
@@ -3391,6 +3646,26 @@ export type QueryFindFirstIncomeOrThrowArgs = {
 };
 
 
+export type QueryFindFirstPasswordArgs = {
+  cursor?: InputMaybe<PasswordWhereUniqueInput>;
+  distinct?: InputMaybe<Array<PasswordScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<PasswordOrderByWithRelationInput>>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<PasswordWhereInput>;
+};
+
+
+export type QueryFindFirstPasswordOrThrowArgs = {
+  cursor?: InputMaybe<PasswordWhereUniqueInput>;
+  distinct?: InputMaybe<Array<PasswordScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<PasswordOrderByWithRelationInput>>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<PasswordWhereInput>;
+};
+
+
 export type QueryFindFirstScheduleArgs = {
   cursor?: InputMaybe<ScheduleWhereUniqueInput>;
   distinct?: InputMaybe<Array<ScheduleScalarFieldEnum>>;
@@ -3478,6 +3753,11 @@ export type QueryGetGoalArgs = {
 
 export type QueryGetIncomeArgs = {
   where: IncomeWhereUniqueInput;
+};
+
+
+export type QueryGetPasswordArgs = {
+  where: PasswordWhereUniqueInput;
 };
 
 
@@ -3571,6 +3851,16 @@ export type QueryGroupByIncomeArgs = {
 };
 
 
+export type QueryGroupByPasswordArgs = {
+  by: Array<PasswordScalarFieldEnum>;
+  having?: InputMaybe<PasswordScalarWhereWithAggregatesInput>;
+  orderBy?: InputMaybe<Array<PasswordOrderByWithAggregationInput>>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<PasswordWhereInput>;
+};
+
+
 export type QueryGroupByScheduleArgs = {
   by: Array<ScheduleScalarFieldEnum>;
   having?: InputMaybe<ScheduleScalarWhereWithAggregatesInput>;
@@ -3613,6 +3903,21 @@ export type QueryIncomesArgs = {
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<IncomeWhereInput>;
+};
+
+
+export type QueryPasswordArgs = {
+  where: PasswordWhereUniqueInput;
+};
+
+
+export type QueryPasswordsArgs = {
+  cursor?: InputMaybe<PasswordWhereUniqueInput>;
+  distinct?: InputMaybe<Array<PasswordScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<PasswordOrderByWithRelationInput>>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<PasswordWhereInput>;
 };
 
 
@@ -4090,6 +4395,7 @@ export type User = {
   email: Scalars['String']['output'];
   id: Scalars['Int']['output'];
   name: Scalars['String']['output'];
+  password?: Maybe<Password>;
   updatedAt: Scalars['DateTime']['output'];
 };
 
@@ -4101,6 +4407,11 @@ export type UserAccountsArgs = {
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<AccountWhereInput>;
+};
+
+
+export type UserPasswordArgs = {
+  where?: InputMaybe<PasswordWhereInput>;
 };
 
 export type UserAvgAggregate = {
@@ -4145,7 +4456,14 @@ export type UserCreateInput = {
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   email: Scalars['String']['input'];
   name: Scalars['String']['input'];
+  password?: InputMaybe<PasswordCreateNestedOneWithoutUserInput>;
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
+export type UserCreateInput2 = {
+  email: Scalars['String']['input'];
+  name: Scalars['String']['input'];
+  password: Password2;
 };
 
 export type UserCreateNestedOneWithoutAccountsInput = {
@@ -4154,12 +4472,32 @@ export type UserCreateNestedOneWithoutAccountsInput = {
   create?: InputMaybe<UserCreateWithoutAccountsInput>;
 };
 
+export type UserCreateNestedOneWithoutPasswordInput = {
+  connect?: InputMaybe<UserWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<UserCreateOrConnectWithoutPasswordInput>;
+  create?: InputMaybe<UserCreateWithoutPasswordInput>;
+};
+
 export type UserCreateOrConnectWithoutAccountsInput = {
   create: UserCreateWithoutAccountsInput;
   where: UserWhereUniqueInput;
 };
 
+export type UserCreateOrConnectWithoutPasswordInput = {
+  create: UserCreateWithoutPasswordInput;
+  where: UserWhereUniqueInput;
+};
+
 export type UserCreateWithoutAccountsInput = {
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  email: Scalars['String']['input'];
+  name: Scalars['String']['input'];
+  password?: InputMaybe<PasswordCreateNestedOneWithoutUserInput>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
+export type UserCreateWithoutPasswordInput = {
+  accounts?: InputMaybe<AccountCreateNestedManyWithoutUserInput>;
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   email: Scalars['String']['input'];
   name: Scalars['String']['input'];
@@ -4233,6 +4571,7 @@ export type UserOrderByWithRelationInput = {
   email?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
   name?: InputMaybe<SortOrder>;
+  password?: InputMaybe<PasswordOrderByWithRelationInput>;
   updatedAt?: InputMaybe<SortOrder>;
 };
 
@@ -4274,6 +4613,7 @@ export type UserUpdateInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   email?: InputMaybe<StringFieldUpdateOperationsInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
+  password?: InputMaybe<PasswordUpdateOneWithoutUserNestedInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
@@ -4292,12 +4632,34 @@ export type UserUpdateOneRequiredWithoutAccountsNestedInput = {
   upsert?: InputMaybe<UserUpsertWithoutAccountsInput>;
 };
 
+export type UserUpdateOneRequiredWithoutPasswordNestedInput = {
+  connect?: InputMaybe<UserWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<UserCreateOrConnectWithoutPasswordInput>;
+  create?: InputMaybe<UserCreateWithoutPasswordInput>;
+  update?: InputMaybe<UserUpdateToOneWithWhereWithoutPasswordInput>;
+  upsert?: InputMaybe<UserUpsertWithoutPasswordInput>;
+};
+
 export type UserUpdateToOneWithWhereWithoutAccountsInput = {
   data: UserUpdateWithoutAccountsInput;
   where?: InputMaybe<UserWhereInput>;
 };
 
+export type UserUpdateToOneWithWhereWithoutPasswordInput = {
+  data: UserUpdateWithoutPasswordInput;
+  where?: InputMaybe<UserWhereInput>;
+};
+
 export type UserUpdateWithoutAccountsInput = {
+  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  email?: InputMaybe<StringFieldUpdateOperationsInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+  password?: InputMaybe<PasswordUpdateOneWithoutUserNestedInput>;
+  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type UserUpdateWithoutPasswordInput = {
+  accounts?: InputMaybe<AccountUpdateManyWithoutUserNestedInput>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   email?: InputMaybe<StringFieldUpdateOperationsInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
@@ -4310,6 +4672,12 @@ export type UserUpsertWithoutAccountsInput = {
   where?: InputMaybe<UserWhereInput>;
 };
 
+export type UserUpsertWithoutPasswordInput = {
+  create: UserCreateWithoutPasswordInput;
+  update: UserUpdateWithoutPasswordInput;
+  where?: InputMaybe<UserWhereInput>;
+};
+
 export type UserWhereInput = {
   AND?: InputMaybe<Array<UserWhereInput>>;
   NOT?: InputMaybe<Array<UserWhereInput>>;
@@ -4319,6 +4687,7 @@ export type UserWhereInput = {
   email?: InputMaybe<StringFilter>;
   id?: InputMaybe<IntFilter>;
   name?: InputMaybe<StringFilter>;
+  password?: InputMaybe<PasswordNullableRelationFilter>;
   updatedAt?: InputMaybe<DateTimeFilter>;
 };
 
@@ -4331,8 +4700,16 @@ export type UserWhereUniqueInput = {
   email?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['Int']['input']>;
   name?: InputMaybe<StringFilter>;
+  password?: InputMaybe<PasswordNullableRelationFilter>;
   updatedAt?: InputMaybe<DateTimeFilter>;
 };
+
+export type CreateUserMutationVariables = Exact<{
+  data: UserCreateInput2;
+}>;
+
+
+export type CreateUserMutation = { __typename?: 'Mutation', createUser: { __typename?: 'User', id: number, email: string, name: string, createdAt: any, updatedAt: any, accounts: Array<{ __typename?: 'Account', id: number, name: string }> } };
 
 export type GetUserQueryVariables = Exact<{
   where: UserWhereUniqueInput;
@@ -4342,4 +4719,5 @@ export type GetUserQueryVariables = Exact<{
 export type GetUserQuery = { __typename?: 'Query', user?: { __typename?: 'User', id: number, name: string, email: string, accounts: Array<{ __typename?: 'Account', id: number, name: string }> } | null };
 
 
+export const CreateUserDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateUser"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"data"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"UserCreateInput2"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createUser"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"data"},"value":{"kind":"Variable","name":{"kind":"Name","value":"data"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"accounts"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}}]}}]}}]} as unknown as DocumentNode<CreateUserMutation, CreateUserMutationVariables>;
 export const GetUserDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetUser"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"where"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"UserWhereUniqueInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"user"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"Variable","name":{"kind":"Name","value":"where"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"accounts"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]} as unknown as DocumentNode<GetUserQuery, GetUserQueryVariables>;

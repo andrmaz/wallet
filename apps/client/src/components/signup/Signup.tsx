@@ -1,30 +1,50 @@
-import {Button, Field, Flex, Form} from '@wallet/shared-ui'
-import {useTranslation} from 'react-i18next'
+import * as React from 'react'
+import {useNavigate} from 'react-router-dom'
+import {useCreateUserMutation} from '../../hooks/user'
+import {SignupForm} from './Form'
+import {Path} from '../../data/routes'
+import {z} from 'zod'
+
+const FormData = z
+  .object({
+    name: z.string().min(2).max(30),
+    email: z.string().email(),
+    password: z.string().regex(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/),
+  })
+  .required()
+export type SignupFormData = z.infer<typeof FormData>
+
+const initialFormData = {name: '', email: '', password: ''}
 
 export const Signup = () => {
-  const {t} = useTranslation()
+  const navigate = useNavigate()
+  const [formData, setFormData] =
+    React.useState<SignupFormData>(initialFormData)
+  const [error, setError] = React.useState<string | null>(null)
+  const {mutateAsync} = useCreateUserMutation(formData)
+  const handleChange: React.ChangeEventHandler<HTMLInputElement> = event => {
+    setFormData(formData => ({
+      ...formData,
+      [event.target.name]: event.target.value,
+    }))
+  }
+  const handleSubmit: React.MouseEventHandler<HTMLButtonElement> = event => {
+    event.preventDefault()
+    const result = FormData.safeParse(formData)
+    if (!result.success) {
+      setError(result.error.issues[0].message)
+    } else {
+      mutateAsync()
+        .then(() => navigate(Path.Dashboard))
+        .catch(setError)
+    }
+  }
   return (
-    <Form>
-      <fieldset>
-        <legend>{t('registration.title')}</legend>
-        <Field
-          name='email'
-          label={t('registration.form.email.label')}
-          message={t('registration.form.email.message')}
-          match='valueMissing'
-          control={<input className='input' type='email' required />}
-        />
-        <Field
-          name='password'
-          label={t('registration.form.password.label')}
-          message={t('registration.form.password.message')}
-          match='valueMissing'
-          control={<input className='input' type='password' required />}
-        />
-        <Flex justify='end'>
-          <Button variant='soft'>{t('registration.form.action.submit')}</Button>
-        </Flex>
-      </fieldset>
-    </Form>
+    <SignupForm
+      formData={formData}
+      onChange={handleChange}
+      onSubmit={handleSubmit}
+      errorMessage={error}
+    />
   )
 }
