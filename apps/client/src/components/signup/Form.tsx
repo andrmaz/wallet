@@ -1,5 +1,5 @@
 import {Button, Field, Flex, Form} from '@wallet/shared-ui'
-import {useTranslation} from 'react-i18next'
+import {useLocale} from '../../hooks/locale'
 import {SignupFormData} from './Signup'
 
 interface SignupFormProps {
@@ -15,7 +15,7 @@ export const SignupForm = ({
   onSubmit,
   errorMessage,
 }: SignupFormProps) => {
-  const {t} = useTranslation()
+  const {t} = useLocale()
   return (
     <Form>
       <fieldset>

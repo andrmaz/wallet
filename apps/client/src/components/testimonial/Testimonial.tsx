@@ -1,8 +1,8 @@
 import {Text} from '@wallet/shared-ui'
-import {useTranslation} from 'react-i18next'
+import {useLocale} from '../../hooks/locale'
 
 export const Testimonial = () => {
-  const {t} = useTranslation()
+  const {t} = useLocale()
   return (
     <div>
       <Text>{t('registration.intro')}</Text>

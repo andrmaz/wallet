@@ -1,11 +1,11 @@
 import {Box, Flex} from '@wallet/shared-ui'
-import {useTranslation} from 'react-i18next'
+import {useLocale} from '../../hooks/locale'
 import {Link} from 'react-router-dom'
 import {Path} from '../../data/routes'
 import {Toolbar} from '../toolbar'
 
 export const Header = () => {
-  const {t} = useTranslation()
+  const {t} = useLocale()
   return (
     <Flex
       position='fixed'

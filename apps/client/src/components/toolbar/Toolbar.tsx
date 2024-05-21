@@ -1,9 +1,9 @@
 import * as React from 'react'
-import {useTranslation} from 'react-i18next'
-import { Navbar } from '@wallet/shared-ui'
+import {useLocale} from '../../hooks/locale'
+import {Navbar} from '@wallet/shared-ui'
 
 export const Toolbar = () => {
-  const {t} = useTranslation()
+  const {t} = useLocale()
   const items = React.useMemo(
     () => [
       {name: t('header.navigation.product'), expand: true},

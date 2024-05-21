@@ -6,10 +6,10 @@ import {
   Section,
   Text,
 } from '@wallet/shared-ui'
-import {useTranslation} from 'react-i18next'
+import {useLocale} from '../../hooks/locale'
 
 export const Hero = () => {
-  const {t} = useTranslation()
+  const {t} = useLocale()
   return (
     <Section p='9'>
       <Container size='2'>
