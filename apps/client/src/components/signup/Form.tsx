@@ -24,7 +24,7 @@ export const SignupForm = ({
         <Field
           name='name'
           label={t('registration.form.name.label')}
-          message={t('registration.form.name.message')}
+          message={t('registration.form.name.error')}
           match='valueMissing'
           control={
             <input
@@ -39,7 +39,7 @@ export const SignupForm = ({
         <Field
           name='email'
           label={t('registration.form.email.label')}
-          message={t('registration.form.email.message')}
+          message={t('registration.form.email.error')}
           match='valueMissing'
           control={
             <input
@@ -54,7 +54,7 @@ export const SignupForm = ({
         <Field
           name='password'
           label={t('registration.form.password.label')}
-          message={t('registration.form.password.message')}
+          message={t('registration.form.password.error')}
           match='valueMissing'
           control={
             <input

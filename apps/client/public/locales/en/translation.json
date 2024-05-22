@@ -23,9 +23,9 @@
     "title": "Registration",
     "intro": "Create an account to start managing your finances.",
     "form": {
-      "name": {"label": "Name", "message": "Name invalid"},
-      "email": {"label": "Email", "message": "Email invalid"},
-      "password": {"label": "Password", "message": "Password invalid"},
+      "name": {"label": "Name", "error": "Name is too short"},
+      "email": {"label": "Email", "error": "Email is not valid"},
+      "password": {"label": "Password", "error": "Password is not valid"},
       "action": {"next": "Next", "submit": "Sign up"}
     }
   }

@@ -3,11 +3,29 @@ import {useNavigate} from 'react-router-dom'
 import {useCreateUserMutation} from '../../graphql/user'
 import {SignupForm} from './Form'
 import {Path} from '../../data/routes'
-import {TSignupFormData, SignupFormData} from '../../types'
+import {useLocale} from '../../hooks/locale'
+import {z} from 'zod'
+import type {TSignupFormData} from '../../types'
+import {TFunction} from 'i18next'
+
+export const SignupFormData = (t: TFunction) =>
+  z
+    .object({
+      name: z
+        .string()
+        .min(2, {message: t('registration.form.name.error')})
+        .max(30),
+      email: z.string().email({message: t('registration.form.email.error')}),
+      password: z.string().regex(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/, {
+        message: t('registration.form.password.error'),
+      }),
+    })
+    .required()
 
 const initialFormData = {name: '', email: '', password: ''}
 
 export const Signup = () => {
+  const {t} = useLocale()
   const navigate = useNavigate()
   const [formData, setFormData] =
     React.useState<TSignupFormData>(initialFormData)
@@ -21,7 +39,7 @@ export const Signup = () => {
   }
   const handleSubmit: React.MouseEventHandler<HTMLButtonElement> = event => {
     event.preventDefault()
-    const result = SignupFormData.safeParse(formData)
+    const result = SignupFormData(t).safeParse(formData)
     if (!result.success) {
       setError(result.error.issues[0].message)
     } else {
