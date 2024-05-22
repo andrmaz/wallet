@@ -1,17 +1,10 @@
 @import '@radix-ui/colors/black-alpha.css';
-@import '@radix-ui/colors/mauve.css';
-@import '@radix-ui/colors/violet.css';
-
-/* reset */
-button,
-h3 {
-  all: unset;
-}
+@import '@radix-ui/colors/gray.css';
 
 .accordion-root {
   border-radius: 6px;
   width: 300px;
-  background-color: var(--mauve-6);
+  background-color: var(--gray-6);
   box-shadow: 0 2px 10px var(--black-a4);
 }
 
@@ -34,7 +27,7 @@ h3 {
 .accordion-item:focus-within {
   position: relative;
   z-index: 1;
-  box-shadow: 0 0 0 2px var(--mauve-11);
+  box-shadow: 0 0 0 2px var(--gray-11);
 }
 
 .accordion-header {
@@ -52,20 +45,20 @@ h3 {
   justify-content: space-between;
   font-size: 15px;
   line-height: 1;
-  color: var(--violet-10);
-  box-shadow: 0 1px 0 var(--mauve-6);
+  color: var(--accent-10);
+  box-shadow: 0 1px 0 var(--gray-6);
   background-color: white;
 }
 
 .accordion-trigger:hover {
-  background-color: var(--mauve-2);
+  background-color: var(--gray-2);
 }
 
 .accordion-content {
   overflow: hidden;
   font-size: 15px;
-  color: var(--mauve-11);
-  background-color: var(--mauve-2);
+  color: var(--gray-11);
+  background-color: var(--gray-2);
 }
 
 .accordion-content[data-state='open'] {
@@ -81,7 +74,7 @@ h3 {
 }
 
 .accordion-chevron {
-  color: var(--violet-10);
+  color: var(--accent-10);
   transition: transform 300ms cubic-bezier(0.87, 0, 0.13, 1);
 }
 

@@ -15,9 +15,16 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@wallet/shared-ui": ["libs/shared/ui/src/index.ts"],
-      "@wallet/shared-gql": ["libs/shared/gql/src/index.ts"]
-    }
+      "@wallet/shared-gql": ["libs/shared/gql/src/index.ts"],
+      "@wallet/shared-ui": ["libs/shared/ui/src/index.ts"]
+    },
+    "plugins": [
+      {
+        "name": "@0no-co/graphqlsp",
+        "schema": "./schema.gql",
+        "tadaOutputLocation": "./apps/client/src/graphql-env.d.ts"
+      }
+    ]
   },
   "exclude": ["node_modules", "tmp"]
 }
