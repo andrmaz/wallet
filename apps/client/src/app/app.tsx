@@ -2,7 +2,7 @@ import * as React from 'react'
 import {Header} from '../components/header'
 import styles from './app.module.css'
 import Routes from '../routes'
-import '../i18n'
+import '../libs/i18n'
 
 function App() {
   return (

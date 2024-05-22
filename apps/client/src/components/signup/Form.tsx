@@ -1,9 +1,9 @@
 import {Button, Field, Flex, Form} from '@wallet/shared-ui'
 import {useLocale} from '../../hooks/locale'
-import {SignupFormData} from './Signup'
+import type {TSignupFormData} from '../../types'
 
 interface SignupFormProps {
-  formData: SignupFormData
+  formData: TSignupFormData
   onChange: React.ChangeEventHandler<HTMLInputElement>
   onSubmit: React.MouseEventHandler<HTMLButtonElement>
   errorMessage: string | null

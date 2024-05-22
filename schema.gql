@@ -1964,10 +1964,6 @@ input GoalWhereUniqueInput {
   updatedAt: DateTimeFilter
 }
 
-input Hash2 {
-  hash: String!
-}
-
 type Income {
   account: Account!
   accountId: Int!
@@ -2626,10 +2622,6 @@ type Password {
   userId: Int!
 }
 
-input Password2 {
-  create: Hash2!
-}
-
 type PasswordAvgAggregate {
   userId: Float
 }
@@ -3280,10 +3272,16 @@ input UserCreateInput {
   updatedAt: DateTime
 }
 
+"""The user input model"""
 input UserCreateInput2 {
+  """The user email"""
   email: String!
+
+  """The user name"""
   name: String!
-  password: Password2!
+
+  """The user password"""
+  password: String!
 }
 
 input UserCreateNestedOneWithoutAccountsInput {

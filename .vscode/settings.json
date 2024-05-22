@@ -1,4 +1,6 @@
 {
   "editor.fontFamily": "",
-  "cSpell.words": ["cssmodule", "devkit", "tanstack", "typegraphql"]
+  "cSpell.words": ["cssmodule", "devkit", "Tada", "tanstack", "typegraphql"],
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true
 }

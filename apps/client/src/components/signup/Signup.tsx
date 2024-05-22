@@ -1,25 +1,16 @@
 import * as React from 'react'
 import {useNavigate} from 'react-router-dom'
-import {useCreateUserMutation} from '../../hooks/user'
+import {useCreateUserMutation} from '../../graphql/user'
 import {SignupForm} from './Form'
 import {Path} from '../../data/routes'
-import {z} from 'zod'
-
-const FormData = z
-  .object({
-    name: z.string().min(2).max(30),
-    email: z.string().email(),
-    password: z.string().regex(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/),
-  })
-  .required()
-export type SignupFormData = z.infer<typeof FormData>
+import {TSignupFormData, SignupFormData} from '../../types'
 
 const initialFormData = {name: '', email: '', password: ''}
 
 export const Signup = () => {
   const navigate = useNavigate()
   const [formData, setFormData] =
-    React.useState<SignupFormData>(initialFormData)
+    React.useState<TSignupFormData>(initialFormData)
   const [error, setError] = React.useState<string | null>(null)
   const {mutateAsync} = useCreateUserMutation(formData)
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = event => {
@@ -30,7 +21,7 @@ export const Signup = () => {
   }
   const handleSubmit: React.MouseEventHandler<HTMLButtonElement> = event => {
     event.preventDefault()
-    const result = FormData.safeParse(formData)
+    const result = SignupFormData.safeParse(formData)
     if (!result.success) {
       setError(result.error.issues[0].message)
     } else {

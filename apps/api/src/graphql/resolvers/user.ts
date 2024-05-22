@@ -1,46 +1,37 @@
 import { User } from '@generated/type-graphql'
 import { Arg, Mutation, Resolver, Field, InputType } from "type-graphql";
-import bcrypt from "bcrypt";
 import { prisma } from '../../db';
-
-@InputType()
-class Hash {
-  @Field(() => String)
-  hash: string;
-}
-
-@InputType()
-class Password {
-  @Field(() => Hash)
-  create: Hash;
-}
+import bcrypt from "bcrypt";
 
 @InputType({
-  description: undefined,
+  description: "The user input model",
 })
 class UserCreateInput {
   @Field(() => String, {
     nullable: false,
-    description: undefined,
+    description: "The user email",
   })
   email!: string;
 
   @Field(() => String, {
     nullable: false,
-    description: undefined,
+    description: "The user name",
   })
   name!: string;
 
-  @Field(() => Password)
-  password!: Password;
+  @Field(() => String, {
+    nullable: false,
+    description: "The user password",
+  })
+  password!: string;
 }
 
 @Resolver()
 class CustomCreateOneUserResolver {
   @Mutation(() => User, { nullable: false })
-  async createUser(@Arg("data") data: UserCreateInput): Promise<User> {
-    const hash = await bcrypt.hash(data.password.create.hash, 10);
-    return prisma.user.create({ data: { name: data.name, email: data.email, password: { create: { hash } } } });
+  async createUser(@Arg("data") { name, email, password }: UserCreateInput): Promise<User> {
+    const hash = await bcrypt.hash(password, 10);
+    return prisma.user.create({ data: { name, email, password: { create: { hash } } } });
   }
 }
 
