@@ -2469,7 +2469,6 @@ type Mutation {
   createOneSchedule(data: ScheduleCreateInput!): Schedule!
   createOneSource(data: SourceCreateInput!): Source!
   createOneUser(data: UserCreateInput!): User!
-  createUser(data: UserCreateInput2!): User!
   deleteManyAccount(where: AccountWhereInput): AffectedRowsOutput!
   deleteManyBudget(where: BudgetWhereInput): AffectedRowsOutput!
   deleteManyCategory(where: CategoryWhereInput): AffectedRowsOutput!
@@ -2490,6 +2489,7 @@ type Mutation {
   deleteOneSchedule(where: ScheduleWhereUniqueInput!): Schedule
   deleteOneSource(where: SourceWhereUniqueInput!): Source
   deleteOneUser(where: UserWhereUniqueInput!): User
+  registerUser(data: UserRegisterInput2!): User!
   updateManyAccount(data: AccountUpdateManyMutationInput!, where: AccountWhereInput): AffectedRowsOutput!
   updateManyBudget(data: BudgetUpdateManyMutationInput!, where: BudgetWhereInput): AffectedRowsOutput!
   updateManyCategory(data: CategoryUpdateManyMutationInput!, where: CategoryWhereInput): AffectedRowsOutput!
@@ -3272,18 +3272,6 @@ input UserCreateInput {
   updatedAt: DateTime
 }
 
-"""The user input model"""
-input UserCreateInput2 {
-  """The user email"""
-  email: String!
-
-  """The user name"""
-  name: String!
-
-  """The user password"""
-  password: String!
-}
-
 input UserCreateNestedOneWithoutAccountsInput {
   connect: UserWhereUniqueInput
   connectOrCreate: UserCreateOrConnectWithoutAccountsInput
@@ -3388,6 +3376,18 @@ input UserOrderByWithRelationInput {
   name: SortOrder
   password: PasswordOrderByWithRelationInput
   updatedAt: SortOrder
+}
+
+"""The user registration model"""
+input UserRegisterInput2 {
+  """The user email"""
+  email: String!
+
+  """The user name"""
+  name: String!
+
+  """The user password"""
+  password: String!
 }
 
 input UserRelationFilter {

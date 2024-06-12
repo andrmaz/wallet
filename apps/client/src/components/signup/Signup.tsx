@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {useNavigate} from 'react-router-dom'
-import {useCreateUserMutation} from '../../graphql/user'
+import {useRegisterUserMutation} from '../../graphql/user'
 import {SignupForm} from './Form'
 import {Path} from '../../data/routes'
 import {useLocale} from '../../hooks/locale'
@@ -30,14 +30,15 @@ export const Signup = () => {
   const [formData, setFormData] =
     React.useState<TSignupFormData>(initialFormData)
   const [error, setError] = React.useState<string | null>(null)
-  const {mutateAsync} = useCreateUserMutation(formData)
+  const {mutateAsync /* , isError, isPending */} =
+    useRegisterUserMutation(formData)
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = event => {
     setFormData(formData => ({
       ...formData,
       [event.target.name]: event.target.value,
     }))
   }
-  const handleSubmit: React.MouseEventHandler<HTMLButtonElement> = event => {
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = event => {
     event.preventDefault()
     const result = SignupFormData(t).safeParse(formData)
     if (!result.success) {
@@ -45,7 +46,13 @@ export const Signup = () => {
     } else {
       mutateAsync()
         .then(() => navigate(Path.Dashboard))
-        .catch(setError)
+        .catch(err => {
+          if (err instanceof Error) {
+            console.error(err)
+          } else {
+            console.error('Unknown error')
+          }
+        })
     }
   }
   return (

@@ -1,0 +1,22 @@
+@import '@radix-ui/colors/blue.css';
+@import '@radix-ui/colors/green.css';
+@import '@radix-ui/colors/yellow.css';
+@import '@radix-ui/colors/red.css';
+
+#root {
+  --info-base: var(--blue-1);
+  --info-bg-subtle: var(--blue-2);
+
+  --success-base: var(--green-1);
+  --success-bg-subtle: var(--green-2);
+  --valid-base: var(--green-1);
+  --valid-bg-subtle: var(--green-2);
+
+  --warning-base: var(--yellow-1);
+  --warning-bg-subtle: var(--yellow-2);
+  --pending-base: var(--yellow-1);
+  --pending-bg-subtle: var(--yellow-2);
+
+  --danger-base: var(--red-9);
+  --danger-bg-subtle: var(--red-10);
+}

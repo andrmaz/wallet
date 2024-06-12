@@ -1,12 +1,13 @@
 import express from 'express'
 import { createHandler } from 'graphql-http/lib/use/express';
-import loggerRequestHandler from './middlewares/logger';
+import { loggerRequestHandler } from './middlewares/logger';
 import Logger from './libs/logger';
 import { errorRequestHandler } from './middlewares/error';
-import helmet from 'helmet';
 import { errorHandler } from './libs/error';
-import { prisma } from './db';
+import { sessionRequestHandler } from './middlewares/session';
 import { makeSchema } from './graphql';
+import { prisma } from './db';
+import helmet from 'helmet';
 import cors from 'cors'
 import { port, host } from './data/env';
 
@@ -17,9 +18,15 @@ async function bootstrap() {
   app.use(cors());
   app.use(loggerRequestHandler)
   app.use(errorRequestHandler)
+  app.use(sessionRequestHandler)
 
   const schema = await makeSchema()
-  app.use('/graphql', createHandler({ schema, context: { prisma } }));
+  app.use('/graphql', createHandler({
+    schema, context: req => {
+      req['session'] = req.raw.session
+      return { req, prisma }
+    }
+  }));
 
   const server = app.listen(port, host, () => {
     Logger.info(`[ ready ] http://${host}:${port}`)

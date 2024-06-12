@@ -5,19 +5,19 @@ import type {TSignupFormData} from '../../types'
 interface SignupFormProps {
   formData: TSignupFormData
   onChange: React.ChangeEventHandler<HTMLInputElement>
-  onSubmit: React.MouseEventHandler<HTMLButtonElement>
+  onSubmit: React.FormEventHandler<HTMLFormElement>
   errorMessage: string | null
 }
 
 export const SignupForm = ({
-  formData,
+  formData: {name, email, password},
   onChange,
   onSubmit,
   errorMessage,
 }: SignupFormProps) => {
   const {t} = useLocale()
   return (
-    <Form>
+    <Form onSubmit={onSubmit}>
       <fieldset>
         <legend>{t('registration.title')}</legend>
         {errorMessage && <p>{errorMessage}</p>}
@@ -30,7 +30,7 @@ export const SignupForm = ({
             <input
               className='input'
               type='text'
-              value={formData.name}
+              value={name}
               required
               onChange={onChange}
             />
@@ -45,7 +45,7 @@ export const SignupForm = ({
             <input
               className='input'
               type='email'
-              value={formData.email}
+              value={email}
               required
               onChange={onChange}
             />
@@ -60,14 +60,14 @@ export const SignupForm = ({
             <input
               className='input'
               type='password'
-              value={formData.password}
+              value={password}
               required
               onChange={onChange}
             />
           }
         />
         <Flex justify='end'>
-          <Button variant='soft' onClick={onSubmit}>
+          <Button type='submit' variant='soft'>
             {t('registration.form.action.submit')}
           </Button>
         </Flex>
