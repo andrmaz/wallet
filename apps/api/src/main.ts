@@ -16,6 +16,7 @@ async function bootstrap() {
 
   app.use(helmet())
   app.use(cors());
+  app.set('trust proxy', 1)
   app.use(loggerRequestHandler)
   app.use(errorRequestHandler)
   app.use(sessionRequestHandler)
@@ -33,9 +34,9 @@ async function bootstrap() {
   })
 
   process.on('SIGTERM', () => {
-    Logger.debug('SIGTERM signal received: closing HTTP server')
+    Logger.warn('SIGTERM signal received: closing HTTP server')
     server.close(() => {
-      Logger.debug('HTTP server closed')
+      Logger.warn('HTTP server closed')
     })
   })
 

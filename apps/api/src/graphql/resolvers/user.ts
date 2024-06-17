@@ -44,13 +44,13 @@ class CustomCreateOneUserResolver {
       Logger.info("Session regenerated successfully")
       // save the session before redirection to ensure page
       // load does not happen before session is saved
-      req.session.save(function (err) {
+      /* req.session.save(function (err) {
         if (err) {
           Logger.error("Error saving session")
           throw new UnauthorizedError()
         }
         Logger.info("Session saved successfully")
-      })
+      }) */
     })
     return user;
   }

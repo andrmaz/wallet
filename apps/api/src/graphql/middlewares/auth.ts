@@ -1,18 +1,19 @@
-import { MiddlewareFn, UnauthorizedError } from "type-graphql";
+import { AuthChecker } from "type-graphql";
 import { Context } from "../context";
 import Logger from "../../libs/logger";
 
-const AuthInterceptor: MiddlewareFn<Context> = async ({ context, info }, next) => {
+const customAuthChecker: AuthChecker<Context> = async ({ context, info }) => {
   if (info.operation.name.value === 'RegisterUser' || info.operation.name.value === 'LoginUser') {
     Logger.info('Authenticating user ...')
-    return next()
+    return true
   }
   if (context.req.session.user != null) {
     Logger.debug(context.req.session.user)
-    return next()
+    return true
   }
+  Logger.debug(context.req.session)
   Logger.error("Unauthorized access")
-  throw new UnauthorizedError()
+  return false
 };
 
-export { AuthInterceptor }
+export { customAuthChecker }

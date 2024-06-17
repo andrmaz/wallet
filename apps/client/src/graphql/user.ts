@@ -1,4 +1,4 @@
-import { useMutation/* , useQuery */ } from "@tanstack/react-query"
+import { useMutation, useQuery } from "@tanstack/react-query"
 import { graphql } from '../libs/graphql'
 import { client } from "../libs/client"
 import { /* TSigninFormData, */ TSignupFormData } from "../types"
@@ -34,4 +34,20 @@ const useRegisterUserMutation = (data: TSignupFormData) => {
   })
 }
 
-export { /* useLoginUserQuery, */ useRegisterUserMutation }
+const useGetUserQuery = (id: number) => {
+  const UserQuery = graphql(`query GetUser($where:  UserWhereUniqueInput!) {getUser(where: $where) {
+    id
+    email
+    name
+    accounts {
+      id
+      name
+    }
+  }}`)
+  return useQuery({
+    queryKey: ['user', id, UserQuery],
+    queryFn: async () => client(UserQuery, { where: { id } })
+  })
+}
+
+export { /* useLoginUserQuery, */ useRegisterUserMutation, useGetUserQuery }
