@@ -42,4 +42,4 @@ const loggerRequestHandler = morgan(
   { stream, skip }
 );
 
-export default loggerRequestHandler;
+export { loggerRequestHandler };

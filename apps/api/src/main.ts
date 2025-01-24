@@ -1,34 +1,50 @@
+import 'dotenv/config'
+
 import express from 'express'
 import { createHandler } from 'graphql-http/lib/use/express';
-import loggerRequestHandler from './middlewares/logger';
+import { loggerRequestHandler } from './middlewares/logger';
 import Logger from './libs/logger';
 import { errorRequestHandler } from './middlewares/error';
-import helmet from 'helmet';
 import { errorHandler } from './libs/error';
-import { prisma } from './db';
+import { sessionRequestHandler } from './middlewares/session';
 import { makeSchema } from './graphql';
+import { prisma } from './db';
+import helmet from 'helmet';
 import cors from 'cors'
 import { port, host } from './data/env';
 
 async function bootstrap() {
   const app = express()
 
+  app.use(cors({
+    origin: 'http://localhost:4200',
+    credentials: true,
+  }))
+
   app.use(helmet())
-  app.use(cors());
+
+  app.use(sessionRequestHandler)
+
   app.use(loggerRequestHandler)
   app.use(errorRequestHandler)
 
   const schema = await makeSchema()
-  app.use('/graphql', createHandler({ schema, context: { prisma } }));
+  app.use('/graphql', createHandler({
+    schema, context: req => {
+      const session = req.raw.session
+      Logger.debug(session)
+      return { session, prisma }
+    },
+  }));
 
   const server = app.listen(port, host, () => {
     Logger.info(`[ ready ] http://${host}:${port}`)
   })
 
   process.on('SIGTERM', () => {
-    Logger.debug('SIGTERM signal received: closing HTTP server')
+    Logger.warn('SIGTERM signal received: closing HTTP server')
     server.close(() => {
-      Logger.debug('HTTP server closed')
+      Logger.warn('HTTP server closed')
     })
   })
 

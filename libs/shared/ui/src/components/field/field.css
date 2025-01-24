@@ -1,6 +1,3 @@
-@import '@radix-ui/colors/black-alpha.css';
-@import '@radix-ui/colors/red.css';
-
 .form-field {
     display: grid;
     margin-bottom: var(--space-2);
@@ -50,7 +47,7 @@
 }
 
 fieldset > p {
-  color: var(--red-9);
+  color: var(--danger-base);
 }
 
 .input::selection,
