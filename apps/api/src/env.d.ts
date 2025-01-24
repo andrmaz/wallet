@@ -5,6 +5,7 @@ declare global {
       DATABASE_URL: string
       HOST: string
       PORT: string
+      SECRET: string
     }
   }
 }

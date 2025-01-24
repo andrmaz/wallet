@@ -62,10 +62,30 @@ input AccountCreateInput {
   user: UserCreateNestedOneWithoutAccountsInput!
 }
 
+input AccountCreateManyInput {
+  createdAt: DateTime
+  id: Int
+  name: String!
+  updatedAt: DateTime
+  userId: Int!
+}
+
+input AccountCreateManyUserInput {
+  createdAt: DateTime
+  id: Int
+  name: String!
+  updatedAt: DateTime
+}
+
+input AccountCreateManyUserInputEnvelope {
+  data: [AccountCreateManyUserInput!]!
+}
+
 input AccountCreateNestedManyWithoutUserInput {
   connect: [AccountWhereUniqueInput!]
   connectOrCreate: [AccountCreateOrConnectWithoutUserInput!]
   create: [AccountCreateWithoutUserInput!]
+  createMany: AccountCreateManyUserInputEnvelope
 }
 
 input AccountCreateNestedOneWithoutBudgetsInput {
@@ -319,6 +339,7 @@ input AccountUpdateManyWithoutUserNestedInput {
   connect: [AccountWhereUniqueInput!]
   connectOrCreate: [AccountCreateOrConnectWithoutUserInput!]
   create: [AccountCreateWithoutUserInput!]
+  createMany: AccountCreateManyUserInputEnvelope
   delete: [AccountWhereUniqueInput!]
   deleteMany: [AccountScalarWhereInput!]
   disconnect: [AccountWhereUniqueInput!]
@@ -629,16 +650,51 @@ input BudgetCreateInput {
   updatedAt: DateTime
 }
 
+input BudgetCreateManyAccountInput {
+  amount: Int!
+  categoryId: Int!
+  createdAt: DateTime
+  id: Int
+  updatedAt: DateTime
+}
+
+input BudgetCreateManyAccountInputEnvelope {
+  data: [BudgetCreateManyAccountInput!]!
+}
+
+input BudgetCreateManyCategoryInput {
+  accountId: Int!
+  amount: Int!
+  createdAt: DateTime
+  id: Int
+  updatedAt: DateTime
+}
+
+input BudgetCreateManyCategoryInputEnvelope {
+  data: [BudgetCreateManyCategoryInput!]!
+}
+
+input BudgetCreateManyInput {
+  accountId: Int!
+  amount: Int!
+  categoryId: Int!
+  createdAt: DateTime
+  id: Int
+  updatedAt: DateTime
+}
+
 input BudgetCreateNestedManyWithoutAccountInput {
   connect: [BudgetWhereUniqueInput!]
   connectOrCreate: [BudgetCreateOrConnectWithoutAccountInput!]
   create: [BudgetCreateWithoutAccountInput!]
+  createMany: BudgetCreateManyAccountInputEnvelope
 }
 
 input BudgetCreateNestedManyWithoutCategoryInput {
   connect: [BudgetWhereUniqueInput!]
   connectOrCreate: [BudgetCreateOrConnectWithoutCategoryInput!]
   create: [BudgetCreateWithoutCategoryInput!]
+  createMany: BudgetCreateManyCategoryInputEnvelope
 }
 
 input BudgetCreateOrConnectWithoutAccountInput {
@@ -825,6 +881,7 @@ input BudgetUpdateManyWithoutAccountNestedInput {
   connect: [BudgetWhereUniqueInput!]
   connectOrCreate: [BudgetCreateOrConnectWithoutAccountInput!]
   create: [BudgetCreateWithoutAccountInput!]
+  createMany: BudgetCreateManyAccountInputEnvelope
   delete: [BudgetWhereUniqueInput!]
   deleteMany: [BudgetScalarWhereInput!]
   disconnect: [BudgetWhereUniqueInput!]
@@ -838,6 +895,7 @@ input BudgetUpdateManyWithoutCategoryNestedInput {
   connect: [BudgetWhereUniqueInput!]
   connectOrCreate: [BudgetCreateOrConnectWithoutCategoryInput!]
   create: [BudgetCreateWithoutCategoryInput!]
+  createMany: BudgetCreateManyCategoryInputEnvelope
   delete: [BudgetWhereUniqueInput!]
   deleteMany: [BudgetScalarWhereInput!]
   disconnect: [BudgetWhereUniqueInput!]
@@ -953,6 +1011,13 @@ input CategoryCreateInput {
   budgets: BudgetCreateNestedManyWithoutCategoryInput
   createdAt: DateTime
   expenses: ExpenseCreateNestedManyWithoutCategoryInput
+  name: String!
+  updatedAt: DateTime
+}
+
+input CategoryCreateManyInput {
+  createdAt: DateTime
+  id: Int
   name: String!
   updatedAt: DateTime
 }
@@ -1273,22 +1338,82 @@ input ExpenseCreateInput {
   updatedAt: DateTime
 }
 
+input ExpenseCreateManyAccountInput {
+  amount: Int!
+  categoryId: Int!
+  createdAt: DateTime
+  debitDate: DateTime!
+  description: String!
+  id: Int
+  scheduleName: String!
+  updatedAt: DateTime
+}
+
+input ExpenseCreateManyAccountInputEnvelope {
+  data: [ExpenseCreateManyAccountInput!]!
+}
+
+input ExpenseCreateManyCategoryInput {
+  accountId: Int!
+  amount: Int!
+  createdAt: DateTime
+  debitDate: DateTime!
+  description: String!
+  id: Int
+  scheduleName: String!
+  updatedAt: DateTime
+}
+
+input ExpenseCreateManyCategoryInputEnvelope {
+  data: [ExpenseCreateManyCategoryInput!]!
+}
+
+input ExpenseCreateManyInput {
+  accountId: Int!
+  amount: Int!
+  categoryId: Int!
+  createdAt: DateTime
+  debitDate: DateTime!
+  description: String!
+  id: Int
+  scheduleName: String!
+  updatedAt: DateTime
+}
+
+input ExpenseCreateManyScheduleInput {
+  accountId: Int!
+  amount: Int!
+  categoryId: Int!
+  createdAt: DateTime
+  debitDate: DateTime!
+  description: String!
+  id: Int
+  updatedAt: DateTime
+}
+
+input ExpenseCreateManyScheduleInputEnvelope {
+  data: [ExpenseCreateManyScheduleInput!]!
+}
+
 input ExpenseCreateNestedManyWithoutAccountInput {
   connect: [ExpenseWhereUniqueInput!]
   connectOrCreate: [ExpenseCreateOrConnectWithoutAccountInput!]
   create: [ExpenseCreateWithoutAccountInput!]
+  createMany: ExpenseCreateManyAccountInputEnvelope
 }
 
 input ExpenseCreateNestedManyWithoutCategoryInput {
   connect: [ExpenseWhereUniqueInput!]
   connectOrCreate: [ExpenseCreateOrConnectWithoutCategoryInput!]
   create: [ExpenseCreateWithoutCategoryInput!]
+  createMany: ExpenseCreateManyCategoryInputEnvelope
 }
 
 input ExpenseCreateNestedManyWithoutScheduleInput {
   connect: [ExpenseWhereUniqueInput!]
   connectOrCreate: [ExpenseCreateOrConnectWithoutScheduleInput!]
   create: [ExpenseCreateWithoutScheduleInput!]
+  createMany: ExpenseCreateManyScheduleInputEnvelope
 }
 
 input ExpenseCreateOrConnectWithoutAccountInput {
@@ -1537,6 +1662,7 @@ input ExpenseUpdateManyWithoutAccountNestedInput {
   connect: [ExpenseWhereUniqueInput!]
   connectOrCreate: [ExpenseCreateOrConnectWithoutAccountInput!]
   create: [ExpenseCreateWithoutAccountInput!]
+  createMany: ExpenseCreateManyAccountInputEnvelope
   delete: [ExpenseWhereUniqueInput!]
   deleteMany: [ExpenseScalarWhereInput!]
   disconnect: [ExpenseWhereUniqueInput!]
@@ -1550,6 +1676,7 @@ input ExpenseUpdateManyWithoutCategoryNestedInput {
   connect: [ExpenseWhereUniqueInput!]
   connectOrCreate: [ExpenseCreateOrConnectWithoutCategoryInput!]
   create: [ExpenseCreateWithoutCategoryInput!]
+  createMany: ExpenseCreateManyCategoryInputEnvelope
   delete: [ExpenseWhereUniqueInput!]
   deleteMany: [ExpenseScalarWhereInput!]
   disconnect: [ExpenseWhereUniqueInput!]
@@ -1563,6 +1690,7 @@ input ExpenseUpdateManyWithoutScheduleNestedInput {
   connect: [ExpenseWhereUniqueInput!]
   connectOrCreate: [ExpenseCreateOrConnectWithoutScheduleInput!]
   create: [ExpenseCreateWithoutScheduleInput!]
+  createMany: ExpenseCreateManyScheduleInputEnvelope
   delete: [ExpenseWhereUniqueInput!]
   deleteMany: [ExpenseScalarWhereInput!]
   disconnect: [ExpenseWhereUniqueInput!]
@@ -1724,10 +1852,34 @@ input GoalCreateInput {
   updatedAt: DateTime
 }
 
+input GoalCreateManyAccountInput {
+  amount: Int!
+  createdAt: DateTime
+  description: String!
+  id: Int
+  targetDate: DateTime!
+  updatedAt: DateTime
+}
+
+input GoalCreateManyAccountInputEnvelope {
+  data: [GoalCreateManyAccountInput!]!
+}
+
+input GoalCreateManyInput {
+  accountId: Int!
+  amount: Int!
+  createdAt: DateTime
+  description: String!
+  id: Int
+  targetDate: DateTime!
+  updatedAt: DateTime
+}
+
 input GoalCreateNestedManyWithoutAccountInput {
   connect: [GoalWhereUniqueInput!]
   connectOrCreate: [GoalCreateOrConnectWithoutAccountInput!]
   create: [GoalCreateWithoutAccountInput!]
+  createMany: GoalCreateManyAccountInputEnvelope
 }
 
 input GoalCreateOrConnectWithoutAccountInput {
@@ -1908,6 +2060,7 @@ input GoalUpdateManyWithoutAccountNestedInput {
   connect: [GoalWhereUniqueInput!]
   connectOrCreate: [GoalCreateOrConnectWithoutAccountInput!]
   create: [GoalCreateWithoutAccountInput!]
+  createMany: GoalCreateManyAccountInputEnvelope
   delete: [GoalWhereUniqueInput!]
   deleteMany: [GoalScalarWhereInput!]
   disconnect: [GoalWhereUniqueInput!]
@@ -2027,22 +2180,82 @@ input IncomeCreateInput {
   updatedAt: DateTime
 }
 
+input IncomeCreateManyAccountInput {
+  amount: Int!
+  createdAt: DateTime
+  creditDate: DateTime!
+  description: String!
+  id: Int
+  scheduleName: String!
+  sourceName: String!
+  updatedAt: DateTime
+}
+
+input IncomeCreateManyAccountInputEnvelope {
+  data: [IncomeCreateManyAccountInput!]!
+}
+
+input IncomeCreateManyInput {
+  accountId: Int!
+  amount: Int!
+  createdAt: DateTime
+  creditDate: DateTime!
+  description: String!
+  id: Int
+  scheduleName: String!
+  sourceName: String!
+  updatedAt: DateTime
+}
+
+input IncomeCreateManyScheduleInput {
+  accountId: Int!
+  amount: Int!
+  createdAt: DateTime
+  creditDate: DateTime!
+  description: String!
+  id: Int
+  sourceName: String!
+  updatedAt: DateTime
+}
+
+input IncomeCreateManyScheduleInputEnvelope {
+  data: [IncomeCreateManyScheduleInput!]!
+}
+
+input IncomeCreateManySourceInput {
+  accountId: Int!
+  amount: Int!
+  createdAt: DateTime
+  creditDate: DateTime!
+  description: String!
+  id: Int
+  scheduleName: String!
+  updatedAt: DateTime
+}
+
+input IncomeCreateManySourceInputEnvelope {
+  data: [IncomeCreateManySourceInput!]!
+}
+
 input IncomeCreateNestedManyWithoutAccountInput {
   connect: [IncomeWhereUniqueInput!]
   connectOrCreate: [IncomeCreateOrConnectWithoutAccountInput!]
   create: [IncomeCreateWithoutAccountInput!]
+  createMany: IncomeCreateManyAccountInputEnvelope
 }
 
 input IncomeCreateNestedManyWithoutScheduleInput {
   connect: [IncomeWhereUniqueInput!]
   connectOrCreate: [IncomeCreateOrConnectWithoutScheduleInput!]
   create: [IncomeCreateWithoutScheduleInput!]
+  createMany: IncomeCreateManyScheduleInputEnvelope
 }
 
 input IncomeCreateNestedManyWithoutSourceInput {
   connect: [IncomeWhereUniqueInput!]
   connectOrCreate: [IncomeCreateOrConnectWithoutSourceInput!]
   create: [IncomeCreateWithoutSourceInput!]
+  createMany: IncomeCreateManySourceInputEnvelope
 }
 
 input IncomeCreateOrConnectWithoutAccountInput {
@@ -2289,6 +2502,7 @@ input IncomeUpdateManyWithoutAccountNestedInput {
   connect: [IncomeWhereUniqueInput!]
   connectOrCreate: [IncomeCreateOrConnectWithoutAccountInput!]
   create: [IncomeCreateWithoutAccountInput!]
+  createMany: IncomeCreateManyAccountInputEnvelope
   delete: [IncomeWhereUniqueInput!]
   deleteMany: [IncomeScalarWhereInput!]
   disconnect: [IncomeWhereUniqueInput!]
@@ -2302,6 +2516,7 @@ input IncomeUpdateManyWithoutScheduleNestedInput {
   connect: [IncomeWhereUniqueInput!]
   connectOrCreate: [IncomeCreateOrConnectWithoutScheduleInput!]
   create: [IncomeCreateWithoutScheduleInput!]
+  createMany: IncomeCreateManyScheduleInputEnvelope
   delete: [IncomeWhereUniqueInput!]
   deleteMany: [IncomeScalarWhereInput!]
   disconnect: [IncomeWhereUniqueInput!]
@@ -2315,6 +2530,7 @@ input IncomeUpdateManyWithoutSourceNestedInput {
   connect: [IncomeWhereUniqueInput!]
   connectOrCreate: [IncomeCreateOrConnectWithoutSourceInput!]
   create: [IncomeCreateWithoutSourceInput!]
+  createMany: IncomeCreateManySourceInputEnvelope
   delete: [IncomeWhereUniqueInput!]
   deleteMany: [IncomeScalarWhereInput!]
   disconnect: [IncomeWhereUniqueInput!]
@@ -2459,6 +2675,16 @@ input IntWithAggregatesFilter {
 }
 
 type Mutation {
+  createManyAccount(data: [AccountCreateManyInput!]!): AffectedRowsOutput!
+  createManyBudget(data: [BudgetCreateManyInput!]!): AffectedRowsOutput!
+  createManyCategory(data: [CategoryCreateManyInput!]!): AffectedRowsOutput!
+  createManyExpense(data: [ExpenseCreateManyInput!]!): AffectedRowsOutput!
+  createManyGoal(data: [GoalCreateManyInput!]!): AffectedRowsOutput!
+  createManyIncome(data: [IncomeCreateManyInput!]!): AffectedRowsOutput!
+  createManyPassword(data: [PasswordCreateManyInput!]!): AffectedRowsOutput!
+  createManySchedule(data: [ScheduleCreateManyInput!]!): AffectedRowsOutput!
+  createManySource(data: [SourceCreateManyInput!]!): AffectedRowsOutput!
+  createManyUser(data: [UserCreateManyInput!]!): AffectedRowsOutput!
   createOneAccount(data: AccountCreateInput!): Account!
   createOneBudget(data: BudgetCreateInput!): Budget!
   createOneCategory(data: CategoryCreateInput!): Category!
@@ -2489,7 +2715,7 @@ type Mutation {
   deleteOneSchedule(where: ScheduleWhereUniqueInput!): Schedule
   deleteOneSource(where: SourceWhereUniqueInput!): Source
   deleteOneUser(where: UserWhereUniqueInput!): User
-  registerUser(data: UserRegisterInput2!): User!
+  registerUserSession(data: UserRegisterInput2!): User!
   updateManyAccount(data: AccountUpdateManyMutationInput!, where: AccountWhereInput): AffectedRowsOutput!
   updateManyBudget(data: BudgetUpdateManyMutationInput!, where: BudgetWhereInput): AffectedRowsOutput!
   updateManyCategory(data: CategoryUpdateManyMutationInput!, where: CategoryWhereInput): AffectedRowsOutput!
@@ -2644,6 +2870,11 @@ input PasswordCountOrderByAggregateInput {
 input PasswordCreateInput {
   hash: String!
   user: UserCreateNestedOneWithoutPasswordInput!
+}
+
+input PasswordCreateManyInput {
+  hash: String!
+  userId: Int!
 }
 
 input PasswordCreateNestedOneWithoutUserInput {
@@ -2885,6 +3116,10 @@ input ScheduleCreateInput {
   name: String!
 }
 
+input ScheduleCreateManyInput {
+  name: String!
+}
+
 input ScheduleCreateNestedOneWithoutExpensesInput {
   connect: ScheduleWhereUniqueInput
   connectOrCreate: ScheduleCreateOrConnectWithoutExpensesInput
@@ -3071,6 +3306,10 @@ input SourceCountOrderByAggregateInput {
 
 input SourceCreateInput {
   Income: IncomeCreateNestedManyWithoutSourceInput
+  name: String!
+}
+
+input SourceCreateManyInput {
   name: String!
 }
 
@@ -3269,6 +3508,14 @@ input UserCreateInput {
   email: String!
   name: String!
   password: PasswordCreateNestedOneWithoutUserInput
+  updatedAt: DateTime
+}
+
+input UserCreateManyInput {
+  createdAt: DateTime
+  email: String!
+  id: Int
+  name: String!
   updatedAt: DateTime
 }
 

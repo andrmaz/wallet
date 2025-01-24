@@ -1,3 +1,5 @@
+import 'dotenv/config'
+
 import express from 'express'
 import { createHandler } from 'graphql-http/lib/use/express';
 import { loggerRequestHandler } from './middlewares/logger';
@@ -14,19 +16,25 @@ import { port, host } from './data/env';
 async function bootstrap() {
   const app = express()
 
+  app.use(cors({
+    origin: 'http://localhost:4200',
+    credentials: true,
+  }))
+
   app.use(helmet())
-  app.use(cors());
-  app.set('trust proxy', 1)
+
+  app.use(sessionRequestHandler)
+
   app.use(loggerRequestHandler)
   app.use(errorRequestHandler)
-  app.use(sessionRequestHandler)
 
   const schema = await makeSchema()
   app.use('/graphql', createHandler({
     schema, context: req => {
-      req['session'] = req.raw.session
-      return { req, prisma }
-    }
+      const session = req.raw.session
+      Logger.debug(session)
+      return { session, prisma }
+    },
   }));
 
   const server = app.listen(port, host, () => {

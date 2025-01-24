@@ -1,46 +1,44 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator typegraphql {
+  provider        = "typegraphql-prisma"
+  simpleResolvers = true
+}
 
 datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
-generator client {
-  provider = "prisma-client-js"
-}
-
-generator typegraphql {
-  provider = "typegraphql-prisma"
-}
-
 model User {
   id        Int       @id @default(autoincrement())
   email     String    @unique
   name      String
-  accounts  Account[]
   createdAt DateTime  @default(now())
   updatedAt DateTime  @default(now()) @updatedAt
+  accounts  Account[]
   password  Password?
 }
 
 model Password {
   hash   String
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   userId Int    @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Account {
   id        Int       @id @default(autoincrement())
   name      String
-  expenses  Expense[]
-  incomes   Income[]
-  budgets   Budget[]
-  goals     Goal[]
-  user      User      @relation(fields: [userId], references: [id])
   userId    Int
   createdAt DateTime  @default(now())
   updatedAt DateTime  @default(now()) @updatedAt
+  user      User      @relation(fields: [userId], references: [id])
+  budgets   Budget[]
+  expenses  Expense[]
+  goals     Goal[]
+  incomes   Income[]
 }
 
 model Income {
@@ -48,14 +46,14 @@ model Income {
   description  String
   amount       Int
   creditDate   DateTime
-  source       Source   @relation(fields: [sourceName], references: [name])
   sourceName   String
-  schedule     Schedule @relation(fields: [scheduleName], references: [name])
   scheduleName String
-  account      Account  @relation(fields: [accountId], references: [id])
   accountId    Int
   createdAt    DateTime @default(now())
   updatedAt    DateTime @default(now()) @updatedAt
+  account      Account  @relation(fields: [accountId], references: [id])
+  schedule     Schedule @relation(fields: [scheduleName], references: [name])
+  source       Source   @relation(fields: [sourceName], references: [name])
 }
 
 model Expense {
@@ -63,25 +61,25 @@ model Expense {
   description  String
   amount       Int
   debitDate    DateTime
-  schedule     Schedule @relation(fields: [scheduleName], references: [name])
   scheduleName String
-  category     Category @relation(fields: [categoryId], references: [id])
   categoryId   Int
-  account      Account  @relation(fields: [accountId], references: [id])
   accountId    Int
   createdAt    DateTime @default(now())
   updatedAt    DateTime @default(now()) @updatedAt
+  account      Account  @relation(fields: [accountId], references: [id])
+  category     Category @relation(fields: [categoryId], references: [id])
+  schedule     Schedule @relation(fields: [scheduleName], references: [name])
 }
 
 model Budget {
   id         Int      @id @default(autoincrement())
   amount     Int
-  category   Category @relation(fields: [categoryId], references: [id])
   categoryId Int
-  account    Account  @relation(fields: [accountId], references: [id])
   accountId  Int
   createdAt  DateTime @default(now())
   updatedAt  DateTime @default(now()) @updatedAt
+  account    Account  @relation(fields: [accountId], references: [id])
+  category   Category @relation(fields: [categoryId], references: [id])
 }
 
 model Goal {
@@ -89,23 +87,21 @@ model Goal {
   description String
   amount      Int
   targetDate  DateTime
-  account     Account  @relation(fields: [accountId], references: [id])
   accountId   Int
   createdAt   DateTime @default(now())
   updatedAt   DateTime @default(now()) @updatedAt
+  account     Account  @relation(fields: [accountId], references: [id])
 }
 
-// housing, cash, food, hotel, restaurant, mortgage, loan, insurance, utilities, health, transportation
 model Category {
   id        Int       @id @default(autoincrement())
   name      String    @unique
-  expenses  Expense[]
-  budgets   Budget[]
   createdAt DateTime  @default(now())
   updatedAt DateTime  @default(now()) @updatedAt
+  budgets   Budget[]
+  expenses  Expense[]
 }
 
-// one-time, daily, weekly, monthly or yearly
 model Schedule {
   name     String    @id
   expenses Expense[]
@@ -116,6 +112,3 @@ model Source {
   name   String   @id
   Income Income[]
 }
-
-//Setting
-//Notification

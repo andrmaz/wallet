@@ -27,9 +27,11 @@ const initialFormData = {name: '', email: '', password: ''}
 export const Signup = () => {
   const {t} = useLocale()
   const navigate = useNavigate()
+
   const [formData, setFormData] =
     React.useState<TSignupFormData>(initialFormData)
   const [error, setError] = React.useState<string | null>(null)
+
   const {mutateAsync /* , isError, isPending */} =
     useRegisterUserMutation(formData)
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = event => {
@@ -45,7 +47,9 @@ export const Signup = () => {
       setError(result.error.issues[0].message)
     } else {
       mutateAsync()
-        .then(() => navigate(Path.Dashboard))
+        .then(() => {
+          navigate(Path.Dashboard)
+        })
         .catch(err => {
           if (err instanceof Error) {
             console.error(err)

@@ -30,29 +30,24 @@ class UserRegisterInput {
 @Resolver()
 class CustomCreateOneUserResolver {
   @Mutation(() => User, { nullable: false })
-  async registerUser(@Arg("data") { name, email, password }: UserRegisterInput, @Ctx() { prisma, req }: Context): Promise<User> {
+  async registerUserSession(@Arg("data") { name, email, password }: UserRegisterInput, @Ctx() { prisma, session }: Context): Promise<User> {
     const hash = await bcrypt.hash(password, 10);
     const user = await prisma.user.create({ data: { name, email, password: { create: { hash } } } });
     Logger.info("User created successfully")
-    req.session.regenerate((err) => {
+
+    session.user = user.id
+    Logger.info("User information stored in session")
+
+    session.save((err) => {
       if (err) {
-        Logger.error("Error regenerating session")
-        throw new UnauthorizedError()
+        Logger.error("Error saving session");
+        throw new UnauthorizedError();
       }
-      // store user information in session
-      req.session.user = user.id
-      Logger.info("Session regenerated successfully")
-      // save the session before redirection to ensure page
-      // load does not happen before session is saved
-      /* req.session.save(function (err) {
-        if (err) {
-          Logger.error("Error saving session")
-          throw new UnauthorizedError()
-        }
-        Logger.info("Session saved successfully")
-      }) */
+      Logger.info("Session saved successfully");
+      Logger.debug(session.user);
     })
-    return user;
+
+    return user
   }
 }
 
