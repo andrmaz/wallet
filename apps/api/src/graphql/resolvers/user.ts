@@ -1,5 +1,5 @@
 import { User } from '@generated/type-graphql'
-import { Arg, Mutation, Resolver, Field, InputType, Ctx, UnauthorizedError } from "type-graphql";
+import { Arg, Mutation, Resolver, Field, InputType, Ctx, UnauthorizedError, Query } from "type-graphql";
 import Logger from '../../libs/logger';
 import { Context } from '../context';
 import bcrypt from "bcrypt";
@@ -28,7 +28,7 @@ class UserRegisterInput {
 }
 
 @Resolver()
-class CustomCreateOneUserResolver {
+class CustomUserResolver {
   @Mutation(() => User, { nullable: false })
   async registerUserSession(@Arg("data") { name, email, password }: UserRegisterInput, @Ctx() { prisma, session }: Context): Promise<User> {
     const hash = await bcrypt.hash(password, 10);
@@ -49,8 +49,31 @@ class CustomCreateOneUserResolver {
 
     return user
   }
+
+  @Query(() => User, { nullable: true })
+  async retrieveUserSession(@Ctx() { prisma, session }: Context): Promise<User | null> {
+    if (!session.user) {
+      return null
+    }
+
+    const user = await prisma.user.findUnique({ where: { id: session.user } })
+    Logger.info("User found in session")
+    return user
+  }
+
+  @Mutation(() => Boolean, { nullable: false })
+  async logoutUserSession(@Ctx() { session }: Context): Promise<boolean> {
+    session.destroy((err) => {
+      if (err) {
+        Logger.error("Error destroying session");
+        throw new UnauthorizedError();
+      }
+      Logger.info("Session destroyed successfully");
+    })
+    return true
+  }
 }
 
-export { CustomCreateOneUserResolver }
+export { CustomUserResolver }
 
 

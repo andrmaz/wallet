@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {useNavigate} from 'react-router-dom'
-import {useRegisterUserMutation} from '../../graphql/user'
+import {useRegisterUserMutation, useUserSessionQuery} from '../../graphql/user'
 import {SignupForm} from './Form'
 import {Path} from '../../data/routes'
 import {useLocale} from '../../hooks/locale'
@@ -32,15 +32,16 @@ export const Signup = () => {
     React.useState<TSignupFormData>(initialFormData)
   const [error, setError] = React.useState<string | null>(null)
 
-  const {mutateAsync /* , isError, isPending */} =
-    useRegisterUserMutation(formData)
-  const handleChange: React.ChangeEventHandler<HTMLInputElement> = event => {
+  const {refetch} = useUserSessionQuery()
+  const {mutateAsync} = useRegisterUserMutation(formData)
+
+  const onChange: React.ChangeEventHandler<HTMLInputElement> = event => {
     setFormData(formData => ({
       ...formData,
       [event.target.name]: event.target.value,
     }))
   }
-  const handleSubmit: React.FormEventHandler<HTMLFormElement> = event => {
+  const signup: React.FormEventHandler<HTMLFormElement> = event => {
     event.preventDefault()
     const result = SignupFormData(t).safeParse(formData)
     if (!result.success) {
@@ -48,6 +49,7 @@ export const Signup = () => {
     } else {
       mutateAsync()
         .then(() => {
+          refetch()
           navigate(Path.Dashboard)
         })
         .catch(err => {
@@ -62,8 +64,8 @@ export const Signup = () => {
   return (
     <SignupForm
       formData={formData}
-      onChange={handleChange}
-      onSubmit={handleSubmit}
+      onChange={onChange}
+      onSubmit={signup}
       errorMessage={error}
     />
   )

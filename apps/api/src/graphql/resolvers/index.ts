@@ -1,1 +1,1 @@
-export { CustomCreateOneUserResolver } from './user'
+export { CustomUserResolver } from './user'

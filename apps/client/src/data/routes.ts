@@ -1,5 +1,6 @@
 export const Path = {
   Landing: '/',
   Registration: "/signup",
-  Dashboard: "/dashboard"
+  Dashboard: "/dashboard",
+  Login: "/signin"
 } as const

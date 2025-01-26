@@ -1,7 +1,7 @@
 import "reflect-metadata";
 import { resolvers, ResolversEnhanceMap, applyResolversEnhanceMap } from '@generated/type-graphql'
 import { buildSchema, Authorized } from "type-graphql";
-import { CustomCreateOneUserResolver } from "./resolvers";
+import { CustomUserResolver } from "./resolvers";
 import { customAuthChecker } from "./middlewares/auth";
 
 const resolversEnhanceMap: ResolversEnhanceMap = {
@@ -12,7 +12,7 @@ const resolversEnhanceMap: ResolversEnhanceMap = {
 applyResolversEnhanceMap(resolversEnhanceMap);
 
 const makeSchema = async () => await buildSchema({
-  resolvers: [...resolvers, CustomCreateOneUserResolver],
+  resolvers: [...resolvers, CustomUserResolver],
   emitSchemaFile: "./schema.gql",
   validate: false,
   authChecker: customAuthChecker,

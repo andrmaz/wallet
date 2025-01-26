@@ -3,7 +3,7 @@
     "title": "Wallet"
   },
   "header": {
-    "action": {"login": "Log in", "register": "Sign up"},
+    "action": {"login": "Sign in", "register": "Sign up", "logout": "Log out"},
     "navigation": {
       "product": "Products",
       "feature": "Features",
