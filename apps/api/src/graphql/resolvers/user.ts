@@ -27,6 +27,23 @@ class UserRegisterInput {
   password!: string;
 }
 
+@InputType({
+  description: "The user login model",
+})
+class UserLoginInput {
+  @Field(() => String, {
+    nullable: false,
+    description: "The user email",
+  })
+  email!: string;
+
+  @Field(() => String, {
+    nullable: false,
+    description: "The user password",
+  })
+  password!: string;
+}
+
 @Resolver()
 class CustomUserResolver {
   @Mutation(() => User, { nullable: false })
@@ -71,6 +88,35 @@ class CustomUserResolver {
       Logger.info("Session destroyed successfully");
     })
     return true
+  }
+
+  @Mutation(() => User, { nullable: false })
+  async loginUserSession(@Arg("data") { email, password }: UserLoginInput, @Ctx() { prisma, session }: Context): Promise<User> {
+    const user = await prisma.user.findUnique({ where: { email }, include: { password: true } });
+    if (!user) {
+      Logger.error("User not found");
+      throw new UnauthorizedError();
+    }
+
+    const valid = await bcrypt.compare(password, user.password.hash);
+    if (!valid) {
+      Logger.error("Invalid password");
+      throw new UnauthorizedError();
+    }
+
+    session.user = user.id
+    Logger.info("User information stored in session")
+
+    session.save((err) => {
+      if (err) {
+        Logger.error("Error saving session");
+        throw new UnauthorizedError();
+      }
+      Logger.info("Session saved successfully");
+      Logger.debug(session.user);
+    })
+
+    return user
   }
 }
 

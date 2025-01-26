@@ -2715,6 +2715,7 @@ type Mutation {
   deleteOneSchedule(where: ScheduleWhereUniqueInput!): Schedule
   deleteOneSource(where: SourceWhereUniqueInput!): Source
   deleteOneUser(where: UserWhereUniqueInput!): User
+  loginUserSession(data: UserLoginInput2!): User!
   logoutUserSession: Boolean!
   registerUserSession(data: UserRegisterInput2!): User!
   updateManyAccount(data: AccountUpdateManyMutationInput!, where: AccountWhereInput): AffectedRowsOutput!
@@ -3570,6 +3571,15 @@ type UserGroupBy {
   id: Int!
   name: String!
   updatedAt: DateTime!
+}
+
+"""The user login model"""
+input UserLoginInput2 {
+  """The user email"""
+  email: String!
+
+  """The user password"""
+  password: String!
 }
 
 type UserMaxAggregate {

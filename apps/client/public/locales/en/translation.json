@@ -28,5 +28,14 @@
       "password": {"label": "Password", "error": "Password is not valid"},
       "action": {"next": "Next", "submit": "Sign up"}
     }
+  },
+  "login": {
+    "title": "Login",
+    "intro": "Sign in to access your account.",
+    "form": {
+      "email": {"label": "Email", "error": "Email is not valid"},
+      "password": {"label": "Password", "error": "Password is not valid"},
+      "action": {"submit": "Sign in"}
+    }
   }
 }
