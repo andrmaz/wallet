@@ -36,7 +36,7 @@
     "class-validator": "^0.14.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
-    "express": "~4.21.2",
+    "express": "~4.20.0",
     "express-session": "^1.18.0",
     "gql.tada": "^1.7.5",
     "graphql": "^15.8.0",
