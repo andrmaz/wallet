@@ -1,4 +1,4 @@
-import {Flex, Section} from '@wallet/shared-ui'
+import {Flex, Section} from '@wallet/ui'
 import {Hero} from '../components/hero'
 
 export default function Landing() {

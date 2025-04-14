@@ -1,11 +1,4 @@
-import {
-  Button,
-  Container,
-  Flex,
-  Heading,
-  Section,
-  Text,
-} from '@wallet/shared-ui'
+import {Button, Container, Flex, Heading, Section, Text} from '@wallet/ui'
 import {useLocale} from '../../hooks/locale'
 
 export const Hero = () => {

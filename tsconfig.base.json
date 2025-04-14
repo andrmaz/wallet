@@ -16,7 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "@wallet/shared-gql": ["libs/shared/gql/src/index.ts"],
-      "@wallet/shared-ui": ["libs/shared/ui/src/index.ts"]
+      "@wallet/ui": ["libs/ui/src/index.ts"]
     },
     "plugins": [
       {

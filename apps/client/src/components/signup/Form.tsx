@@ -1,4 +1,4 @@
-import {Button, Field, Flex, Form} from '@wallet/shared-ui'
+import {Button, Field, Flex, Form} from '@wallet/ui'
 import {useLocale} from '../../hooks/locale'
 import type {TSignupFormData} from '../../types'
 

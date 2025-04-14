@@ -1,4 +1,4 @@
-import {Box, Flex} from '@wallet/shared-ui'
+import {Box, Flex} from '@wallet/ui'
 import {useLocale} from '../../hooks/locale'
 import {Link} from 'react-router-dom'
 import {Path} from '../../data/routes'

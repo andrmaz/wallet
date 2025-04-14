@@ -1,4 +1,4 @@
-import {Text} from '@wallet/shared-ui'
+import {Text} from '@wallet/ui'
 import {useLocale} from '../../hooks/locale'
 
 export const Testimonial = () => {

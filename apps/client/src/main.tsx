@@ -2,7 +2,7 @@ import * as React from 'react'
 import * as ReactDOM from 'react-dom/client'
 import {BrowserRouter} from 'react-router-dom'
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query'
-import {Theme} from '@wallet/shared-ui'
+import {Theme} from '@wallet/ui'
 import App from './app/app'
 import './styles/theme.css'
 
