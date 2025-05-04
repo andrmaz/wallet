@@ -1,6 +1,6 @@
 import * as React from 'react'
-import {useLocale} from '../../hooks/locale'
-import {Navbar} from '@wallet/shared-ui'
+import { useLocale } from '@wallet/common'
+import {Navbar} from '@wallet/ui'
 
 export const Toolbar = () => {
   const {t} = useLocale()

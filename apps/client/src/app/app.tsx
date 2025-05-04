@@ -2,7 +2,8 @@ import * as React from 'react'
 import {Header} from '../components/header'
 import styles from './app.module.css'
 import Routes from '../routes'
-import '../libs/i18n'
+// Import i18n from the common library instead of a local path
+import '@wallet/common'
 
 function App() {
   return (

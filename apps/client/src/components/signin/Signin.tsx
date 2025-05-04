@@ -1,4 +1,4 @@
-import {TFunction} from 'i18next'
+import {TFunction} from '@wallet/common'
 import {z} from 'zod'
 
 export const SigninFormData = (t: TFunction) =>

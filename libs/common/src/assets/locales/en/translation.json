@@ -1,0 +1,32 @@
+{
+  "app": {
+    "title": "Wallet"
+  },
+  "header": {
+    "action": {"login": "Log in", "register": "Sign up"},
+    "navigation": {
+      "product": "Products",
+      "feature": "Features",
+      "customer": "Customers",
+      "blog": "Blog",
+      "pricing": "Pricing"
+    }
+  },
+  "landing": {
+    "hero": {
+      "title": "Take control of your money",
+      "intro": "Track your spending with an informative dashboard. Increase your income by making investments in just a few clicks.",
+      "action": {"trial": "Start free trial", "demo": "Request a demo"}
+    }
+  },
+  "registration": {
+    "title": "Registration",
+    "intro": "Create an account to start managing your finances.",
+    "form": {
+      "name": {"label": "Name", "error": "Name is too short"},
+      "email": {"label": "Email", "error": "Email is not valid"},
+      "password": {"label": "Password", "error": "Password is not valid"},
+      "action": {"next": "Next", "submit": "Sign up"}
+    }
+  }
+}

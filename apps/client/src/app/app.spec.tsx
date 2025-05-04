@@ -1,4 +1,4 @@
-import {render} from '@wallet/shared-ui'
+import {render} from '@wallet/ui'
 import App from './app'
 
 describe('App', () => {

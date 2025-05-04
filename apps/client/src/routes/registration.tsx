@@ -1,4 +1,4 @@
-import {Flex, Section, Separator} from '@wallet/shared-ui'
+import {Flex, Section, Separator} from '@wallet/ui'
 import {Signup} from '../components/signup'
 import {Testimonial} from '../components/testimonial'
 
