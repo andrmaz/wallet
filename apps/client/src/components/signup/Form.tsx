@@ -1,6 +1,6 @@
-import {Button, Field, Flex, Form} from '@wallet/ui'
-import {useLocale} from '../../hooks/locale'
+import {useLocale} from '@wallet/common'
 import type {TSignupFormData} from '../../types'
+import {Button, Field, Flex, Form} from '@wallet/ui'
 
 interface SignupFormProps {
   formData: TSignupFormData

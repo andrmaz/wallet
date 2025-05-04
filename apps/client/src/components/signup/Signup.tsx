@@ -1,12 +1,11 @@
-import * as React from 'react'
-import {useNavigate} from 'react-router-dom'
-import {useRegisterUserMutation} from '../../graphql/user'
-import {SignupForm} from './Form'
-import {Path} from '../../data/routes'
-import {useLocale} from '../../hooks/locale'
+import {useState} from 'react'
+import {useLocale, TFunction} from '@wallet/common'
 import {z} from 'zod'
 import type {TSignupFormData} from '../../types'
-import {TFunction} from 'i18next'
+import { useRegisterUserMutation } from '../../graphql/user'
+import { useNavigate } from 'react-router-dom'
+import { SignupForm } from './Form'
+import { Path } from '../../data/routes'
 
 export const SignupFormData = (t: TFunction) =>
   z
@@ -16,6 +15,7 @@ export const SignupFormData = (t: TFunction) =>
         .min(2, {message: t('registration.form.name.error')})
         .max(30),
       email: z.string().email({message: t('registration.form.email.error')}),
+
       password: z.string().regex(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/, {
         message: t('registration.form.password.error'),
       }),
@@ -28,9 +28,8 @@ export const Signup = () => {
   const {t} = useLocale()
   const navigate = useNavigate()
 
-  const [formData, setFormData] =
-    React.useState<TSignupFormData>(initialFormData)
-  const [error, setError] = React.useState<string | null>(null)
+  const [formData, setFormData] = useState<TSignupFormData>(initialFormData)
+  const [error, setError] = useState<string | null>(null)
 
   const {mutateAsync /* , isError, isPending */} =
     useRegisterUserMutation(formData)

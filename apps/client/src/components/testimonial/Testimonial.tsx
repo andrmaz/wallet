@@ -1,5 +1,5 @@
+import {useLocale} from '@wallet/common'
 import {Text} from '@wallet/ui'
-import {useLocale} from '../../hooks/locale'
 
 export const Testimonial = () => {
   const {t} = useLocale()

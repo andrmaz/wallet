@@ -1,5 +1,5 @@
 import * as React from 'react'
-import {useLocale} from '../../hooks/locale'
+import { useLocale } from '@wallet/common'
 import {Navbar} from '@wallet/ui'
 
 export const Toolbar = () => {
