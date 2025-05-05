@@ -127,7 +127,7 @@
     "typegraphql-prisma": "^0.27.1",
     "typescript": "~5.2.2",
     "url-loader": "^4.1.1",
-    "vite": "~4.5.9",
+    "vite": "~4.5.14",
     "vite-plugin-dts": "^4.5.3",
     "vitest": "~0.34.6"
   }
