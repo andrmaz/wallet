@@ -47,6 +47,7 @@ export const BudgetProgress: React.FC<BudgetProgressProps> = ({
       const spent = spendingByCategory[budget.category.id] || 0
       const percentage = budget.amount > 0 ? (spent / budget.amount) * 100 : 0
       return {
+        categoryId: budget.category.id,
         categoryName: budget.category.name,
         budgeted: budget.amount,
         spent,
@@ -69,8 +70,8 @@ export const BudgetProgress: React.FC<BudgetProgressProps> = ({
   return (
     <Card title={t('dashboard.budgetProgress.title')}>
       <Flex direction="column" gap="4">
-        {budgetData.map((item, index) => (
-          <Flex key={index} direction="column" gap="2">
+        {budgetData.map((item) => (
+          <Flex key={item.categoryId} direction="column" gap="2">
             <Flex justify="between" align="center">
               <Text size="2" weight="medium">
                 {item.categoryName}
@@ -97,6 +98,11 @@ export const BudgetProgress: React.FC<BudgetProgressProps> = ({
                     : 'var(--green-9)',
                   transition: 'width 0.3s ease',
                 }}
+                role="progressbar"
+                aria-valuenow={item.percentage}
+                aria-valuemin={0}
+                aria-valuemax={100}
+                aria-label={`${item.categoryName} budget progress`}
               />
             </div>
             {item.overBudget && (

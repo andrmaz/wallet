@@ -16,9 +16,9 @@ export const QuickLinks: React.FC = () => {
   return (
     <Card title={t('dashboard.quickLinks.title')}>
       <Flex direction="column" gap="2">
-        {links.map((link, index) => (
+        {links.map((link) => (
           <Button
-            key={index}
+            key={link.label}
             onClick={link.onClick}
             variant="soft"
             style={{

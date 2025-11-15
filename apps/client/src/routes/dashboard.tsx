@@ -17,7 +17,8 @@ export default function Dashboard() {
   const accountId = 1
   const {data, isLoading, error} = useDashboardDataQuery(accountId)
 
-  // Calculate totals - must be before early returns
+  // Calculate totals using hooks - these must be called before any conditional returns
+  // to comply with React's Rules of Hooks (hooks must be called in the same order every render)
   const account = data?.account
   
   const totalIncome = React.useMemo(
@@ -29,8 +30,6 @@ export default function Dashboard() {
     () => account?.expenses?.reduce((sum, expense) => sum + expense.amount, 0) || 0,
     [account?.expenses]
   )
-
-  const currentBalance = totalIncome - totalExpenses
 
   if (isLoading) {
     return (
@@ -87,7 +86,7 @@ export default function Dashboard() {
         }}
       >
         <BudgetProgress budgets={account.budgets || []} expenses={account.expenses || []} />
-        <GoalsProgress goals={account.goals || []} currentBalance={currentBalance} />
+        <GoalsProgress goals={account.goals || []} />
       </div>
 
       <SpendingChart expenses={account.expenses || []} />

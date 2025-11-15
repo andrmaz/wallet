@@ -83,14 +83,15 @@ model Budget {
 }
 
 model Goal {
-  id          Int      @id @default(autoincrement())
-  description String
-  amount      Int
-  targetDate  DateTime
-  accountId   Int
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @default(now()) @updatedAt
-  account     Account  @relation(fields: [accountId], references: [id])
+  id            Int      @id @default(autoincrement())
+  description   String
+  amount        Int
+  currentAmount Int      @default(0)
+  targetDate    DateTime
+  accountId     Int
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @default(now()) @updatedAt
+  account       Account  @relation(fields: [accountId], references: [id])
 }
 
 model Category {

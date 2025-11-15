@@ -6,18 +6,15 @@ interface Goal {
   id: number
   description: string
   amount: number
+  currentAmount: number
   targetDate: string
 }
 
 interface GoalsProgressProps {
   goals: Goal[]
-  currentBalance: number
 }
 
-export const GoalsProgress: React.FC<GoalsProgressProps> = ({
-  goals,
-  currentBalance,
-}) => {
+export const GoalsProgress: React.FC<GoalsProgressProps> = ({goals}) => {
   const {t} = useLocale()
   
   const sortedGoals = React.useMemo(() => {
@@ -41,8 +38,8 @@ export const GoalsProgress: React.FC<GoalsProgressProps> = ({
       <Flex direction="column" gap="4">
         {sortedGoals.map((goal) => {
           const percentage =
-            goal.amount > 0 ? Math.min((currentBalance / goal.amount) * 100, 100) : 0
-          const isAchieved = currentBalance >= goal.amount
+            goal.amount > 0 ? Math.min((goal.currentAmount / goal.amount) * 100, 100) : 0
+          const isAchieved = goal.currentAmount >= goal.amount
           const daysRemaining = Math.ceil(
             (new Date(goal.targetDate).getTime() - new Date().getTime()) /
               (1000 * 60 * 60 * 24)
@@ -55,7 +52,7 @@ export const GoalsProgress: React.FC<GoalsProgressProps> = ({
                   {goal.description}
                 </Text>
                 <Text size="2" color="gray">
-                  ${(currentBalance / 100).toFixed(2)} / ${(goal.amount / 100).toFixed(2)}
+                  ${(goal.currentAmount / 100).toFixed(2)} / ${(goal.amount / 100).toFixed(2)}
                 </Text>
               </Flex>
               <div
@@ -74,6 +71,11 @@ export const GoalsProgress: React.FC<GoalsProgressProps> = ({
                     backgroundColor: isAchieved ? 'var(--green-9)' : 'var(--blue-9)',
                     transition: 'width 0.3s ease',
                   }}
+                  role="progressbar"
+                  aria-valuenow={percentage}
+                  aria-valuemin={0}
+                  aria-valuemax={100}
+                  aria-label={`${goal.description} progress: ${percentage.toFixed(1)}%`}
                 />
               </div>
               <Flex justify="between" align="center">

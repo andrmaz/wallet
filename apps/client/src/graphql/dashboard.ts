@@ -38,6 +38,7 @@ export const useDashboardDataQuery = (accountId: number) => {
         id
         description
         amount
+        currentAmount
         targetDate
       }
     }

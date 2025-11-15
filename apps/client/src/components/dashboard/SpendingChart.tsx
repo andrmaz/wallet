@@ -15,6 +15,17 @@ interface SpendingChartProps {
   expenses: Expense[]
 }
 
+const CATEGORY_COLORS = [
+  'var(--blue-9)',
+  'var(--green-9)',
+  'var(--orange-9)',
+  'var(--purple-9)',
+  'var(--red-9)',
+  'var(--yellow-9)',
+  'var(--cyan-9)',
+  'var(--pink-9)',
+]
+
 export const SpendingChart: React.FC<SpendingChartProps> = ({expenses}) => {
   const {t} = useLocale()
   
@@ -34,17 +45,6 @@ export const SpendingChart: React.FC<SpendingChartProps> = ({expenses}) => {
   const totalSpending = React.useMemo(() => {
     return spendingByCategory.reduce((sum, item) => sum + item.amount, 0)
   }, [spendingByCategory])
-
-  const colors = [
-    'var(--blue-9)',
-    'var(--green-9)',
-    'var(--orange-9)',
-    'var(--purple-9)',
-    'var(--red-9)',
-    'var(--yellow-9)',
-    'var(--cyan-9)',
-    'var(--pink-9)',
-  ]
 
   if (spendingByCategory.length === 0) {
     return (
@@ -87,9 +87,14 @@ export const SpendingChart: React.FC<SpendingChartProps> = ({expenses}) => {
                   style={{
                     width: `${percentage}%`,
                     height: '100%',
-                    backgroundColor: colors[index % colors.length],
+                    backgroundColor: CATEGORY_COLORS[index % CATEGORY_COLORS.length],
                     transition: 'width 0.3s ease',
                   }}
+                  role="progressbar"
+                  aria-valuenow={percentage}
+                  aria-valuemin={0}
+                  aria-valuemax={100}
+                  aria-label={`${item.name}: ${percentage.toFixed(1)}% of total spending`}
                 />
               </div>
             </Flex>
