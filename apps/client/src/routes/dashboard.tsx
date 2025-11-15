@@ -10,6 +10,15 @@ import {
   SpendingChart,
 } from '../components/dashboard'
 
+// Type assertion for goals until GraphQL schema is regenerated
+interface Goal {
+  id: number
+  description: string
+  amount: number
+  currentAmount: number
+  targetDate: string
+}
+
 export default function Dashboard() {
   const {t} = useLocale()
   // For now, we'll use accountId 1 as a default
@@ -81,7 +90,7 @@ export default function Dashboard() {
 
       <div style={gridStyle}>
         <BudgetProgress budgets={account.budgets || []} expenses={account.expenses || []} />
-        <GoalsProgress goals={account.goals || []} />
+        <GoalsProgress goals={(account.goals || []) as Goal[]} />
       </div>
 
       <SpendingChart expenses={account.expenses || []} />
