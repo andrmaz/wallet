@@ -12,12 +12,13 @@ export const Card: React.FC<CardProps> = ({title, children, ...props}) => {
   return (
     <Box
       p="4"
+      {...props}
       style={{
         border: '1px solid var(--gray-6)',
         borderRadius: 'var(--radius-3)',
         backgroundColor: 'var(--color-panel)',
+        ...(props.style ?? {}),
       }}
-      {...props}
     >
       {title && (
         <Heading size="4" mb="3">
