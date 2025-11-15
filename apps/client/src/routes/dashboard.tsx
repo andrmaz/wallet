@@ -31,6 +31,13 @@ export default function Dashboard() {
     [account?.expenses]
   )
 
+  // Reusable grid style for dashboard sections
+  const gridStyle = {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
+    gap: 'var(--space-4)',
+  }
+
   if (isLoading) {
     return (
       <Flex height="100%" align="center" justify="center">
@@ -67,24 +74,12 @@ export default function Dashboard() {
       </Box>
 
       {/* Main grid layout */}
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
-          gap: 'var(--space-4)',
-        }}
-      >
+      <div style={gridStyle}>
         <AccountBalance totalIncome={totalIncome} totalExpenses={totalExpenses} />
         <QuickLinks />
       </div>
 
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
-          gap: 'var(--space-4)',
-        }}
-      >
+      <div style={gridStyle}>
         <BudgetProgress budgets={account.budgets || []} expenses={account.expenses || []} />
         <GoalsProgress goals={account.goals || []} />
       </div>
