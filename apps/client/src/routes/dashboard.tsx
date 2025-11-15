@@ -17,6 +17,21 @@ export default function Dashboard() {
   const accountId = 1
   const {data, isLoading, error} = useDashboardDataQuery(accountId)
 
+  // Calculate totals - must be before early returns
+  const account = data?.account
+  
+  const totalIncome = React.useMemo(
+    () => account?.incomes?.reduce((sum, income) => sum + income.amount, 0) || 0,
+    [account?.incomes]
+  )
+
+  const totalExpenses = React.useMemo(
+    () => account?.expenses?.reduce((sum, expense) => sum + expense.amount, 0) || 0,
+    [account?.expenses]
+  )
+
+  const currentBalance = totalIncome - totalExpenses
+
   if (isLoading) {
     return (
       <Flex height="100%" align="center" justify="center">
@@ -33,8 +48,6 @@ export default function Dashboard() {
     )
   }
 
-  const account = data?.account
-
   if (!account) {
     return (
       <Flex height="100%" align="center" justify="center">
@@ -42,19 +55,6 @@ export default function Dashboard() {
       </Flex>
     )
   }
-
-  // Calculate totals
-  const totalIncome = React.useMemo(
-    () => account.incomes?.reduce((sum, income) => sum + income.amount, 0) || 0,
-    [account.incomes]
-  )
-
-  const totalExpenses = React.useMemo(
-    () => account.expenses?.reduce((sum, expense) => sum + expense.amount, 0) || 0,
-    [account.expenses]
-  )
-
-  const currentBalance = totalIncome - totalExpenses
 
   return (
     <Flex direction="column" p="6" gap="6" style={{maxWidth: '1400px', margin: '0 auto'}}>
