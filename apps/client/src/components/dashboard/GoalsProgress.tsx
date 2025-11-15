@@ -1,5 +1,6 @@
 import * as React from 'react'
 import {Card, Flex, Text} from '@wallet/ui'
+import {useLocale} from '@wallet/common'
 
 interface Goal {
   id: number
@@ -17,6 +18,8 @@ export const GoalsProgress: React.FC<GoalsProgressProps> = ({
   goals,
   currentBalance,
 }) => {
+  const {t} = useLocale()
+  
   const sortedGoals = React.useMemo(() => {
     return [...goals].sort(
       (a, b) => new Date(a.targetDate).getTime() - new Date(b.targetDate).getTime()
@@ -25,16 +28,16 @@ export const GoalsProgress: React.FC<GoalsProgressProps> = ({
 
   if (sortedGoals.length === 0) {
     return (
-      <Card title="Financial Goals">
+      <Card title={t('dashboard.goalsProgress.title')}>
         <Text size="2" color="gray">
-          No goals set. Create a goal to track your progress.
+          {t('dashboard.goalsProgress.noGoals')}
         </Text>
       </Card>
     )
   }
 
   return (
-    <Card title="Financial Goals">
+    <Card title={t('dashboard.goalsProgress.title')}>
       <Flex direction="column" gap="4">
         {sortedGoals.map((goal) => {
           const percentage =
@@ -76,12 +79,12 @@ export const GoalsProgress: React.FC<GoalsProgressProps> = ({
               <Flex justify="between" align="center">
                 <Text size="1" color="gray">
                   {daysRemaining > 0
-                    ? `${daysRemaining} days remaining`
-                    : 'Target date passed'}
+                    ? `${daysRemaining} ${t('dashboard.goalsProgress.daysRemaining')}`
+                    : t('dashboard.goalsProgress.targetDatePassed')}
                 </Text>
                 {isAchieved && (
                   <Text size="1" style={{color: 'var(--green-11)'}}>
-                    ✓ Goal achieved!
+                    ✓ {t('dashboard.goalsProgress.goalAchieved')}
                   </Text>
                 )}
               </Flex>

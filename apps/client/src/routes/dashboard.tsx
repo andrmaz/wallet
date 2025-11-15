@@ -1,5 +1,6 @@
 import * as React from 'react'
 import {Flex, Box, Heading, Text} from '@wallet/ui'
+import {useLocale} from '@wallet/common'
 import {useDashboardDataQuery} from '../graphql/dashboard'
 import {
   AccountBalance,
@@ -10,6 +11,7 @@ import {
 } from '../components/dashboard'
 
 export default function Dashboard() {
+  const {t} = useLocale()
   // For now, we'll use accountId 1 as a default
   // In a real app, this would come from user context/session
   const accountId = 1
@@ -18,7 +20,7 @@ export default function Dashboard() {
   if (isLoading) {
     return (
       <Flex height="100%" align="center" justify="center">
-        <Text>Loading dashboard...</Text>
+        <Text>{t('dashboard.loading')}</Text>
       </Flex>
     )
   }
@@ -26,7 +28,7 @@ export default function Dashboard() {
   if (error) {
     return (
       <Flex height="100%" align="center" justify="center">
-        <Text color="red">Error loading dashboard data</Text>
+        <Text color="red">{t('dashboard.error')}</Text>
       </Flex>
     )
   }
@@ -36,7 +38,7 @@ export default function Dashboard() {
   if (!account) {
     return (
       <Flex height="100%" align="center" justify="center">
-        <Text>No account data available</Text>
+        <Text>{t('dashboard.noData')}</Text>
       </Flex>
     )
   }
@@ -58,7 +60,7 @@ export default function Dashboard() {
     <Flex direction="column" p="6" gap="6" style={{maxWidth: '1400px', margin: '0 auto'}}>
       <Box>
         <Heading size="8" mb="2">
-          Dashboard
+          {t('dashboard.title')}
         </Heading>
         <Text size="3" color="gray">
           {account.name}

@@ -28,5 +28,42 @@
       "password": {"label": "Password", "error": "Password is not valid"},
       "action": {"next": "Next", "submit": "Sign up"}
     }
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "accountBalance": {
+      "title": "Account Balance",
+      "totalIncome": "Total Income:",
+      "totalExpenses": "Total Expenses:",
+      "balance": "Balance:"
+    },
+    "budgetProgress": {
+      "title": "Budget vs Spending",
+      "noBudgets": "No budgets set. Create a budget to track your spending.",
+      "overBudget": "Over budget by"
+    },
+    "goalsProgress": {
+      "title": "Financial Goals",
+      "noGoals": "No goals set. Create a goal to track your progress.",
+      "daysRemaining": "days remaining",
+      "targetDatePassed": "Target date passed",
+      "goalAchieved": "Goal achieved!"
+    },
+    "quickLinks": {
+      "title": "Quick Actions",
+      "addExpense": "Add Expense",
+      "addIncome": "Add Income",
+      "setBudget": "Set Budget",
+      "createGoal": "Create Goal",
+      "viewReports": "View Reports"
+    },
+    "spendingChart": {
+      "title": "Spending by Category",
+      "noExpenses": "No expenses recorded yet.",
+      "totalSpending": "Total Spending:"
+    },
+    "loading": "Loading dashboard...",
+    "error": "Error loading dashboard data",
+    "noData": "No account data available"
   }
 }

@@ -1,5 +1,6 @@
 import * as React from 'react'
 import {Card, Flex, Text, Heading} from '@wallet/ui'
+import {useLocale} from '@wallet/common'
 
 interface AccountBalanceProps {
   totalIncome: number
@@ -10,14 +11,15 @@ export const AccountBalance: React.FC<AccountBalanceProps> = ({
   totalIncome,
   totalExpenses,
 }) => {
+  const {t} = useLocale()
   const balance = totalIncome - totalExpenses
 
   return (
-    <Card title="Account Balance">
+    <Card title={t('dashboard.accountBalance.title')}>
       <Flex direction="column" gap="3">
         <Flex justify="between" align="center">
           <Text size="2" color="gray">
-            Total Income:
+            {t('dashboard.accountBalance.totalIncome')}
           </Text>
           <Text size="3" weight="bold" style={{color: 'var(--green-11)'}}>
             ${(totalIncome / 100).toFixed(2)}
@@ -25,7 +27,7 @@ export const AccountBalance: React.FC<AccountBalanceProps> = ({
         </Flex>
         <Flex justify="between" align="center">
           <Text size="2" color="gray">
-            Total Expenses:
+            {t('dashboard.accountBalance.totalExpenses')}
           </Text>
           <Text size="3" weight="bold" style={{color: 'var(--red-11)'}}>
             ${(totalExpenses / 100).toFixed(2)}
@@ -38,7 +40,7 @@ export const AccountBalance: React.FC<AccountBalanceProps> = ({
           style={{borderTop: '1px solid var(--gray-6)'}}
         >
           <Text size="3" weight="bold">
-            Balance:
+            {t('dashboard.accountBalance.balance')}
           </Text>
           <Heading
             size="6"

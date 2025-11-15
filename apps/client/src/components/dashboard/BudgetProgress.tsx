@@ -1,5 +1,6 @@
 import * as React from 'react'
 import {Card, Flex, Text} from '@wallet/ui'
+import {useLocale} from '@wallet/common'
 
 interface Budget {
   id: number
@@ -28,6 +29,8 @@ export const BudgetProgress: React.FC<BudgetProgressProps> = ({
   budgets,
   expenses,
 }) => {
+  const {t} = useLocale()
+  
   // Calculate spending by category
   const spendingByCategory = React.useMemo(() => {
     const result: Record<number, number> = {}
@@ -55,16 +58,16 @@ export const BudgetProgress: React.FC<BudgetProgressProps> = ({
 
   if (budgetData.length === 0) {
     return (
-      <Card title="Budget vs Spending">
+      <Card title={t('dashboard.budgetProgress.title')}>
         <Text size="2" color="gray">
-          No budgets set. Create a budget to track your spending.
+          {t('dashboard.budgetProgress.noBudgets')}
         </Text>
       </Card>
     )
   }
 
   return (
-    <Card title="Budget vs Spending">
+    <Card title={t('dashboard.budgetProgress.title')}>
       <Flex direction="column" gap="4">
         {budgetData.map((item, index) => (
           <Flex key={index} direction="column" gap="2">
@@ -98,7 +101,7 @@ export const BudgetProgress: React.FC<BudgetProgressProps> = ({
             </div>
             {item.overBudget && (
               <Text size="1" style={{color: 'var(--red-11)'}}>
-                Over budget by ${((item.spent - item.budgeted) / 100).toFixed(2)}
+                {t('dashboard.budgetProgress.overBudget')} ${((item.spent - item.budgeted) / 100).toFixed(2)}
               </Text>
             )}
           </Flex>

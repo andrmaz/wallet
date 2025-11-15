@@ -6,15 +6,15 @@ export const QuickLinks: React.FC = () => {
   const {t} = useLocale()
 
   const links = [
-    {label: 'Add Expense', onClick: () => console.log('Add expense'), icon: '💰'},
-    {label: 'Add Income', onClick: () => console.log('Add income'), icon: '💵'},
-    {label: 'Set Budget', onClick: () => console.log('Set budget'), icon: '📊'},
-    {label: 'Create Goal', onClick: () => console.log('Create goal'), icon: '🎯'},
-    {label: 'View Reports', onClick: () => console.log('View reports'), icon: '📈'},
+    {label: t('dashboard.quickLinks.addExpense'), onClick: () => console.log('Add expense'), icon: '💰'},
+    {label: t('dashboard.quickLinks.addIncome'), onClick: () => console.log('Add income'), icon: '💵'},
+    {label: t('dashboard.quickLinks.setBudget'), onClick: () => console.log('Set budget'), icon: '📊'},
+    {label: t('dashboard.quickLinks.createGoal'), onClick: () => console.log('Create goal'), icon: '🎯'},
+    {label: t('dashboard.quickLinks.viewReports'), onClick: () => console.log('View reports'), icon: '📈'},
   ]
 
   return (
-    <Card title="Quick Actions">
+    <Card title={t('dashboard.quickLinks.title')}>
       <Flex direction="column" gap="2">
         {links.map((link, index) => (
           <Button

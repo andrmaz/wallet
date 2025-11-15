@@ -1,5 +1,6 @@
 import * as React from 'react'
 import {Card, Flex, Text} from '@wallet/ui'
+import {useLocale} from '@wallet/common'
 
 interface Expense {
   id: number
@@ -15,6 +16,8 @@ interface SpendingChartProps {
 }
 
 export const SpendingChart: React.FC<SpendingChartProps> = ({expenses}) => {
+  const {t} = useLocale()
+  
   const spendingByCategory = React.useMemo(() => {
     const result: Record<string, number> = {}
     expenses.forEach((expense) => {
@@ -45,16 +48,16 @@ export const SpendingChart: React.FC<SpendingChartProps> = ({expenses}) => {
 
   if (spendingByCategory.length === 0) {
     return (
-      <Card title="Spending by Category">
+      <Card title={t('dashboard.spendingChart.title')}>
         <Text size="2" color="gray">
-          No expenses recorded yet.
+          {t('dashboard.spendingChart.noExpenses')}
         </Text>
       </Card>
     )
   }
 
   return (
-    <Card title="Spending by Category">
+    <Card title={t('dashboard.spendingChart.title')}>
       <Flex direction="column" gap="3">
         {/* Simple bar chart */}
         {spendingByCategory.map((item, index) => {
@@ -99,7 +102,7 @@ export const SpendingChart: React.FC<SpendingChartProps> = ({expenses}) => {
           style={{borderTop: '1px solid var(--gray-6)'}}
         >
           <Text size="2" weight="bold">
-            Total Spending:
+            {t('dashboard.spendingChart.totalSpending')}
           </Text>
           <Text size="3" weight="bold">
             ${(totalSpending / 100).toFixed(2)}
