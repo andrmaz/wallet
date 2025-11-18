@@ -1,0 +1,11 @@
+{
+  "name": "wallet",
+  "dependencies": {
+    "tessl/npm-graphql": {
+      "version": "15.10.0"
+    },
+    "tessl/npm-react": {
+      "version": "18.3.0"
+    }
+  }
+}
