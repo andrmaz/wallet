@@ -1,0 +1,7 @@
+{
+  "name": "tessl/npm-graphql",
+  "version": "15.10.1",
+  "docs": "docs/index.md",
+  "describes": "pkg:npm/graphql@15.10.1",
+  "summary": "A Query Language and Runtime which can target any service"
+}
