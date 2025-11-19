@@ -37,6 +37,10 @@ testem.log
 .env
 *.local
 
+# Database files
+*.db
+*.db-journal
+
 # System Files
 .DS_Store
 Thumbs.db
