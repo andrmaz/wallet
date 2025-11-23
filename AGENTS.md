@@ -298,7 +298,7 @@ const useUserQuery = (variables: {id: number}) => {
   const UserQuery = graphql(`query GetUser($where: UserWhereUniqueInput!) {...}`)
   return useQuery({
     queryKey: ['user', UserQuery, variables],
-    queryFn: async () => await client(UserQuery, variables)
+    queryFn: async () => await client(UserQuery, [variables])
   })
 }
 ```
@@ -521,7 +521,7 @@ fix(budget): correct calculation for monthly budget
 
 docs(readme): update installation instructions
 
-ci: workflow does not contain permissions
+ci: add permissions for GitHub Actions workflow
 ```
 
 ### Pull Request Requirements
